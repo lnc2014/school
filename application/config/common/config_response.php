@@ -9,3 +9,6 @@ $config['response']['0002'] = "内部错误";
 $config['response']['0003'] = "非法参数";
 $config['response']['0004'] = "非法请求";
 $config['response']['0005'] = "未登录";
+
+//登录 0100-0199
+$config['response']['0010'] = "密码不正确";
