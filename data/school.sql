@@ -25,12 +25,12 @@ CREATE TABLE `sch_admin` (
   `user_name` varchar(255) NOT NULL COMMENT '用户名',
   `account` varchar(50) NOT NULL COMMENT '登录账号',
   `psw` varchar(100) NOT NULL COMMENT '登录密码，使用md5加密',
-  `data_id` int(11) NOT NULL DEFAULT '0' COMMENT '资料ID，跟相应的资料ID绑定，目前主要对于教师',
-  `auth` tinyint(4) NOT NULL DEFAULT '0' COMMENT '登录权限，1为普通权限，2教师，3办公室主任，4教务处主任，5学术委员会主任，6校长，7，超级管理员',
+  `teacher_id` int(11) NOT NULL DEFAULT '0' COMMENT '资料ID，跟相应的资料ID绑定，目前主要对于教师',
   `flag` tinyint(4) NOT NULL DEFAULT '1' COMMENT '账号是否有效，1为有效，0为无效',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最近登录的时间',
   `ip` varchar(50) NOT NULL COMMENT '最近登录的IP地址',
+  `auth` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1为教师权限，2为超级管理员',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -75,9 +75,10 @@ CREATE TABLE `sch_teacher` (
   `teacher_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '教师ID',
   `mobile` varchar(50) NOT NULL DEFAULT '0' COMMENT '教师联系方式',
   `name` varchar(50) NOT NULL COMMENT '教师名称',
-  `subject` tinyint(4) NOT NULL DEFAULT '0' COMMENT '所教学科，1为语文，2为数学，3为英语，4为计算机，5为音乐（后面扩展）',
+  `subject` tinyint(4) NOT NULL DEFAULT '0' COMMENT '所教学科，1为语文，2为数学，3为英语，4为计算机，5为音乐（后面扩展），0为没有学科',
   `address` varchar(100) NOT NULL DEFAULT '' COMMENT '教师居住地',
-  `department` tinyint(4) NOT NULL DEFAULT '0' COMMENT '所属部门，1为教务处，2办公室，3为学生处（可以拓展）',
+  `department` tinyint(4) NOT NULL DEFAULT '0' COMMENT '所属部门，1为教师队伍，没有所属部门，2为教务处成员，3办公室成员，4为评审委员会成员,5为校长',
+  `is_admin` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是不是部门负责人，1为负责人（主任等），0为普通职员',
   `point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '现阶段的积点',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改的时间',
