@@ -2,28 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Class School
- * 绩效考核系统基础类
+ *  基础类
  */
-class School extends CI_Controller {
+class BaseController extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
+
+	public function __construct()
 	{
-		$this->load->view('welcome_message');
+		parent::__construct();
+		header("Content-type:text/html;charset=utf-8");
+		session_start();
+		date_default_timezone_set('PRC'); //设置中国时区
+		$this->config->load('common/config_response', TRUE); //统一返回状态码loading
+		$this->load->helper('url');
+		$this->response_msg = $this->config->item('response', 'common/config_response');
 	}
 }
