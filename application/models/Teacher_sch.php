@@ -6,7 +6,7 @@
  * Time: 22:20
  */
 include_once "BaseModel.php";
-class Teacher extends BaseModel{
+class Teacher_sch extends BaseModel{
     protected $_tablename = 'sch_teacher';
     public function __construct()
     {

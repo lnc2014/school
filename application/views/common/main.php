@@ -27,7 +27,7 @@
         });
     </script>
 </head>
-<body> 
+<body>
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">

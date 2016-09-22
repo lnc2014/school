@@ -48,4 +48,15 @@ class BaseController extends CI_Controller {
 		}
 		return false;
 	}
+	/**
+	 * 错误信息
+	 * @param $code
+	 * @param $msg
+	 */
+	public function error($code, $msg){
+		$this->load->view('error', array(
+			'error_code' => $code,
+			'error_msg' => $msg,
+		));
+	}
 }
