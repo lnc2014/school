@@ -70,4 +70,33 @@ class Teacher extends BaseController{
         $this->load->view('teacher_index');
     }
 
+    /**
+     * 教师录入积点首页,具有新增、修改的功能
+     */
+    public function input_point_index(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $this->load->model('M_sch_point');
+        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id']));
+        $this->data['is_fill_point'] = 0;//是不是已经填写本年度的积点,默认为没有填写
+        if(!empty($teacher_point)){
+            //TODO 填写了积点要通过算法计算其积点的排名
+            $this->data['is_fill_point'] = 1;
+        }
+        $this->load->view('teacher_input_index', $this->data);
+    }
+
+    /**
+     * 教师录入积点的页面，还要是录入年度
+     */
+    public function input_point(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $this->load->view('teacher_input_point');
+    }
+
 }
