@@ -27,6 +27,10 @@ $(function(){
     var union;
     var join_festival;
     var counselor;
+    var substitute;
+    var satisfaction_survey;
+    var attendance_award;
+    var school_teacher;
 
     //获取基本岗位的积分，用于前台计算
     $("#base_point input[type='checkbox']").live('click', function(e){
@@ -43,6 +47,7 @@ $(function(){
             $('#base_point').find(".yes").attr('checked', false);
         }
     });
+    /*********************兼职岗位积点**************************/
     //科组长45、备课组长30
     var section_leader_point = 0;
     $("#is_section_leader").live('change', function(e){
@@ -87,7 +92,6 @@ $(function(){
             $('#officer').find(".yes").attr('checked', false);
         }
     });
-
     //校级领导，积点为60。1是
     var school_leader_point = 0;
     $("#school_leader input[type='checkbox']").live('click', function(e){
@@ -269,8 +273,79 @@ $(function(){
             $('#counselor').find(".yes").attr('checked', false);
         }
     });
-
+    /*********************奖励性积点**************************/
+    //是不是有代课，1为有。代课的节数，1节课0.5个积点
+    var substitute_point = 0;
+    $("#substitute input[type='checkbox']").live('click', function(e){
+        var is_substitute = $(this).val();
+        if($(this).is(':checked') && is_substitute == 1){
+            substitute = 1;
+            $('#substitute_num').attr('disabled', false);
+            $('#substitute_data').attr('disabled', false);
+            $('#substitute').find(".no").attr('checked', false);
+            $('#substitute').find(".yes").attr('checked', true);
+        }else{
+            substitute = 0;
+            $('#substitute').find(".no").attr('checked', true);
+            $('#substitute_num').val('');
+            $('#substitute_num').attr('disabled', true);
+            $('#substitute_data').attr('disabled', true);
+            $('#substitute').find(".yes").attr('checked', false);
+        }
+    });
+    //每学年进行2次满意度调查，每次满意度达80%以上，可获得5个积点奖励。1达到条件
+    var satisfaction_survey_point = 0;
+    $("#satisfaction_survey input[type='checkbox']").live('click', function(e){
+        var is_satisfaction_survey = $(this).val();
+        if($(this).is(':checked') && is_satisfaction_survey == 1){
+            satisfaction_survey = 1;
+            satisfaction_survey_point = 5;
+            $('#satisfaction_survey').find(".no").attr('checked', false);
+            $('#satisfaction_survey').find(".yes").attr('checked', true);
+        }else{
+            satisfaction_survey = 0;
+            satisfaction_survey_point = 0;
+            $('#satisfaction_survey').find(".no").attr('checked', true);
+            $('#satisfaction_survey').find(".yes").attr('checked', false);
+        }
+    });
+    //缺席次数，每缺席一次扣除1点积点，如果不填写则为全勤。要提供考勤记录。总的积点20点
+    var attendance_award_point = 20;
+    $("#attendance_award input[type='checkbox']").live('click', function(e){
+        var is_attendance_award= $(this).val();
+        if($(this).is(':checked') && is_attendance_award == 1){
+            attendance_award = 1;
+            $('#attendance_award_num').attr('disabled', true);
+            $('#attendance_award_data').attr('disabled', false);
+            $('#attendance_award_num').val('');
+            $('#attendance_award').find(".no").attr('checked', false);
+            $('#attendance_award').find(".yes").attr('checked', true);
+        }else{
+            attendance_award = 0;
+            $('#attendance_award_num').attr('disabled', false);
+            $('#attendance_award_data').attr('disabled', true);
+            $('#attendance_award').find(".no").attr('checked', true);
+            $('#attendance_award').find(".yes").attr('checked', false);
+        }
+    });
+    //是不是别聘为高三、初三老师、多语种班项目，1为聘用。积点30个
+    var school_teacher_point = 0;
+    $("#school_teacher input[type='checkbox']").live('click', function(e){
+        var is_school_teacher = $(this).val();
+        if($(this).is(':checked') && is_school_teacher == 1){
+            school_teacher_point = 30;
+            school_teacher = 1;
+            $('#school_teacher').find(".no").attr('checked', false);
+            $('#school_teacher').find(".yes").attr('checked', true);
+        }else{
+            school_teacher_point = 0;
+            school_teacher = 0;
+            $('#school_teacher').find(".no").attr('checked', true);
+            $('#school_teacher').find(".yes").attr('checked', false);
+        }
+    });
     $('#submit').click(function(){
+        //兼职积点分数
         part_time_point = accAdd(part_time_point, section_leader_point);
         part_time_point = accAdd(part_time_point, director_point);
         part_time_point = accAdd(part_time_point, officer_point);
@@ -285,7 +360,34 @@ $(function(){
         part_time_point = accAdd(part_time_point, union_point);
         part_time_point = accAdd(part_time_point, join_festival_point);
         part_time_point = accAdd(part_time_point, counselor_point);
-        alert(part_time_point);
+        //奖励性积点分数
+        if(substitute == 1){
+            var substitute_num = $('#substitute_num').val();
+            if(!substitute_num || substitute_num < 0){
+                substitute_num = 0;
+            }
+            substitute_point = substitute_num * 0.5;
+        }
+        if(attendance_award == 1){
+            attendance_award = 0;
+        }else{
+            attendance_award = $('#attendance_award_num').val();
+            if(attendance_award < 0 || !attendance_award){
+                alert('缺席的次数不能为空！');
+                return;
+            }
+            var attendance_all_award_point = 20;
+            var quexi = attendance_award * 1;
+            attendance_award_point = accSubtr(attendance_all_award_point, quexi);
+            if(attendance_award_point < 0 ){
+                attendance_award_point = 0;
+            }
+        }
+        award_point = accAdd(award_point, substitute_point);
+        award_point = accAdd(award_point, satisfaction_survey_point);
+        award_point = accAdd(award_point, attendance_award_point);
+        award_point = accAdd(award_point, school_teacher_point);
+        alert(attendance_award_point);
     });
 });
 //加法函数，用来得到精确的加法结果

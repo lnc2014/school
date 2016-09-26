@@ -227,43 +227,43 @@
         奖励性积点
     </div>
     <hr class="hr"/>
-    <div class="option">
+    <div class="option" id="substitute">
         <label class="label">替公假、事假、病假、婚假老师顶岗代课：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="代课节数" class="input_text" style="width: 55px"/>
-        <input type="file" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes"/>
+        <input type="text" placeholder="代课节数" class="input_text" style="width: 82px" id="substitute_num"/>
+        <input type="file" style="width: 100px" id="substitute_data"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>每带一节加0.5积点。以教务处调课单据为依据</span>
     </div>
-    <div class="option">
+    <div class="option" id="satisfaction_survey">
         <label class="label">学生满意度调查,满意度达80%以上：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>每学年进行2次满意度调查，每次满意度达80%以上，可获得5个积点奖励。</span>
     </div>
-    <div class="option">
+    <div class="option" id="attendance_award">
         <label class="label">出勤，是否全勤：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="file" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes" />
+        <input type="file" style="width: 100px " id="attendance_award_data"/>
         <label class="label">否</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="缺席次数" class="input_text" style="width: 55px"/>
+        <input type="checkbox" value="0" class="no" />
+        <input type="text" placeholder="缺席次数" class="input_text" style="width: 82px" id="attendance_award_num"/>
         <label class="label2">积点数：20</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>全校集会、部门会议、科组、备课组、班主任例会等缺席一次扣除1个积点，扣完为止。部门负责人负责考勤，提供考勤记录。</span>
     </div>
-    <div class="option">
+    <div class="option" id="school_teacher">
         <label class="label">高三（初三）教师、多语种班项目：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no" />
         <label class="label2">积点数：30</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>多语种班和毕业班教师不重复计算。</span>
     </div>
