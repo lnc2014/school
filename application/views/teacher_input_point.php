@@ -28,7 +28,7 @@
                 width : 100
             });
             $(".select4").uedSelect({
-                width : 100
+                width : 130
             });
             $(".select5").uedSelect({
                 width : 250
@@ -57,12 +57,12 @@
         基本岗位积点
     </div>
     <hr class="hr"/>
-    <div class="option">
+    <div class="option" id="base_point" >
         <label class="label">基本工作量：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：100</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>语文、数学、英语10节/周；物理、化学、生物、政治、历史、地理12节/周；体育、艺术、通用技术、信息技术、心理健康14节/周。高三高考科目10节/周，高三高考综合科目两个班为满工作量。</span>
     </div>
@@ -71,57 +71,69 @@
     </div>
     <hr class="hr"/>
     <div class="option">
-        <label class="label">科组长、备课组长：</label>
-        <label class="label">科组长</label>
-        <input type="checkbox"/>
-        <label class="label">备课组长</label>
-        <input type="checkbox" />
-        <label class="label">否</label>
-        <input type="checkbox" />
-        <label class="label2">积点数：科组长45、备课组长30</label>
-        <span style="margin-top: 20px"><b style="color: red">积点说明：</b>按照学校制定的岗位职责进行考评、科组长、备课组长竞争上岗</span>
+        <label class="label" style="float: left;">科组长、备课组长：</label>
+        <div class="vocation">
+            <select class="select4" id="is_section_leader" style="width: 250px">
+                <option value="0"  selected>不是</option>
+                <option value="1" >科组长</option>
+                <option value="2" >备课组长</option>
+            </select>
+        </div>
+        <br>
+        <label class="label2" >积点数：科组长45、备课组长30</label>
+        <br>
+        <span style="margin-top: 20px;z-index: 1000"><b style="color: red">积点说明：</b>按照学校制定的岗位职责进行考评、科组长、备课组长竞争上岗。</span>
     </div>
-    <div class="option">
+    <div class="option" id="director">
         <label class="label">主任、副主任、部门干事 、年级长、副级长、班主任：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：45</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>按照学校岗位需求情况，实行竞争上岗。</span>
     </div>
-    <div class="option">
+    <div class="option" id="officer">
         <label class="label">部门干事：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：40</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>按照学校岗位需求情况，实行竞争上岗。</span>
     </div>
-    <div class="option">
+    <div class="option" id="school_leader">
         <label class="label">校级领导：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：60</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>按照学校岗位需求情况，实行竞争上岗。</span>
     </div>
-    <div class="option">
+    <div class="option" id="part_time_magazine">
         <label class="label">兼职校刊、校报编辑工作、青蓝工程指导教师：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <input type="file"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：12</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>提供工作量记录和指导记录。</span>
+    </div>
+    <div class="option" id="academic">
+        <label class="label">学术委员、学堂干事：</label>
+        <label class="label">是</label>
+        <input type="checkbox" value="1" class="yes"/>
+        <label class="label">否</label>
+        <input type="checkbox" value="0" class="no"/>
+        <label class="label2">积点数：15</label>
+        <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无。</span>
     </div>
     <div class="option">
         <label class="label" style="float: left;">教科研情况：</label>
         <div class="vocation">
-            <select class="select2" id="department" style="width: 250px">
+            <select class="select2" id="education_case" style="width: 250px">
                 <option value="0"  selected>不是</option>
                 <option value="1" >在研的校级课题主持人</option>
                 <option value="2" >在研的校级课题成员排序前三位</option>
@@ -139,7 +151,7 @@
     <div class="option">
         <label class="label" style="float: left;">每年提交一项最高级别的发表论文：</label>
         <div class="vocation">
-            <select class="select2" id="department" style="width: 250px">
+            <select class="select2" id="paper" style="width: 250px">
                 <option value="0" selected >无</option>
                 <option value="1" >校级</option>
                 <option value="2" >市级</option>
@@ -152,37 +164,37 @@
         <br>
         <span style="margin-top: 20px;z-index: 1000"><b style="color: red">积点说明：</b>校级5点、市级10点、省级15点、国家级20点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="eight_teacher">
         <label class="label">八大学堂选修课主讲教师：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no" />
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
-    <div class="option">
+    <div class="option" id="league_teacher">
         <label class="label">社团指导老师：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
-    <div class="option">
+    <div class="option" id="tutor">
         <label class="label">导师制导师：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox"  value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox"  value="0" class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
     <div class="option">
         <label class="label" style="float: left;">工会委员会：</label>
         <div class="vocation">
-            <select class="select2" id="department" style="width: 250px">
+            <select class="select2" id="union" style="width: 250px">
                 <option value="0" selected>不是</option>
                 <option value="1" >工会委员会成员</option>
                 <option value="2" >工会委员会组长</option>
@@ -193,21 +205,21 @@
         <br>
         <span style="margin-top: 20px;z-index: 1000"><b style="color: red">积点说明：</b>工会委员增加5个积点，工会组长增加9个积点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="join_festival">
         <label class="label">参与学校重大节日：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：4</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
-    <div class="option">
+    <div class="option" id="counselor">
         <label class="label">心理咨询师：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes" />
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no" />
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
@@ -477,10 +489,12 @@
         <br>
         <span style="margin-top: 20px;z-index: 1000"><b style="color: red">积点说明：</b>获得全日制研究生学历和硕士学位者加9分；获得全日制研究生学历和博士学位者加15分。有研究生学位者视为研究生对待。</span>
     </div>
-    <button href="#" class="btn_primary" style="margin-left: 20px" onclick = "javascript:window.location.href='/index.php/teacher/input_point_index' ">提交</button>
-    <button href="#" class="btn_primary" style="margin-left: 20px" onclick = "javascript:window.location.href='/index.php/teacher/input_point_index' ">提交并且提交审核</button>
+    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit" >提交</button>
+    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit_check">提交并且提交审核</button>
 </div>
 <script type="text/javascript" src="/template/jeDate/jedate.js"></script>
+<script type="text/javascript" src="/template/js/zepto.min.js"></script>
+<script type="text/javascript" src="/template/js/input_point.js"></script>
 <script type="text/javascript">
 //    jeDate.skin('gray');
     jeDate({
