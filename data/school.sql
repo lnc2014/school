@@ -56,7 +56,7 @@ CREATE TABLE `sch_per_teacher` (
 DROP TABLE IF EXISTS `sch_point`;
 
 CREATE TABLE `sch_point` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `workload` tinyint(4) NOT NULL DEFAULT '0' COMMENT '基本工作量(积点数 100)。语文、数学、英语10节/周；物理、化学、生物、政治、历史、地理12节/周；体育、艺术、通用技术、信息技术、心理健康14节/周。高三高考科目10节/周，高三高考综合科目两个班为满工作量。',
   `section_leader` tinyint(4) NOT NULL DEFAULT '0' COMMENT '科组长为1，备课组长为2，不是为0。积点数：科组长45、备课组长30',
   `director` tinyint(4) NOT NULL DEFAULT '0' COMMENT '主任、副主任、部门干事 、年级长、副级长、班主任。积点45。1为是',
@@ -110,9 +110,10 @@ CREATE TABLE `sch_point` (
   `year` int(11) DEFAULT '0' COMMENT '年，存2016',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `total_point` int(11) NOT NULL DEFAULT '0' COMMENT '该年度总共的积点分数',
+  `total_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '该年度总共的积点分数',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '该年度该条积点的状态，1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sch_point_options` */
 
@@ -137,9 +138,16 @@ DROP TABLE IF EXISTS `sch_point_teacher`;
 CREATE TABLE `sch_point_teacher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `teacher_id` int(11) NOT NULL DEFAULT '0' COMMENT '教师ID',
-  `point_id` int(11) NOT NULL DEFAULT '0' COMMENT '积点考核的ID',
+  `base_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '基本岗位积点数',
+  `part_time_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '兼职岗位积点数',
+  `award_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '奖励的积点数',
+  `person_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '个人资历积点数',
+  `total_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '总的分数',
+  `year` int(11) NOT NULL DEFAULT '0' COMMENT '录入的年份',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sch_teacher` */
 

@@ -79,15 +79,17 @@ class Teacher extends BaseController{
             redirect('school/login');
         }
         $this->load->model('M_sch_point');
-        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id']));
+        $this->load->model('M_sch_point_teacher');
+        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
+        $teacher_total_point = $this->M_sch_point_teacher->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
         $this->data['is_fill_point'] = 0;//是不是已经填写本年度的积点,默认为没有填写
         if(!empty($teacher_point)){
             //TODO 填写了积点要通过算法计算其积点的排名
             $this->data['is_fill_point'] = 1;
+            $this->data['teacher_total_point'] = $teacher_total_point;
         }
         $this->load->view('teacher_input_index', $this->data);
     }
-
     /**
      * 教师录入积点的页面，还要是录入年度
      */
@@ -117,10 +119,10 @@ class Teacher extends BaseController{
         $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
         $teacher_total_point = $this->M_sch_point_teacher->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
         //TODO 获取积点的年份
-//        if(!empty($teacher_point) || !empty($teacher_total_point)){
-//            echo $this->apiReturn('0004', new stdClass(), $this->response_msg["0004"]);
-//            return;
-//        }
+        if(!empty($teacher_point) || !empty($teacher_total_point)){
+            echo $this->apiReturn('0004', new stdClass(), $this->response_msg["0004"]);
+            return;
+        }
         if(empty($post['work_year']) || empty($post['city_year']) || empty($post['job_title'])){
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;

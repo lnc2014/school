@@ -48,13 +48,13 @@
             </thead>
             <tbody>
             <tr>
-                <td>2016</td>
-                <td>20</td>
-                <td>50</td>
-                <td>63</td>
-                <td>23</td>
-                <td>52</td>
-                <td>126</td>
+                <td><?php echo $teacher_total_point['year']?></td>
+                <td><?php echo $teacher_total_point['base_point']?></td>
+                <td><?php echo $teacher_total_point['part_time_point']?></td>
+                <td><?php echo $teacher_total_point['award_point']?></td>
+                <td><?php echo $teacher_total_point['person_point']?></td>
+                <td><?php echo $teacher_total_point['year']?></td>
+                <td>0</td>
                 <td>
                     <a href="#" class="tablelink">修改</a>&nbsp;&nbsp;
                     <a href="#" class="tablelink" style="color: red"> 提交审核</a>
