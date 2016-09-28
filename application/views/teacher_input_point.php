@@ -33,6 +33,9 @@
             $(".select5").uedSelect({
                 width : 250
             });
+            $(".select6").uedSelect({
+                width : 155
+            });
         });
     </script>
 </head>
@@ -267,87 +270,87 @@
         <label class="label2">积点数：30</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>多语种班和毕业班教师不重复计算。</span>
     </div>
-    <div class="option">
+    <div class="option" id="finish_goal">
         <label class="label">完成高考（中考）预定指标：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>完成高考（中考）预定指标另加5个奖励积点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="college">
         <label class="label">本科生超出指标数量：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="超出指标数量" class="input_text" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes"/>
+        <input type="text" placeholder="超出指标数量" class="input_text" style="width: 150px" id="college_num"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>本科生超出指标数量，一个增加6个积点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="middle">
         <label class="label">重点高中生超出指标数量：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="超出指标数量" class="input_text" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes"/>
+        <input type="text" placeholder="超出指标数量" class="input_text" style="width: 100px" id="middle_num"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>重点生指标每多超一个，加10个点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="super_workload">
         <label class="label">超出工作量：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="超出节课数" class="input_text" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes"/>
+        <input type="text" placeholder="超出节课数" class="input_text" style="width: 100px" id="super_workload_num"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no" />
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>超出工作量的上课节数，每节课增加0.5个积点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="school_class">
         <label class="label">校级公开课实验课：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="节课数" class="input_text" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes"  />
+        <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="school_class_num"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no" />
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>校级公开课实验课，每节课增加5个积点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="city_class">
         <label class="label">市级公开课实验课：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="节课数" class="input_text" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes"/>
+        <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="city_class_num"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no" />
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>校级公开课实验课，每节课增加10个积点。</span>
     </div>
-    <div class="option">
+    <div class="option" id="courses">
         <label class="label">八大学堂精品课程：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="text" placeholder="节课数" class="input_text" style="width: 100px"/>
+        <input type="checkbox" value="1" class="yes"/>
+        <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="courses_num"/>
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>八大学堂精品课程，获得精品课程的次数，每学年最多2次，每次可以增加3个积点。</span>
     </div>
     <div class="option">
         <label class="label">中学生奥林匹克竞赛、学科竞赛、外语竞赛、综合、通用类比赛：</label><br><br>
-        <input type="text" placeholder="学生进入国家集训队的个数" class="input_text" style="width: 200px"/>
-        <input type="text" placeholder="学生进入省级的个数" class="input_text" style="width: 130px"/>
-        <input type="text" placeholder="学生进入市级的个数" class="input_text" style="width: 130px"/>
+        <input type="text" placeholder="学生进入国家集训队的个数" class="input_text" style="width: 200px" id="country_match_num"/>
+        <input type="text" placeholder="学生进入省级的个数" class="input_text" style="width: 150px" id="province_match_num"/>
+        <input type="text" placeholder="学生进入市级的个数" class="input_text" style="width: 150px" id="city_match_num"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>学生进入国家集训队或以上，可获得5×（学生数）个积点。省级以上3×（学生数），市级以上1×（学生数）。</span>
     </div>
     <div class="option">
         <label class="label" style="float: left;">学段考的试卷是否优秀试卷：</label>
         <div class="vocation">
-            <select class="select2" id="department">
+            <select class="select2" id="exam_pro">
                 <option value="0" selected>无</option>
                 <option value="1" >一等试卷</option>
                 <option value="2" >二等试卷</option>
@@ -359,26 +362,27 @@
         <br>
         <span style="margin-top: 20px;z-index: 1000"><b style="color: red">积点说明：</b>一等试卷可获得3个积点，二等试卷2个积点，三等试卷1个积点。命题不合格试卷，除追究责任之外，取消任何积点奖励。</span>
     </div>
-    <div class="option">
+    <div class="option" id="exam_rank">
         <label class="label">学段考试成绩综合排名同备课组内位列前50%：</label>
         <label class="label">是</label>
-        <input type="checkbox" />
-        <input type="file" />
+        <input type="checkbox" value="1" class="yes"/>
+        <input type="file" id="exam_rank_data" />
         <label class="label">否</label>
-        <input type="checkbox" />
+        <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：6</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>以教务处学段考考试简报为依据，学段考试成绩综合排名（参考B值，均分）在同备课组内位列前50%的，奖励科任老师6个积点。</span>
     </div>
     <div class="option">
         <label class="label" style="float: left;">优秀特色学科组：</label>
         <div class="vocation">
-            <select class="select2" id="department" style="width: 250px">
+            <select class="select6" id="outstand_sub" style="width: 250px">
                 <option value="0" selected>不是</option>
                 <option value="1" >市级以上科组成员</option>
                 <option value="2" >市级以上科组组长</option>
             </select>
         </div>
-        <input type="file"/>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <input type="file" id="outstand_sub_data"/>
         <br>
         <label class="label2" >积点数：见积点说明</label>
         <br>
@@ -387,7 +391,7 @@
     <div class="option">
         <label class="label" style="float: left;">优秀班主任或工作人员或优秀课题组主持人或课题组科研骨干：</label>
         <div class="vocation">
-            <select class="select4" >
+            <select class="select4" id="select_outstand_school" >
                 <option value="0" selected>不是</option>
                 <option value="1" >校级</option>
                 <option value="2" >市级</option>
@@ -403,7 +407,7 @@
     <div class="option">
         <label class="label" style="float: left;">年度考核优秀：</label>
         <div class="vocation">
-            <select class="select4" >
+            <select class="select4" id="select_outstand_year">
                 <option value="0" selected>不是</option>
                 <option value="1" >校级</option>
                 <option value="2" >市级</option>
@@ -419,7 +423,7 @@
     <div class="option">
         <label class="label" style="float: left;">教育系统表彰高考工作先进个人（学科先进个人）：</label>
         <div class="vocation">
-            <select class="select4" >
+            <select class="select4" id="select_outstand_person">
                 <option value="0" selected>不是</option>
                 <option value="1" >校级</option>
                 <option value="2" >市级</option>
@@ -435,7 +439,7 @@
     <div class="option">
         <label class="label" style="float: left;">专家、特级教师名师、名班主任、骨干教师、教坛新秀：</label>
         <div class="vocation">
-            <select class="select4" >
+            <select class="select4" id="expert">
                 <option value="0" selected>不是</option>
                 <option value="1" >市级</option>
                 <option value="2" >省级</option>
@@ -453,7 +457,7 @@
     <hr class="hr"/>
     <div class="option">
         <label class="label" style="float: left;">工龄：</label>
-        <input class="datainp" id="work_year" type="text" placeholder="竞聘人员参加工作之月" value="">
+        <input class="input_text" id="work_year" type="text" placeholder="竞聘人员参加工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
         <br>
         <label class="label2" >积点数：见积点说明</label>
         <br>
@@ -461,7 +465,7 @@
     </div>
     <div class="option">
         <label class="label" style="float: left;">市龄：</label>
-        <input class="datainp" id="city_year" type="text" placeholder="竞聘人员正式调入我市工作之月" value="">
+        <input class="input_text" id="city_year" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
         <br>
         <label class="label2" >积点数：见积点说明</label>
         <br>
@@ -469,7 +473,7 @@
     </div>
     <div class="option">
         <label class="label" style="float: left;">职称资格：</label>
-        <input class="datainp" id="job_title_time" type="text" placeholder="专业技术职称资格时间" value="">
+        <input class="input_text" id="job_title_time" type="text" placeholder="专业技术职称资格时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
         <br>
         <label class="label2" >积点数：见积点说明</label>
         <br>
@@ -478,7 +482,7 @@
     <div style="margin-bottom: 20px">
         <label class="label" style="float: left;">研究生学历（位）：</label>
         <div class="vocation">
-            <select class="select5" >
+            <select class="select5" id="postgraduate">
                 <option value="0" selected>不是</option>
                 <option value="1" >全日制研究生学历和硕士学位</option>
                 <option value="2" >全日制研究生学历和博士学位</option>
@@ -492,32 +496,8 @@
     <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit" >提交</button>
     <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit_check">提交并且提交审核</button>
 </div>
-<script type="text/javascript" src="/template/jeDate/jedate.js"></script>
+<script type="text/javascript" src="/template/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="/template/js/zepto.min.js"></script>
 <script type="text/javascript" src="/template/js/input_point.js"></script>
-<script type="text/javascript">
-//    jeDate.skin('gray');
-    jeDate({
-        dateCell:"#work_year",//isinitVal:true,
-        format:"YYYY-MM",
-        isTime:false, //isClear:false,
-        minDate:"2015-10-19 00:00:00",
-        maxDate:"2016-11-8 00:00:00"
-    });
-    jeDate({
-        dateCell:"#city_year",//isinitVal:true,
-        format:"YYYY-MM-DD",
-        isTime:false, //isClear:false,
-        minDate:"2015-10-19 00:00:00",
-        maxDate:"2016-11-8 00:00:00"
-    });
-    jeDate({
-        dateCell:"#job_title_time",//isinitVal:true,
-        format:"YYYY-MM",
-        isTime:false, //isClear:false,
-        minDate:"2015-10-19 00:00:00",
-        maxDate:"2016-11-8 00:00:00"
-    });
-</script>
 </body>
 </html>

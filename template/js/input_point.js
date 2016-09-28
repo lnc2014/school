@@ -12,8 +12,8 @@ $(function(){
     var person_point = 0; //个人积点
 
     /************各个项目的分开得分**************/
-    var workload;
-    var section_leader;
+    var workload = 0;
+    var section_leader = 0;
     var director;
     var officer;
     var school_leader;
@@ -29,8 +29,22 @@ $(function(){
     var counselor;
     var substitute;
     var satisfaction_survey;
-    var attendance_award;
+    var attendance_award = 0;
     var school_teacher;
+    var finish_goal = 0;
+    var college;
+    var middle;
+    var super_workload;
+    var school_class;
+    var city_class;
+    var courses;
+    var exam_pro;
+    var exam_rank;
+    var outstand_sub;
+    var select_outstand_school;
+    var select_outstand_year;
+    var select_outstand_person;
+    var expert;
 
     //获取基本岗位的积分，用于前台计算
     $("#base_point input[type='checkbox']").live('click', function(e){
@@ -344,7 +358,256 @@ $(function(){
             $('#school_teacher').find(".yes").attr('checked', false);
         }
     });
+
+    //是否完成高考（中考）预定指标，奖励积点5个
+    var finish_goal_point = 0;
+    $("#finish_goal input[type='checkbox']").live('click', function(e){
+        var is_finish_goal = $(this).val();
+        if($(this).is(':checked') && is_finish_goal == 1){
+            finish_goal_point = 5;
+            finish_goal = 1;
+            $('#finish_goal').find(".no").attr('checked', false);
+            $('#finish_goal').find(".yes").attr('checked', true);
+        }else{
+            finish_goal_point = 0;
+            finish_goal = 0;
+            $('#finish_goal').find(".no").attr('checked', true);
+            $('#finish_goal').find(".yes").attr('checked', false);
+        }
+    });
+
+    //本科生超出指标数量，一个增加6个积点
+    var college_point = 0;
+    $("#college input[type='checkbox']").live('click', function(e){
+        var is_college = $(this).val();
+        if($(this).is(':checked') && is_college == 1){
+            college = 1;
+            $('#college_num').attr('disabled', false);
+            $('#college').find(".no").attr('checked', false);
+            $('#college').find(".yes").attr('checked', true);
+        }else{
+            college = 0;
+            $('#college').find(".no").attr('checked', true);
+            $('#college_num').val('');
+            $('#college_num').attr('disabled', true);
+            $('#college').find(".yes").attr('checked', false);
+        }
+    });
+    //重点高中生超出指标数量，一个增加10个积点
+    var middle_point = 0;
+    $("#middle input[type='checkbox']").live('click', function(e){
+        var is_middle = $(this).val();
+        if($(this).is(':checked') && is_middle == 1){
+            middle = 1;
+            $('#middle_num').attr('disabled', false);
+            $('#middle').find(".no").attr('checked', false);
+            $('#middle').find(".yes").attr('checked', true);
+        }else{
+            middle = 0;
+            $('#middle').find(".no").attr('checked', true);
+            $('#middle_num').val('');
+            $('#middle_num').attr('disabled', true);
+            $('#middle').find(".yes").attr('checked', false);
+        }
+    });
+    //超出工作量的上课节数，每节课增加0.5个积点
+    var super_workload_point = 0;
+    $("#super_workload input[type='checkbox']").live('click', function(e){
+        var is_super_workload = $(this).val();
+        if($(this).is(':checked') && is_super_workload == 1){
+            super_workload = 1;
+            $('#super_workload_num').attr('disabled', false);
+            $('#super_workload').find(".no").attr('checked', false);
+            $('#super_workload').find(".yes").attr('checked', true);
+        }else{
+            super_workload = 0;
+            $('#super_workload').find(".no").attr('checked', true);
+            $('#super_workload_num').val('');
+            $('#super_workload_num').attr('disabled', true);
+            $('#super_workload').find(".yes").attr('checked', false);
+        }
+    });
+    //校级公开课实验课，每节课增加5个积点
+    var school_class_point = 0;
+    $("#school_class input[type='checkbox']").live('click', function(e){
+        var is_school_class= $(this).val();
+        if($(this).is(':checked') && is_school_class == 1){
+            school_class = 1;
+            $('#school_class_num').attr('disabled', false);
+            $('#school_class').find(".no").attr('checked', false);
+            $('#school_class').find(".yes").attr('checked', true);
+        }else{
+            super_workload = 0;
+            $('#school_class').find(".no").attr('checked', true);
+            $('#school_class_num').val('');
+            $('#school_class_num').attr('disabled', true);
+            $('#school_class').find(".yes").attr('checked', false);
+        }
+    });
+    //市级公开课实验课，每节课增加10个积点
+    var city_class_point = 0;
+    $("#city_class input[type='checkbox']").live('click', function(e){
+        var is_city_class = $(this).val();
+        if($(this).is(':checked') && is_city_class == 1){
+            city_class = 1;
+            $('#city_class_num').attr('disabled', false);
+            $('#city_class').find(".no").attr('checked', false);
+            $('#city_class').find(".yes").attr('checked', true);
+        }else{
+            city_class = 0;
+            $('#city_class').find(".no").attr('checked', true);
+            $('#city_class_num').val('');
+            $('#city_class_num').attr('disabled', true);
+            $('#city_class').find(".yes").attr('checked', false);
+        }
+    });
+    //八大学堂精品课程，获得精品课程的次数，每学年最多2次，每次可以增加3个积点
+    var courses_point = 0;
+    $("#courses input[type='checkbox']").live('click', function(e){
+        var is_courses = $(this).val();
+        if($(this).is(':checked') && is_courses == 1){
+            courses = 1;
+            $('#courses_num').attr('disabled', false);
+            $('#courses').find(".no").attr('checked', false);
+            $('#courses').find(".yes").attr('checked', true);
+        }else{
+            courses = 0;
+            $('#courses').find(".no").attr('checked', true);
+            $('#courses_num').val('');
+            $('#courses_num').attr('disabled', true);
+            $('#courses').find(".yes").attr('checked', false);
+        }
+    });
+    //一等试卷可获得3个积点，二等试卷2个积点，三等试卷1个积点
+    var exam_pro_point = 0;
+    $("#exam_pro").live('change', function(e){
+        exam_pro = $(this).find("option:selected").val();
+        if(exam_pro == 1){
+            exam_pro_point = 3;
+        }else if(exam_pro == 2){
+            exam_pro_point = 2;
+        }else if(exam_pro == 3){
+            exam_pro_point = 1;
+        }else{
+            exam_pro_point = 0
+        }
+    });
+    //以教务处学段考考试简报为依据，学段考试成绩综合排名（参考B值，均分）在同备课组内位列前50%的，奖励科任老师6个积点。1为是。
+    var exam_rank_point = 0;
+    $("#exam_rank input[type='checkbox']").live('click', function(e){
+        var is_exam_rank = $(this).val();
+        if($(this).is(':checked') && is_exam_rank == 1){
+            exam_rank = 1;
+            exam_rank_point = 6;
+            $('#exam_rank_data').attr('disabled', false);
+            $('#exam_rank').find(".no").attr('checked', false);
+            $('#exam_rank').find(".yes").attr('checked', true);
+        }else{
+            exam_rank = 0;
+            exam_rank_point = 0;
+            $('#exam_rank_data').attr('disabled', true);
+            $('#exam_rank').find(".no").attr('checked', true);
+            $('#exam_rank').find(".yes").attr('checked', false);
+        }
+    });
+    //以市教科院文件为准，市级以上科组成员人均获得2个积点。科组长另奖励5个积点
+    var outstand_sub_point = 0;
+    $("#outstand_sub").live('change', function(e){
+        outstand_sub = $(this).find("option:selected").val();
+        if(outstand_sub == 1){
+            $('#outstand_sub_data').attr('disabled', false);
+            outstand_sub_point = 2;
+        }else if(outstand_sub == 2){
+            $('#outstand_sub_data').attr('disabled', false);
+            outstand_sub_point = 7;
+        }else{
+            $('#outstand_sub_data').attr('disabled', true);
+            outstand_sub_point = 0
+        }
+    });
+    //含优秀班主任或工作人员或优秀课题组主持人或课题组科研骨干 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+    var select_outstand_school_point = 0;
+    $("#select_outstand_school").live('change', function(e){
+        select_outstand_school = $(this).find("option:selected").val();
+        if(select_outstand_school == 1){
+            select_outstand_school_point = 5;
+        }else if(select_outstand_school == 2){
+            select_outstand_school_point = 10;
+        }else if(select_outstand_school == 3){
+            select_outstand_school_point = 15;
+        }else if(select_outstand_school == 4){
+            select_outstand_school_point = 20;
+        }else{
+            select_outstand_school_point = 0
+        }
+    });
+    //考核优秀 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+    var select_outstand_year_point = 0;
+    $("#select_outstand_year").live('change', function(e){
+        select_outstand_year = $(this).find("option:selected").val();
+        if(select_outstand_year == 1){
+            select_outstand_year_point = 5;
+        }else if(select_outstand_year == 2){
+            select_outstand_year_point = 10;
+        }else if(select_outstand_year == 3){
+            select_outstand_year_point = 15;
+        }else if(select_outstand_year == 4){
+            select_outstand_year_point = 20;
+        }else{
+            select_outstand_year_point = 0
+        }
+    });
+    //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+    var select_outstand_person_point = 0;
+    $("#select_outstand_person").live('change', function(e){
+        select_outstand_person = $(this).find("option:selected").val();
+        if(select_outstand_person == 1){
+            select_outstand_person_point = 5;
+        }else if(select_outstand_person == 2){
+            select_outstand_person_point = 10;
+        }else if(select_outstand_person == 3){
+            select_outstand_person_point = 15;
+        }else if(select_outstand_person == 4){
+            select_outstand_person_point = 20;
+        }else{
+            select_outstand_person_point = 0
+        }
+    });
+    //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+    var expert_point = 0;
+    $("#expert").live('change', function(e){
+        expert = $(this).find("option:selected").val();
+        if(expert == 1){
+            expert_point = 5;
+        }else if(expert == 2){
+            expert_point = 10;
+        }else if(expert == 3){
+            expert_point = 15;
+        }else if(expert == 4){
+            expert_point = 20;
+        }else{
+            expert_point = 0
+        }
+    });
+    //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+    var expert_point = 0;
+    $("#expert").live('change', function(e){
+        expert = $(this).find("option:selected").val();
+        if(expert == 1){
+            expert_point = 5;
+        }else if(expert == 2){
+            expert_point = 10;
+        }else if(expert == 3){
+            expert_point = 15;
+        }else if(expert == 4){
+            expert_point = 20;
+        }else{
+            expert_point = 0
+        }
+    });
     $('#submit').click(function(){
+        var part_time_point = 0; //兼职岗位积点
+        var award_point = 0; //奖励性积点
         //兼职积点分数
         part_time_point = accAdd(part_time_point, section_leader_point);
         part_time_point = accAdd(part_time_point, director_point);
@@ -361,6 +624,7 @@ $(function(){
         part_time_point = accAdd(part_time_point, join_festival_point);
         part_time_point = accAdd(part_time_point, counselor_point);
         //奖励性积点分数
+        substitute_num = 0;
         if(substitute == 1){
             var substitute_num = $('#substitute_num').val();
             if(!substitute_num || substitute_num < 0){
@@ -369,25 +633,190 @@ $(function(){
             substitute_point = substitute_num * 0.5;
         }
         if(attendance_award == 1){
-            attendance_award = 0;
         }else{
-            attendance_award = $('#attendance_award_num').val();
-            if(attendance_award < 0 || !attendance_award){
+            var attendance_award_num = $('#attendance_award_num').val();
+            if(attendance_award_num < 0 || !attendance_award_num){
                 alert('缺席的次数不能为空！');
                 return;
             }
             var attendance_all_award_point = 20;
-            var quexi = attendance_award * 1;
+            var quexi = attendance_award_num * 1;
             attendance_award_point = accSubtr(attendance_all_award_point, quexi);
             if(attendance_award_point < 0 ){
                 attendance_award_point = 0;
             }
         }
+        college_num = 0;
+        if(college == 1){
+            var college_num = $('#college_num').val();
+            if(!college_num || college_num < 0){
+                college_num = 0;
+            }
+            college_point = college_num * 6;
+        }
+        middle_num = 0;
+        if(middle == 1){
+            var middle_num = $('#middle_num').val();
+            if(!middle_num || middle_num < 0){
+                middle_num = 0;
+            }
+            middle_point = middle_num * 10;
+        }
+        super_workload_num = 0;
+        if(super_workload == 1){
+            var super_workload_num = $('#super_workload_num').val();
+            if(!super_workload_num || super_workload_num < 0){
+                super_workload_num = 0;
+            }
+            super_workload_point = super_workload_num * 0.5;
+        }
+        school_class_num = 0;
+        if(school_class == 1){
+            var school_class_num = $('#school_class_num').val();
+            if(!school_class_num || school_class_num < 0){
+                school_class_num = 0;
+            }
+            school_class_point = school_class_num * 5;
+        }
+        city_class_num = 0;
+        if(city_class == 1){
+            var city_class_num = $('#city_class_num').val();
+            if(!city_class_num || city_class_num < 0){
+                city_class_num = 0;
+            }
+            city_class_point = city_class_num * 10;
+        }
+        courses_num = 0;
+        if(courses == 1){
+            var courses_num = $('#courses_num').val();
+            if(!courses_num || courses_num < 0){
+                courses_num = 0;
+            }
+            if(courses_num > 2){
+                alert('八大学堂精品课程,每学年最多2次');
+                return;
+            }
+            courses_point = courses_num * 3;
+        }
+
+        var country_match = $('#country_match_num').val();
+        if(!country_match || country_match < 0){
+            country_match = 0;
+        }
+        var province_match = $('#province_match_num').val();
+        if(!province_match || province_match < 0){
+            province_match = 0;
+        }
+        var city_match = $('#city_match_num').val();
+        if(!city_match || city_match < 0){
+            city_match = 0;
+        }
+        var country_point = country_match * 5;
+        var province_point = province_match * 3;
+        var city_point = city_match * 1;
+
         award_point = accAdd(award_point, substitute_point);
         award_point = accAdd(award_point, satisfaction_survey_point);
         award_point = accAdd(award_point, attendance_award_point);
         award_point = accAdd(award_point, school_teacher_point);
-        alert(attendance_award_point);
+        award_point = accAdd(award_point, finish_goal_point);
+        award_point = accAdd(award_point, college_point);
+        award_point = accAdd(award_point, middle_point);
+        award_point = accAdd(award_point, super_workload_point);
+        award_point = accAdd(award_point, school_class_point);
+        award_point = accAdd(award_point, city_class_point);
+        award_point = accAdd(award_point, courses_point);
+        award_point = accAdd(award_point, country_point);
+        award_point = accAdd(award_point, province_point);
+        award_point = accAdd(award_point, city_point);
+        award_point = accAdd(award_point, exam_pro_point);
+        award_point = accAdd(award_point, exam_rank_point);
+        award_point = accAdd(award_point, outstand_sub_point);
+        award_point = accAdd(award_point, exam_rank_point);
+        award_point = accAdd(award_point, select_outstand_school_point);
+        award_point = accAdd(award_point, select_outstand_year_point);
+        award_point = accAdd(award_point, select_outstand_person_point);
+        award_point = accAdd(award_point, expert_point);
+        //个人资历积点
+        var work_year = $('#work_year').val();
+        var city_year = $('#city_year').val();
+        var job_title_time = $('#job_title_time').val();
+        var postgraduate = $('#postgraduate').val();
+        if(!work_year){
+            alert('工龄不能为空');
+            return;
+        }
+        if(!city_year){
+            alert('市龄不能为空');
+            return;
+        }
+        if(!job_title_time){
+            alert('职称资格时间不能为空');
+            return;
+        }
+        //校验完毕，提交
+        $.ajax({
+            type: "POST",
+            url: "/index.php/teacher/add_point_to_db",
+            data: {
+                workload : workload,
+                section_leader : section_leader,
+                director : director,
+                officer : officer,
+                school_leader : school_leader,
+                part_time_magazine : part_time_magazine,
+                academic : academic,
+                education_case : education_case,
+                paper : paper,
+                counselor : counselor,
+                substitute : substitute,
+                substitute_num : substitute_num,
+                satisfaction_survey : satisfaction_survey,
+                attendance_award : attendance_award,
+                school_teacher : school_teacher,
+                finish_goal : finish_goal,
+                college_num : college_num,
+                middle_num : middle_num,
+                super_workload : super_workload,
+                school_class : school_class,
+                city_class : city_class,
+                courses : courses,
+                country_match : country_match,
+                province_match : province_match,
+                city_match : city_match,
+                exam_pro : exam_pro,
+                exam_rank : exam_rank,
+                outstand_sub : outstand_sub,
+                select_outstand_school : select_outstand_school,
+                select_outstand_year : select_outstand_year,
+                select_outstand_person : select_outstand_person,
+                expert : expert,
+                work_year : work_year,
+                city_year : city_year,
+                job_title : job_title_time,
+                postgraduate : postgraduate,
+                eight_teacher : eight_teacher,
+                league_teacher : league_teacher,
+                tutor : tutor,
+                union : union,
+                join_festival : join_festival,
+                base_point :base_point,
+                part_time_point :part_time_point,
+                award_point :award_point,
+            },
+            dataType: "json",
+            success: function(json){
+                if(json.result == '0000'){
+                    alert('录入成功');
+                    window.location = '/index.php/teacher/input_point_index';
+                }else {
+                    alert(json.info);
+                }
+            },
+            error: function(){
+                alert("加载失败");
+            }
+        });
     });
 });
 //加法函数，用来得到精确的加法结果
