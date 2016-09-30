@@ -25,13 +25,13 @@
             <div class="webuploader-pick">选择文件</div>
         </div>
         <button id="ctlBtn" class="btn btn-default">开始上传</button>
-        <a id="img_url" target="_blank"><img id="img" src="upload/20160930/20160930173104_985.jpg" style="width: 50px;height: 50px;display: none" ></a>
+        <a id="img_url" target="_blank"><img id="img" src="" style="width: 50px;height: 50px;display: none" ></a>
     </div>
     <div id="process">
     </div>
 </div>
 <script>
-    var image = ['image/gif, image/jpg, image/jpeg, image/bmp, image/png'];
+    var image = ['image/gif', 'image/jpg', 'image/jpeg', 'image/bmp', 'image/png'];
     jQuery(function() {
         upload();
     });
@@ -63,7 +63,8 @@
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on( 'uploadSuccess', function( file, data ) {
             if(data.code == 1){
-                if($.inArray(file.type, image)){
+                if($.inArray(file.type, image) > 0){
+                    console.log(file);
                     $("#img").css('display','block');
                     $('#img').attr('src', data.data.path);
                     $('#img_url').attr('href', data.data.path);
