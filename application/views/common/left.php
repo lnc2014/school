@@ -42,11 +42,63 @@
         <div class="title">
             <span><img src="/template/images/leftico01.png"/></span>菜单
         </div>
-        <ul class="menuson">
-            <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">首页</a><i></i></li>
-            <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
-            <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
-        </ul>
+        <?php
+        if($_SESSION['auth'] == 1 ){
+            if($_SESSION['department'] == 1){
+            ?>
+                <!--        教师菜单栏-->
+                <ul class="menuson">
+                    <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">教师首页</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+                </ul>
+            <?php } ?>
+           <?php if($_SESSION['department'] == 2){
+            ?>
+            <!--        教务处成员-->
+            <ul class="menuson">
+                <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">教务处首页</a><i></i></li>
+                <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
+                <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+            </ul>
+            <?php } ?>
+            <?php if($_SESSION['department'] == 3){
+                ?>
+                <!--        办公室成员-->
+                <ul class="menuson">
+                    <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">办公室首页</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+                </ul>
+            <?php } ?>
+            <?php if($_SESSION['department'] == 4){
+                ?>
+                <!--        评审委员会成员-->
+                <ul class="menuson">
+                    <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">评审委员会首页</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+                </ul>
+            <?php } ?>
+            <?php if($_SESSION['department'] == 5){
+                ?>
+                <!--        校长-->
+                <ul class="menuson">
+                    <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">校长首页</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+                </ul>
+            <?php } ?>
+        <?php } ?>
+<!--        系统管理菜单栏-->
+        <?php
+        if($_SESSION['auth'] == 2){ ?>
+            <ul class="menuson">
+                <li class="active"><cite></cite><a href="/index.php/system/index" target="rightFrame">账号列表</a><i></i></li>
+                <li><cite></cite><a href="/index.php/system/add_teacher" target="rightFrame">新增账号</a><i></i></li>
+                <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+            </ul>
+        <?php } ?>
     </dd>
 </dl>
 </body>

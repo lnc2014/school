@@ -108,6 +108,9 @@ class School extends BaseController {
 		if($_SESSION['auth'] == 1 && $_SESSION['department'] == 1){
 			$this->load->view('teacher_index', $this->data);
 		}
+		if($_SESSION['auth'] == 2){
+			$this->load->view('system_index', $this->data);
+		}
 	}
 
 	/**

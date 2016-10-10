@@ -12,4 +12,22 @@ class Admin extends BaseModel{
     {
         parent::__construct();
     }
+    /**
+     * 根据条件找出所有的教师列表
+     */
+    public function find_all_teacher($limit = '', $offset = '', $where = ''){
+        $this->db->select('a.`user_name`,a.account, t.*')->from();
+        $this->db->where('a.teacher_id = t.teacher_id');
+        $this->db->where('a.auth = 1');
+        $this->db->order_by('t.create_time', 'DESC');
+        if(!empty($where)){
+            $this->db->where($where);
+        }
+        if(empty($limit)){
+            $query = $this->db->get('sch_admin AS a ,sch_teacher AS t');
+        }else{
+            $query = $this->db->get('sch_admin AS a ,sch_teacher AS t', $limit, $offset);
+        }
+        return $query->result_array();
+    }
 }
