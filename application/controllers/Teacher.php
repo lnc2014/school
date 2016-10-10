@@ -90,6 +90,36 @@ class Teacher extends BaseController{
         }
         $this->load->view('teacher_input_index', $this->data);
     }
+    //提交审核
+    public function submit_check(){
+        $ponit_id = $this->input->post('ponit_id', true);
+        if(empty($ponit_id)){
+            echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
+            return;
+        }
+        $this->load->model('M_sch_point');
+        $this->load->model('M_sch_point_teacher');
+        $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status, year');
+        if(empty($ponit_info)){
+            echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
+            return;
+        }
+        //TODO 做一个时间检验
+        $update = $this->M_sch_point->update(array('status' => 2), array(
+            'id' => $ponit_id
+        ));
+        $this->M_sch_point_teacher->update(array('status' => 2), array(
+            'teacher_id' => $ponit_info['teacher_id'],
+            'year' => 2016
+        ));
+        if($update){
+            echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
+            return;
+        }else{
+            echo $this->apiReturn('0002', new stdClass(), $this->response_msg["0002"]);
+            return;
+        }
+    }
     /**
      * 教师录入积点的页面，还要是录入年度
      */

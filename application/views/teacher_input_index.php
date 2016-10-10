@@ -48,6 +48,7 @@
             </thead>
             <tbody>
             <tr>
+                <input type="hidden" id="point_id" value="<?php echo $teacher_total_point['id']?>">
                 <td><?php echo $teacher_total_point['year']?></td>
                 <td><?php echo $teacher_total_point['base_point']?></td>
                 <td><?php echo $teacher_total_point['part_time_point']?></td>
@@ -56,8 +57,14 @@
                 <td><?php echo $teacher_total_point['year']?></td>
                 <td>0</td>
                 <td>
-                    <a href="#" class="tablelink">修改</a>&nbsp;&nbsp;
-                    <a href="#" class="tablelink" style="color: red"> 提交审核</a>
+                    <?php
+                    if($teacher_total_point['status'] == 1){ ?>
+                        <a href="#" class="tablelink">修改</a>&nbsp;&nbsp;
+                        <a href="#" id = "submit_check" class="tablelink" style="color: red"> 提交审核</a>
+                    <?php }else{
+                    ?>
+                        <a href="#" class="tablelink">审核中</a>
+                    <?php } ?>
                 </td>
             </tr>
             </tbody>
@@ -73,8 +80,40 @@
     <?php
     }
     ?>
-
 </div>
+<script type="text/javascript" src="/template/js/zepto.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#submit_check").click(function(){
+        if(confirm('提交审核之后，将不可以修改！')){
+            var ponit_id = $('#point_id').val();
+            if(!ponit_id){
+                alert('操作错误，请联系管理员');
+                return;
+            }
+            $.ajax({
+                async:false,
+                type : 'POST',
+                url: '/index.php/teacher/submit_check',
+                data : {
+                    ponit_id:ponit_id
+                },
+                dataType : 'json',
+                success: function (data)
+                {
+                    if (data.result == '0000') {
+                        alert('提交审核成功');
+                        location.reload();
+                    } else {
+                        alert(data.info);
+                    }
+                }
+            });
+
+        }
+    });
+});
+</script>
 </body>
 </html>
 
