@@ -96,7 +96,6 @@
             <ul class="menuson">
                 <li class="active"><cite></cite><a href="/index.php/system/index" target="rightFrame">账号列表</a><i></i></li>
                 <li><cite></cite><a href="/index.php/system/add_teacher" target="rightFrame">新增账号</a><i></i></li>
-                <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
             </ul>
         <?php } ?>
     </dd>

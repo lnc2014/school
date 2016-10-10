@@ -106,10 +106,10 @@ class School extends BaseController {
 		}
 		$this->data['title'] = '深圳市第二外国语学校绩效考核系统';
 		if($_SESSION['auth'] == 1 && $_SESSION['department'] == 1){
-			$this->load->view('teacher_index', $this->data);
+			redirect('teacher/index');
 		}
 		if($_SESSION['auth'] == 2){
-			$this->load->view('system_index', $this->data);
+			redirect('system/index');
 		}
 	}
 
