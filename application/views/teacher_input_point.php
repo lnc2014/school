@@ -13,6 +13,7 @@
     <link href="/template/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/template/css/lnc.css" rel="stylesheet" type="text/css" />
     <link href="/template/css/select.css" rel="stylesheet" type="text/css" />
+    <link href="/template/webuploader/css/webuploader.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/template/js/jquery.js"></script>
     <script type="text/javascript" src="/template/js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="/template/js/select-ui.min.js"></script>
@@ -118,7 +119,7 @@
         <label class="label">兼职校刊、校报编辑工作、青蓝工程指导教师：</label>
         <label class="label">是</label>
         <input type="checkbox" value="1" class="yes"/>
-        <input type="file"/>
+        <input type="file" id="part_time_magazine_data"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：12</label>
@@ -499,5 +500,8 @@
 <script type="text/javascript" src="/template/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="/template/js/zepto.min.js"></script>
 <script type="text/javascript" src="/template/js/input_point.js"></script>
+<script type="text/javascript" src="/template/webuploader/js/webuploader.min.js"></script>
+<script type="text/javascript" src="/template/js/input_point.js"></script>
+<script type="text/javascript" src="/template/js/upload.js"></script>
 </body>
 </html>

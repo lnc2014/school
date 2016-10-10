@@ -54,6 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 define('ENVIRONMENT', $_SERVER['HTTP_HOST']==='school.lnctime.com' ? 'production' : 'testing');
+define("ROOTPATH", str_replace("\\", "/", (realpath(dirname(__FILE__))).'/')) ;
 
 /*
  *---------------------------------------------------------------
