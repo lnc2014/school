@@ -154,6 +154,116 @@ class System extends BaseController{
             return;
         }
     }
+    //积点列表
+    public function point(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $this->load->model('M_sch_system_point');
+        $this->data['point_list'] = $this->M_sch_system_point->get_list();
+        $this->load->view('system_point', $this->data);
+    }
+    //增加年度积分
+    public function add_point($point_id = ''){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $this->data['title'] = '新增账号';
+        $point = array();
+        $this->data['is_update'] = 0;
+        if(!empty($point_id)) {
+            $this->load->model('M_sch_system_point');
+            $point = $this->M_sch_system_point->get_one(array('id' => $point_id));
+            $this->data['is_update'] = $point_id;
+        }
+        $this->data['point'] = $point;
+        $this->load->view('system_add_point', $this->data);
+    }
+
+    /**
+     * 增加年度积分到db
+     */
+    public function add_point_by_ajax(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $post = $this->input->post(null , true);
+        if(empty($post)){
+            echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
+            return;
+        }
+        if(!empty($post['is_update'])){//修改
+            $point_id = $post['is_update'];
+            unset($post['is_update']);
+            $this->load->model('M_sch_system_point');
+            $is_new_point = $this->M_sch_system_point->get_one(array('year' => $post['year']));
+            if(!empty($is_new_point)){
+                echo $this->apiReturn('0301', new stdClass(), $this->response_msg["0301"]);
+                return;
+            }
+            $update = $this->M_sch_system_point->update($post, array('id' => $point_id));
+            if($update){
+                echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
+                return;
+            }else{
+                echo $this->apiReturn('0002', new stdClass(), $this->response_msg["0002"]);
+                return;
+            }
+        }elseif(empty($post['is_update'])){//增加
+            unset($post['is_update']);
+            $post['status'] = 1;
+            $post['create_time'] = date('Y-m-d H:i:s', time());
+            $this->load->model('M_sch_system_point');
+            $is_new_point = $this->M_sch_system_point->get_one(array('year' => $post['year']));
+            if(!empty($is_new_point)){
+                echo $this->apiReturn('0301', new stdClass(), $this->response_msg["0301"]);
+                return;
+            }
+            $point_id = $this->M_sch_system_point->add($post);
+            if($point_id > 0){
+                echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
+                return;
+            }else{
+                echo $this->apiReturn('0002', new stdClass(), $this->response_msg["0002"]);
+                return;
+            }
+        }
+    }
+    //操作年度积分
+    public function operate(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $point_id = $this->input->post('point_id' , true);
+        $status = $this->input->post('status' , true);
+        if(empty($point_id)){
+            echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
+            return;
+        }
+        $this->load->model('M_sch_system_point');
+        $system_point = $this->M_sch_system_point->get_one(array('id' => $point_id));
+        if(empty($system_point)){
+            echo $this->apiReturn('0300', new stdClass(), $this->response_msg["0300"]);
+            return;
+        }
+        //如果是一样的话，就不用修改
+        if($status == $system_point['status']){
+            echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
+            return;
+        }
+        $update = $this->M_sch_system_point->update(array('status' => $status), array('id' => $point_id));
+        if($update){
+            echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
+            return;
+        }else{
+            echo $this->apiReturn('0002', new stdClass(), $this->response_msg["0002"]);
+            return;
+        }
+    }
 
 
 }

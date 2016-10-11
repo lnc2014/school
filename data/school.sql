@@ -32,11 +32,11 @@ CREATE TABLE `sch_admin` (
   `ip` varchar(50) NOT NULL COMMENT '最近登录的IP地址',
   `auth` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1为教师权限，2为超级管理员',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sch_admin` */
 
-insert  into `sch_admin`(`id`,`user_name`,`account`,`psw`,`teacher_id`,`flag`,`create_time`,`login_time`,`ip`,`auth`) values (1,'lnc','lnc','e10adc3949ba59abbe56e057f20f883e',1,1,'2016-09-22 21:30:04','2016-09-22 21:30:16','127.0.0.1',1);
+insert  into `sch_admin`(`id`,`user_name`,`account`,`psw`,`teacher_id`,`flag`,`create_time`,`login_time`,`ip`,`auth`) values (1,'lnc','lnc','e10adc3949ba59abbe56e057f20f883e',1,1,'2016-09-22 21:30:04','2016-09-22 21:30:16','127.0.0.1',1),(2,'admin','admin','21232f297a57a5a743894a0e4a801fc3',0,1,'2016-10-11 10:55:36','2016-10-11 10:55:36','',2);
 
 /*Table structure for table `sch_per_teacher` */
 
@@ -163,6 +163,26 @@ CREATE TABLE `sch_point_teacher` (
 /*Data for the table `sch_point_teacher` */
 
 insert  into `sch_point_teacher`(`id`,`teacher_id`,`base_point`,`part_time_point`,`award_point`,`person_point`,`total_point`,`year`,`create_time`,`update_time`,`status`) values (1,1,'100.00','186.00','138.00','386.00','810.00',2016,'2016-09-29 01:12:13','2016-09-29 01:12:13',1),(2,1,'100.00','186.00','137.50','386.20','809.70',2016,'2016-09-29 01:14:55','2016-09-29 01:14:55',1);
+
+/*Table structure for table `sch_system_point` */
+
+DROP TABLE IF EXISTS `sch_system_point`;
+
+CREATE TABLE `sch_system_point` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `year` int(11) NOT NULL DEFAULT '0' COMMENT '积点的年份',
+  `description` varchar(500) NOT NULL DEFAULT '' COMMENT '积点录入说明',
+  `start_time` date DEFAULT '0000-00-00',
+  `end_time` date DEFAULT '0000-00-00',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '有效1,0为没有效',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `sch_system_point` */
+
+insert  into `sch_system_point`(`id`,`year`,`description`,`start_time`,`end_time`,`status`,`create_time`,`update_time`) values (1,2016,'','2016-10-11','2016-10-12',0,'2014-10-11 11:00:22','2016-10-11 12:03:10'),(2,2014,'','2016-10-11','2016-10-11',0,'2016-10-11 11:55:45','2016-10-11 12:03:08'),(3,2017,'2014','2016-10-04','2016-10-13',1,'2016-10-11 12:03:03','2016-10-11 12:03:03');
 
 /*Table structure for table `sch_teacher` */
 

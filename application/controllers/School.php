@@ -12,7 +12,7 @@ class School extends BaseController {
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		redirect('school/home');
 	}
 	/**
 	 * 登录
