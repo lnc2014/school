@@ -12,4 +12,8 @@ class M_sch_point extends BaseModel{
     {
         parent::__construct();
     }
+    //查找所有的待审核的教师的功能
+    public function get_all_teacher_check(){
+
+    }
 }

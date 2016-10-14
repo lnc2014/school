@@ -108,6 +108,22 @@ class School extends BaseController {
 		if($_SESSION['auth'] == 1 && $_SESSION['department'] == 1){
 			redirect('teacher/index');
 		}
+		//教务处
+		if($_SESSION['auth'] == 1 && $_SESSION['department'] == 2){
+			redirect('academic/index');
+		}
+		//办公室
+		if($_SESSION['auth'] == 1 && $_SESSION['department'] == 3){
+			redirect('office/index');
+		}
+		//评审委员会
+		if($_SESSION['auth'] == 1 && $_SESSION['department'] == 4){
+			redirect('committee/index');
+		}
+		//校长
+		if($_SESSION['auth'] == 1 && $_SESSION['department'] == 5){
+			redirect('schoolmaster/index');
+		}
 		if($_SESSION['auth'] == 2){
 			redirect('system/index');
 		}
