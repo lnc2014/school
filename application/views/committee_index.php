@@ -1,6 +1,6 @@
 <?php
 /**
- * Description 教务处首页
+ * Description 首页
  * Author: LNC
  * Date: 2016/9/22
  * Time: 21:56

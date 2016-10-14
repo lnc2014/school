@@ -59,4 +59,13 @@ class BaseController extends CI_Controller {
 			'error_msg' => $msg,
 		));
 	}
+	//查找可以填写积点的年份
+	public function get_fill_point_year(){
+		$this->load->model('M_sch_system_point');
+		$system_year = $this->M_sch_system_point->get_one(array('status' => 1));
+		if(empty($system_year)){
+			$system_year['year'] = date('Y', time()); //默认为今年
+		}
+		return $system_year['year'];
+	}
 }

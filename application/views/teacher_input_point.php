@@ -494,8 +494,8 @@
         <br>
         <span style="margin-top: 20px;z-index: 1000"><b style="color: red">积点说明：</b>获得全日制研究生学历和硕士学位者加9分；获得全日制研究生学历和博士学位者加15分。有研究生学位者视为研究生对待。</span>
     </div>
-    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit" >提交</button>
-    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit_check">提交并且提交审核</button>
+    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit2" >确认</button>
+    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit_check">提交审核</button>
 </div>
 <script type="text/javascript" src="/template/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="/template/js/zepto.min.js"></script>

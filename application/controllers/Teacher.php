@@ -11,6 +11,10 @@ class Teacher extends BaseController{
     /**
      * 教师个人信息
      */
+    public function show_error(){
+        $today_month = date('Y-09', time());
+        show_error('/school/home', 500, '您的权限不足。');
+    }
     public function info(){
         //检验是不是登录
         if(!$this->check_login()){
@@ -67,7 +71,9 @@ class Teacher extends BaseController{
         if(!$this->check_login()){
             redirect('school/login');
         }
-        $this->load->view('teacher_index');
+        $this->load->model('M_sch_point');
+        $this->data['teacher_point']= $this->M_sch_point->get_list(array('id' => $_SESSION['teacher_id']));
+        $this->load->view('teacher_index', $this->data);
     }
 
     /**
@@ -79,14 +85,21 @@ class Teacher extends BaseController{
             redirect('school/login');
         }
         $this->load->model('M_sch_point');
-        $this->load->model('M_sch_point_teacher');
-        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
-        $teacher_total_point = $this->M_sch_point_teacher->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
+        //查找需要填写的年度
+        $this->load->model('M_sch_system_point');
+        $system_year = $this->M_sch_system_point->get_one(array('status' => 1));
+        $this->data['have_point'] = 1;
+        if(empty($system_year)){
+            $this->data['have_point'] = 0;
+        }
+        if(!empty($system_year)){
+            $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => $system_year['year']));
+        }
         $this->data['is_fill_point'] = 0;//是不是已经填写本年度的积点,默认为没有填写
         if(!empty($teacher_point)){
             //TODO 填写了积点要通过算法计算其积点的排名
             $this->data['is_fill_point'] = 1;
-            $this->data['teacher_total_point'] = $teacher_total_point;
+            $this->data['teacher_total_point'] = $teacher_point;
         }
         $this->load->view('teacher_input_index', $this->data);
     }
@@ -98,19 +111,13 @@ class Teacher extends BaseController{
             return;
         }
         $this->load->model('M_sch_point');
-        $this->load->model('M_sch_point_teacher');
         $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status, year');
         if(empty($ponit_info)){
             echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
             return;
         }
-        //TODO 做一个时间检验
         $update = $this->M_sch_point->update(array('status' => 2), array(
             'id' => $ponit_id
-        ));
-        $this->M_sch_point_teacher->update(array('status' => 2), array(
-            'teacher_id' => $ponit_info['teacher_id'],
-            'year' => 2016
         ));
         if($update){
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
@@ -144,11 +151,15 @@ class Teacher extends BaseController{
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;
         }
+        //查找需要填写的年度
+        $this->load->model('M_sch_system_point');
+        $system_year = $this->M_sch_system_point->get_one(array('status' => 1));
+        if(empty($system_year)){
+            $system_year['year'] = date('Y', time()); //默认为今年
+        }
         $this->load->model('M_sch_point');
-        $this->load->model('M_sch_point_teacher');
-        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
-        $teacher_total_point = $this->M_sch_point_teacher->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => 2016));
-        //TODO 获取积点的年份
+        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => $system_year['year'])); //获取积点的年份
+
         if(!empty($teacher_point) || !empty($teacher_total_point)){
             echo $this->apiReturn('0004', new stdClass(), $this->response_msg["0004"]);
             return;
@@ -157,10 +168,12 @@ class Teacher extends BaseController{
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;
         }
-        $work_year_month = $this->getMonthNum('2016-09', $post['work_year']);
-        $city_year_month = $this->getMonthNum('2016-09-10', $post['city_year']);
-        $school_work_days = $this->diffBetweenTwoDays('2016-09-10', $post['city_year']);
-        $job_title_month = $this->getMonthNum('2016-09', $post['job_title']);
+        $today_month = date('Y-09', time());
+        $today_work = date('Y-09-01', time());
+        $work_year_month = $this->getMonthNum($today_month, $post['work_year']);
+        $city_year_month = $this->getMonthNum($today_work, $post['city_year']);
+        $school_work_days = $this->diffBetweenTwoDays($today_work, $post['city_year']);
+        $job_title_month = $this->getMonthNum($today_month, $post['job_title']);
 
         $work_year_point = round(0.4 * $work_year_month, 2);
         $city_year_point = round(0.6 * $city_year_month, 2);
@@ -175,25 +188,14 @@ class Teacher extends BaseController{
         }
         $person_point = round($work_year_point +  $city_year_point + $school_work_days_point + $job_title_point + $postgraduate_point, 2);
         $total_point = round($post['base_point'] + $post['part_time_point'] + $post['award_point'] + $person_point, 2);
-        $teacher_point_data = array(
-            'base_point' => $post['base_point'],
-            'part_time_point' => $post['part_time_point'],
-            'award_point' => $post['award_point'],
-            'person_point' => $person_point,
-            'year' => 2016,
-            'teacher_id' => $_SESSION['teacher_id'],
-            'total_point' => $total_point,
-        );
-        unset($post['base_point']);
-        unset($post['part_time_point']);
-        unset($post['award_point']);
+
         $post['teacher_id'] = $_SESSION['teacher_id'];
         $post['total_point'] = $total_point;
-        $post['year'] = 2016;
+        $post['person_point'] = $person_point;
+        $post['year'] = $system_year['year'];
         $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
         $point_id = $this->M_sch_point->add($post);
-        $total_point_id = $this->M_sch_point_teacher->add($teacher_point_data);
-        if($point_id > 0 && $total_point_id > 0 ){
+        if($point_id > 0){
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
             return;
         }else{

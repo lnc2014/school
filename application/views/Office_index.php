@@ -1,6 +1,6 @@
 <?php
 /**
- * Description 教务处首页
+ * Description 办公室首页
  * Author: LNC
  * Date: 2016/9/22
  * Time: 21:56
@@ -17,7 +17,7 @@
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="#">教师首页</a></li>
+        <li><a href="#">办公室首页</a></li>
     </ul>
 </div>
 
@@ -29,7 +29,7 @@
     <div class="xline"></div>
 
     <table class="tablelist">
-        <?php if(empty($first_teacher_check)){
+        <?php if(empty($teacher_check)){
             echo '<tr>暂无可以审核的记录</tr>';
         }else{ ?>
         <thead>
@@ -46,7 +46,7 @@
         </thead>
         <tbody>
         <?php
-        foreach($first_teacher_check as $point){ ?>
+        foreach($teacher_check as $point){ ?>
             <tr>
                 <input id="point_id" type="hidden" value="<?php echo $point['id']; ?>">
                 <td><?php  echo $point['year']; ?></td>
@@ -58,7 +58,6 @@
                 <td><?php  echo $point['total_point']; ?></td>
                 <td style="width: 350px">
                     <a href="#"  class="tablelink" style="color: black">查看</a>
-                    <a href="#"  class="tablelink" style="color: blue">添加教务处绩效得分</a>
                     <a href="#" id="check" class="tablelink" style="color: red">通过审核</a>
                 </td>
             </tr>

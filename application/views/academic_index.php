@@ -29,37 +29,42 @@
     <div class="xline"></div>
 
     <table class="tablelist">
+        <?php if(empty($first_teacher_check)){
+            echo '<tr>暂无可以审核的记录</tr>';
+        }else{ ?>
         <thead>
         <tr>
             <th>年度<i class="sort"><img src="/template/images/px.gif" /></i></th>
-            <th>教师姓名</th>
-            <th>教师电话</th>
-            <th>教师任教学科</th>
-            <th>教师基本岗位积点</th>
-            <th>教师兼职岗位积点</th>
-            <th>教师奖励性积点</th>
-            <th>教师个人资历积点</th>
+            <th>基本岗位积点</th>
+            <th>兼职岗位积点</th>
+            <th>奖励性积点</th>
+            <th>个人资历积点</th>
+            <th>教务处绩效得分</th>
+            <th>最后等分</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>2016</td>
-            <td>20</td>
-            <td>50</td>
-            <td>63</td>
-            <td>23</td>
-            <td>52</td>
-            <td>126</td>
-            <td>12</td>
-            <td>
-                <a href="#" id="submit_check" class="tablelink" style="color: black"> 查看</a>
-                <a href="#" id="submit_check" class="tablelink" style="color: red"> 审核通过</a>
-
-            </td>
-        </tr>
-
-
+        <?php
+        foreach($first_teacher_check as $point){ ?>
+            <tr>
+                <input id="point_id" type="hidden" value="<?php echo $point['id']; ?>">
+                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['base_point']; ?></td>
+                <td><?php  echo $point['part_time_point']; ?></td>
+                <td><?php  echo $point['award_point']; ?></td>
+                <td><?php  echo $point['person_point']; ?></td>
+                <td><?php  echo 0; ?></td>
+                <td><?php  echo $point['total_point']; ?></td>
+                <td style="width: 350px">
+                    <a href="#"  class="tablelink" style="color: black">查看</a>
+                    <a href="#"  class="tablelink" style="color: blue">添加教务处绩效得分</a>
+                    <a href="#" id="check" class="tablelink" style="color: red">通过审核</a>
+                </td>
+            </tr>
+        <?php }
+        ?>
+        <?php } ?>
         </tbody>
     </table>
     <div class="pagin">
@@ -77,6 +82,39 @@
         </ul>
     </div>
 </div>
+<script type="text/javascript" src="/template/js/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#check").click(function(){
+            if(confirm('审核通过之后，将不可以修改！')){
+                var ponit_id = $('#point_id').val();
+                if(!ponit_id){
+                    alert('操作错误，请联系管理员');
+                    return;
+                }
+                $.ajax({
+                    async:false,
+                    type : 'POST',
+                    url: '/index.php/academic/submit_check',
+                    data : {
+                        ponit_id:ponit_id
+                    },
+                    dataType : 'json',
+                    success: function (data)
+                    {
+                        if (data.result == '0000') {
+                            alert('提交审核成功');
+                            location.reload();
+                        } else {
+                            alert(data.info);
+                        }
+                    }
+                });
+
+            }
+        });
+    });
+</script>
 </body>
 </html>
 

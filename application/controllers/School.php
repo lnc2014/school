@@ -74,6 +74,7 @@ class School extends BaseController {
 		if(!$this->check_login()){
 			redirect('school/login');
 		}
+
 		$this->data['title'] = '深圳市第二外国语学校绩效考核系统';
 		$this->load->view('home', $this->data);
 	}

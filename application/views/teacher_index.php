@@ -29,6 +29,9 @@
     <div class="xline"></div>
 
     <table class="tablelist">
+        <?php if(empty($teacher_point)){
+        echo '<tr>暂无历史记录</tr>';
+        }else{ ?>
         <thead>
         <tr>
             <th>年度<i class="sort"><img src="/template/images/px.gif" /></i></th>
@@ -39,56 +42,34 @@
             <th>教务处绩效得分</th>
             <th>最后等分</th>
             <th>排名</th>
+            <th>状态</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>2016</td>
-            <td>20</td>
-            <td>50</td>
-            <td>63</td>
-            <td>23</td>
-            <td>52</td>
-            <td>126</td>
-            <td>12</td>
-        </tr>
-        <tr>
-            <td>2015</td>
-            <td>20</td>
-            <td>50</td>
-            <td>63</td>
-            <td>23</td>
-            <td>52</td>
-            <td>126</td>
-            <td>12</td>
-        </tr>
-        <tr>
-            <td>2014</td>
-            <td>20</td>
-            <td>50</td>
-            <td>63</td>
-            <td>23</td>
-            <td>52</td>
-            <td>126</td>
-            <td>12</td>
-        </tr>
-
+        <?php
+            foreach($teacher_point as $point){ ?>
+            <tr>
+                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['base_point']; ?></td>
+                <td><?php  echo $point['part_time_point']; ?></td>
+                <td><?php  echo $point['award_point']; ?></td>
+                <td><?php  echo $point['person_point']; ?></td>
+                <td><?php  echo 0; ?></td>
+                <td><?php  echo $point['total_point']; ?></td>
+                <td>暂无</td>
+                <td><?php
+                    if($point['status'] == 6){
+                        echo '已公布';
+                    }else{
+                        echo '待公布';
+                    }
+                    ?></td>
+            </tr>
+        <?php }
+        ?>
+        <?php } ?>
         </tbody>
     </table>
-    <div class="pagin">
-        <div class="message">共<i class="blue">3</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页</div>
-        <ul class="paginList">
-            <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">1</a></li>
-            <li class="paginItem current"><a href="javascript:;">2</a></li>
-            <li class="paginItem"><a href="javascript:;">3</a></li>
-            <li class="paginItem"><a href="javascript:;">4</a></li>
-            <li class="paginItem"><a href="javascript:;">5</a></li>
-            <li class="paginItem more"><a href="javascript:;">...</a></li>
-            <li class="paginItem"><a href="javascript:;">10</a></li>
-            <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
-        </ul>
-    </div>
 </div>
 </body>
 </html>

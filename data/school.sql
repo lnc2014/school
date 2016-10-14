@@ -113,13 +113,17 @@ CREATE TABLE `sch_point` (
   `union` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是不是工会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加9个积点。',
   `join_festival` tinyint(4) NOT NULL DEFAULT '0' COMMENT '参与学校重大节日的专业教师加4分,1为参加。',
   `teacher_id` int(11) NOT NULL DEFAULT '0' COMMENT '教师ID',
-  `year` int(11) DEFAULT '0' COMMENT '年，存2016',
+  `base_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '基本岗位积点数',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `total_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '该年度总共的积点分数',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '该年度该条积点的状态，1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成',
+  `part_time_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '兼职岗位积点数',
+  `award_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '奖励岗位积点数',
+  `person_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '个人资历积点数',
+  `total_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '该年度总共的积点分数',
+  `year` int(11) DEFAULT '0' COMMENT '年，存2016',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sch_point` */
 
@@ -141,29 +145,6 @@ CREATE TABLE `sch_point_options` (
 
 /*Data for the table `sch_point_options` */
 
-/*Table structure for table `sch_point_teacher` */
-
-DROP TABLE IF EXISTS `sch_point_teacher`;
-
-CREATE TABLE `sch_point_teacher` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `teacher_id` int(11) NOT NULL DEFAULT '0' COMMENT '教师ID',
-  `base_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '基本岗位积点数',
-  `part_time_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '兼职岗位积点数',
-  `award_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '奖励的积点数',
-  `person_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '个人资历积点数',
-  `total_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '总的分数',
-  `year` int(11) NOT NULL DEFAULT '0' COMMENT '录入的年份',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` tinyint(4) DEFAULT '1' COMMENT '该年度该条积点的状态，1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
-/*Data for the table `sch_point_teacher` */
-
-insert  into `sch_point_teacher`(`id`,`teacher_id`,`base_point`,`part_time_point`,`award_point`,`person_point`,`total_point`,`year`,`create_time`,`update_time`,`status`) values (1,1,'100.00','186.00','138.00','386.00','810.00',2016,'2016-09-29 01:12:13','2016-09-29 01:12:13',1),(2,1,'100.00','186.00','137.50','386.20','809.70',2016,'2016-09-29 01:14:55','2016-09-29 01:14:55',1);
-
 /*Table structure for table `sch_system_point` */
 
 DROP TABLE IF EXISTS `sch_system_point`;
@@ -172,8 +153,8 @@ CREATE TABLE `sch_system_point` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `year` int(11) NOT NULL DEFAULT '0' COMMENT '积点的年份',
   `description` varchar(500) NOT NULL DEFAULT '' COMMENT '积点录入说明',
-  `start_time` date DEFAULT '0000-00-00',
-  `end_time` date DEFAULT '0000-00-00',
+  `start_time` date DEFAULT '0000-00-00' COMMENT '填写开始时间段',
+  `end_time` date DEFAULT '0000-00-00' COMMENT '填写结束时间段',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '有效1,0为没有效',
   `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -204,7 +185,7 @@ CREATE TABLE `sch_teacher` (
 
 /*Data for the table `sch_teacher` */
 
-insert  into `sch_teacher`(`teacher_id`,`mobile`,`name`,`subject`,`address`,`department`,`is_admin`,`point`,`create_time`,`update_time`) values (1,'15899872592','李农成',2,'深圳市南山区金融科技大厦',1,0,'0.00','2016-09-22 21:31:02','2016-09-25 16:03:26');
+insert  into `sch_teacher`(`teacher_id`,`mobile`,`name`,`subject`,`address`,`department`,`is_admin`,`point`,`create_time`,`update_time`) values (1,'15899872592','李农成',2,'深圳市南山区金融科技大厦',3,0,'0.00','2016-09-22 21:31:02','2016-10-11 12:08:00');
 
 /*Table structure for table `sch_teaching_performance` */
 

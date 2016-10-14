@@ -62,7 +62,7 @@
                 <li><label>居住地<b>*</b></label><input id="address" type="text" class="dfinput" value="<?php echo $teacher['address'] ?>"  style="width:200px;"/></li>
                 <li><label>所属部门<b>*</b></label>
                     <div class="vocation">
-                        <select class="select2" id="department">
+                        <select class="select2" id="department" disabled>
 <!--                            1为教师队伍，没有所属部门，2为教务处成员，3办公室成员，4为评审委员会成员,5为校长-->
                             <option value="1" <?php if($teacher['department'] == 1){ echo 'selected';} ?>>教师队伍</option>
                             <option value="2" <?php if($teacher['department'] == 2){ echo 'selected';} ?>>教务处</option>

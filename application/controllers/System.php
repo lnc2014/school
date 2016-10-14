@@ -250,6 +250,12 @@ class System extends BaseController{
             echo $this->apiReturn('0300', new stdClass(), $this->response_msg["0300"]);
             return;
         }
+        //做一个检验，年度里面只允许开启一个
+        $all_system_setting = $this->M_sch_system_point->get_list(array('status' => 1));
+        if(count($all_system_setting) >= 1 && $status != 0){
+            echo $this->apiReturn('0302', new stdClass(), $this->response_msg["0302"]);
+            return;
+        }
         //如果是一样的话，就不用修改
         if($status == $system_point['status']){
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);

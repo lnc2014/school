@@ -25,9 +25,10 @@
 </div>
 <div class="mainindex">
     <?php
-    if($is_fill_point == 1){
+    if($have_point == 1){ //如果有积点填写
+         if($is_fill_point == 1){
         //已经填写了本年度
-    ?>
+        ?>
         <div class="welinfo">
             <span><img src="/template/images/sun.png" alt="天气" /></span>
             <b><?php echo $_SESSION['name']?>,您好！你已经填写了本年度的积点，如若确定无误，可以提交审核。</b>
@@ -62,7 +63,7 @@
                         <a href="#" class="tablelink">修改</a>&nbsp;&nbsp;
                         <a href="#" id = "submit_check" class="tablelink" style="color: red"> 提交审核</a>
                     <?php }else{
-                    ?>
+                        ?>
                         <a href="#" class="tablelink">审核中</a>
                     <?php } ?>
                 </td>
@@ -76,9 +77,14 @@
                 <a href="/index.php/teacher/input_point" class="btn_primary" style="color: #fff;">填写积点</a>
             </b>
         </div>
-
-    <?php
+        <?php
     }
+    }else{ ?>
+        <div class="welinfo">
+            <span><img src="/template/images/sun.png" alt="天气" /></span>
+            <b><?php echo $_SESSION['name']?>,您好！暂无可以填写积点。</b>
+        </div>
+    <?php }
     ?>
 </div>
 <script type="text/javascript" src="/template/js/zepto.min.js"></script>

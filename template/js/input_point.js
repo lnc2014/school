@@ -605,7 +605,7 @@ $(function(){
             expert_point = 0
         }
     });
-    $('#submit').click(function(){
+    $('#submit2').click(function(){
         var part_time_point = 0; //兼职岗位积点
         var award_point = 0; //奖励性积点
         //兼职积点分数
