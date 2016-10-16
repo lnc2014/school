@@ -57,7 +57,7 @@
                 <td><?php  echo 0; ?></td>
                 <td><?php  echo $point['total_point']; ?></td>
                 <td style="width: 350px">
-                    <a href="#"  class="tablelink" style="color: black">查看</a>
+                    <a href="/index.php/office/show_teacher_point?point_id=<?php echo $point['id'];?>"  class="tablelink" style="color: black">查看</a>
                     <a href="#" id="check" class="tablelink" style="color: red">通过审核</a>
                 </td>
             </tr>
@@ -94,7 +94,7 @@
                 $.ajax({
                     async:false,
                     type : 'POST',
-                    url: '/index.php/academic/submit_check',
+                    url: '/index.php/office/submit_check',
                     data : {
                         ponit_id:ponit_id
                     },
