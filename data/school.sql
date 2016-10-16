@@ -27,16 +27,16 @@ CREATE TABLE `sch_admin` (
   `psw` varchar(100) NOT NULL COMMENT '登录密码，使用md5加密',
   `teacher_id` int(11) NOT NULL DEFAULT '0' COMMENT '资料ID，跟相应的资料ID绑定，目前主要对于教师',
   `flag` tinyint(4) NOT NULL DEFAULT '1' COMMENT '账号是否有效，1为有效，0为无效',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最近登录的时间',
   `ip` varchar(50) NOT NULL COMMENT '最近登录的IP地址',
   `auth` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1为教师权限，2为超级管理员',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sch_admin` */
 
-insert  into `sch_admin`(`id`,`user_name`,`account`,`psw`,`teacher_id`,`flag`,`create_time`,`login_time`,`ip`,`auth`) values (1,'lnc','lnc','e10adc3949ba59abbe56e057f20f883e',1,1,'2016-09-22 21:30:04','2016-09-22 21:30:16','127.0.0.1',1),(2,'admin','admin','21232f297a57a5a743894a0e4a801fc3',0,1,'2016-10-11 10:55:36','2016-10-11 10:55:36','',2);
+insert  into `sch_admin`(`id`,`user_name`,`account`,`psw`,`teacher_id`,`flag`,`create_time`,`login_time`,`ip`,`auth`) values (1,'lnc','lnc','e10adc3949ba59abbe56e057f20f883e',1,1,'2016-09-22 21:30:04','2016-09-22 21:30:16','127.0.0.1',1),(2,'admin','admin','21232f297a57a5a743894a0e4a801fc3',0,1,'2016-10-11 10:55:36','2016-10-11 10:55:36','',2),(3,'杨姣','15101226681','b117057e505ffa6c9657012bbd1b319a',2,1,'2016-10-15 20:06:50','2016-10-15 20:06:50','',1),(4,'小明','15899872592','edaf80c1fb23c728c294aa93214eae57',3,1,'2016-10-17 00:19:47','2016-10-17 00:19:47','',1),(5,'李农成','15101226682','b117057e505ffa6c9657012bbd1b319a',4,1,'2016-10-17 00:26:41','2016-10-17 00:28:17','',1);
 
 /*Table structure for table `sch_per_teacher` */
 
@@ -50,7 +50,7 @@ CREATE TABLE `sch_per_teacher` (
   `explain` varchar(500) NOT NULL DEFAULT '' COMMENT '说明',
   `get_point` int(11) NOT NULL DEFAULT '0' COMMENT '该题的得分',
   `year` int(11) NOT NULL COMMENT '年份，如2016',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '填写时间',
+  `create_time` timestamp NULL DEFAULT '0000-00-00 00:00:00' COMMENT '填写时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -76,6 +76,7 @@ CREATE TABLE `sch_point` (
   `counselor` tinyint(4) NOT NULL DEFAULT '0' COMMENT '心理咨询师。1是，积点为5',
   `substitute` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是不是有代课，1为有。',
   `substitute_num` int(5) NOT NULL DEFAULT '0' COMMENT '代课的节数，1节课0.5个积点',
+  `substitute_data` varchar(500) NOT NULL DEFAULT '' COMMENT '代课证明文件',
   `satisfaction_survey` tinyint(4) NOT NULL DEFAULT '0' COMMENT '每学年进行2次满意度调查，每次满意度达80%以上，可获得5个积点奖励。1达到条件',
   `attendance_award` int(11) NOT NULL DEFAULT '0' COMMENT '缺席次数，每缺席一次扣除1点积点，如果不填写则为全勤。要提供考勤记录。总的积点20点',
   `attendance_award_data` varchar(500) NOT NULL DEFAULT '' COMMENT '考勤记录',
@@ -114,7 +115,7 @@ CREATE TABLE `sch_point` (
   `join_festival` tinyint(4) NOT NULL DEFAULT '0' COMMENT '参与学校重大节日的专业教师加4分,1为参加。',
   `teacher_id` int(11) NOT NULL DEFAULT '0' COMMENT '教师ID',
   `base_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '基本岗位积点数',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_time` timestamp NULL DEFAULT '0000-00-00 00:00:00' COMMENT '录入时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '该年度该条积点的状态，1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成',
   `part_time_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '兼职岗位积点数',
@@ -123,9 +124,11 @@ CREATE TABLE `sch_point` (
   `total_point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '该年度总共的积点分数',
   `year` int(11) DEFAULT '0' COMMENT '年，存2016',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sch_point` */
+
+insert  into `sch_point`(`id`,`workload`,`section_leader`,`director`,`officer`,`school_leader`,`part_time_magazine`,`part_time_magazine_data`,`academic`,`education_case`,`paper`,`counselor`,`substitute`,`substitute_num`,`substitute_data`,`satisfaction_survey`,`attendance_award`,`attendance_award_data`,`school_teacher`,`finish_goal`,`college_num`,`middle_num`,`super_workload`,`school_class`,`city_class`,`courses`,`country_match`,`province_match`,`city_match`,`exam_pro`,`exam_rank`,`exam_rank_data`,`outstand_sub`,`outstand_sub_data`,`select_outstand_school`,`select_outstand_year`,`select_outstand_person`,`expert`,`work_year`,`work_year_month`,`city_year`,`city_year_month`,`school_work_days`,`job_title`,`job_title_month`,`postgraduate`,`eight_teacher`,`league_teacher`,`tutor`,`union`,`join_festival`,`teacher_id`,`base_point`,`create_time`,`update_time`,`status`,`part_time_point`,`award_point`,`person_point`,`total_point`,`year`) values (1,0,0,1,1,1,1,'upload/20161016/20161016211545_899.txt',1,0,1,1,1,20,'',0,0,'',1,0,0,0,0,0,0,0,2,0,0,0,1,'upload/20161016/20161016211754_378.txt',1,'upload/20161016/20161016211653_640.txt',0,0,0,0,'2011-01-17',0,'2011-01-18',0,0,'2016-10-20',0,0,0,0,1,0,1,1,'0.00','2016-10-16 21:17:57','2016-10-17 00:32:58',5,'112.00','30.00','463.40','605.40',2017);
 
 /*Table structure for table `sch_point_options` */
 
@@ -178,14 +181,14 @@ CREATE TABLE `sch_teacher` (
   `department` tinyint(4) NOT NULL DEFAULT '0' COMMENT '所属部门，1为教师队伍，没有所属部门，2为教务处成员，3办公室成员，4为评审委员会成员,5为校长',
   `is_admin` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是不是部门负责人，1为负责人（主任等），0为普通职员',
   `point` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '现阶段的积点',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改的时间',
   PRIMARY KEY (`teacher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sch_teacher` */
 
-insert  into `sch_teacher`(`teacher_id`,`mobile`,`name`,`subject`,`address`,`department`,`is_admin`,`point`,`create_time`,`update_time`) values (1,'15899872592','李农成',2,'深圳市南山区金融科技大厦',3,0,'0.00','2016-09-22 21:31:02','2016-10-11 12:08:00');
+insert  into `sch_teacher`(`teacher_id`,`mobile`,`name`,`subject`,`address`,`department`,`is_admin`,`point`,`create_time`,`update_time`) values (1,'15899872592','李农成',2,'深圳市南山区金融科技大厦',3,0,'0.00','2016-09-22 21:31:02','2016-10-11 12:08:00'),(2,'15101226681','杨姣',0,'深圳龙华',2,1,'0.00','2016-10-15 20:06:50','2016-10-16 23:24:45'),(3,'15899872592','小明',0,'深圳南山',3,0,'0.00','2016-10-17 00:19:47','2016-10-17 00:19:47'),(4,'15101226682','李农成',0,'深圳南山',4,0,'0.00','2016-10-17 00:26:41','2016-10-17 00:28:17');
 
 /*Table structure for table `sch_teaching_performance` */
 
@@ -196,7 +199,7 @@ CREATE TABLE `sch_teaching_performance` (
   `topic` varchar(500) NOT NULL DEFAULT '' COMMENT '绩效考核的题目',
   `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1．教学绩效类,2．专业发展类,3教育与管理类',
   `point` int(11) NOT NULL DEFAULT '0' COMMENT '题目分值',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
