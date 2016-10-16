@@ -76,7 +76,7 @@
                 ?>
                 <!--        评审委员会成员-->
                 <ul class="menuson">
-                    <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">评审委员会首页</a><i></i></li>
+                    <li class="active"><cite></cite><a href="/index.php/committee/index" target="rightFrame">评审委员会首页</a><i></i></li>
                     <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
                     <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
                 </ul>

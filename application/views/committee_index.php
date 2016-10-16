@@ -17,7 +17,7 @@
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="#">教师首页</a></li>
+        <li><a href="#">评审委员会审核首页</a></li>
     </ul>
 </div>
 
@@ -57,8 +57,7 @@
                 <td><?php  echo 0; ?></td>
                 <td><?php  echo $point['total_point']; ?></td>
                 <td style="width: 350px">
-                    <a href="#"  class="tablelink" style="color: black">查看</a>
-                    <a href="#"  class="tablelink" style="color: blue">添加教务处绩效得分</a>
+                    <a href="/index.php/committee/show_teacher_point?point_id=<?php echo $point['id'];?>"  class="tablelink" style="color: black">查看</a>
                     <a href="#" id="check" class="tablelink" style="color: red">通过审核</a>
                 </td>
             </tr>
@@ -95,7 +94,7 @@
                 $.ajax({
                     async:false,
                     type : 'POST',
-                    url: '/index.php/academic/submit_check',
+                    url: '/index.php/committee/submit_check',
                     data : {
                         ponit_id:ponit_id
                     },
