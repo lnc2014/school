@@ -614,6 +614,7 @@ $(function(){
         }
     });
     $('#submit2').click(function(){
+        var point_id = $('#point_id').val();
         var part_time_point = 0; //兼职岗位积点
         var award_point = 0; //奖励性积点
         //兼职积点分数
@@ -792,6 +793,7 @@ $(function(){
             type: "POST",
             url: "/index.php/teacher/add_point_to_db",
             data: {
+                point_id :point_id,
                 workload : workload,
                 section_leader : section_leader,
                 director : director,

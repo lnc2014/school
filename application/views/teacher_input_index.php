@@ -60,7 +60,7 @@
                 <td>
                     <?php
                     if($teacher_total_point['status'] == 1){ ?>
-                        <a href="#" class="tablelink">修改</a>&nbsp;&nbsp;
+                        <a href="/index.php/teacher/edit_point?point_id=<?php echo $teacher_total_point['id']?>"  class="tablelink">修改</a>&nbsp;&nbsp;
                         <a href="#" id = "submit_check" class="tablelink" style="color: red"> 提交审核</a>
                     <?php }else{
                         ?>

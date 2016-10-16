@@ -137,6 +137,21 @@ class Teacher extends BaseController{
         }
         $this->load->view('teacher_input_point');
     }
+    //修改教师录入的积点
+    public function edit_point(){
+        $point_id = $this->input->get('point_id', true);
+        if(empty($point_id)){
+            show_error('/school/home', 500,'积点ID不能为空!');
+        }
+        $this->load->model('M_sch_point');
+        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'id' => $point_id));
+        if(empty($teacher_point)){
+            show_error('/school/home', 500,'非法请求');
+        }
+        $this->data['teacher_point'] = $teacher_point;
+        $this->data['title'] = '修改积点';
+        $this->load->view('teacher_input_point', $this->data);
+    }
     /**
      * 教师积点录入接口
      */
@@ -158,12 +173,14 @@ class Teacher extends BaseController{
             $system_year['year'] = date('Y', time()); //默认为今年
         }
         $this->load->model('M_sch_point');
-        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => $system_year['year'])); //获取积点的年份
-
-        if(!empty($teacher_point) || !empty($teacher_total_point)){
-            echo $this->apiReturn('0004', new stdClass(), $this->response_msg["0004"]);
-            return;
+        if($post['point_id'] == 0){
+            $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => $system_year['year'])); //获取积点的年份
+            if(!empty($teacher_point) || !empty($teacher_total_point)){
+                echo $this->apiReturn('0004', new stdClass(), $this->response_msg["0004"]);
+                return;
+            }
         }
+
         if(empty($post['work_year']) || empty($post['city_year']) || empty($post['job_title'])){
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;
@@ -194,8 +211,16 @@ class Teacher extends BaseController{
         $post['person_point'] = $person_point;
         $post['year'] = $system_year['year'];
         $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
-        $point_id = $this->M_sch_point->add($post);
-        if($point_id > 0){
+        if($post['point_id'] >0 ){
+            $id = $post['point_id'];
+            unset($post['point_id']);
+            $update = $this->M_sch_point->update($post, array('id' => $id));
+        }else{
+            unset($post['point_id']);
+            $point_id = $this->M_sch_point->add($post);
+        }
+
+        if($point_id > 0 || $update){
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
             return;
         }else{
