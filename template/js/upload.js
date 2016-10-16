@@ -1,22 +1,24 @@
-/**
- *
- * 上传js
- * Created by admin on 2016/10/7.
- */
-
+var image = ['image/gif', 'image/jpg', 'image/jpeg', 'image/bmp', 'image/png'];
+$(function() {
+    upload('#part_time_magazine_upload', 'part_time_magazine_upload');
+    upload('#substitute_upload', 'substitute_upload');
+    upload('#exam_rank_upload', 'exam_rank_upload');
+    upload('#attendance_award_upload', 'attendance_award_upload');
+    upload('#outstand_sub_upload', 'outstand_sub_upload');
+});
 /**
  * 上传函数
  */
-function upload(id){
-    var $ = jQuery,uploader;
+function upload(id, id_name){
+    var uploader;
     // 初始化Web Uploader
     uploader = WebUploader.create({
         // 自动上传。
-        auto: false,
+        auto: true,
         // swf文件路径
         swf: 'Uploader.swf',
         // 文件接收服务端。
-        server: 'upload.php',
+        server: '/index.php/school/upload',
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
         pick: id
@@ -24,50 +26,37 @@ function upload(id){
     });
 
     // 当有文件被添加进队列的时候
-    uploader.on( 'fileQueued', function( file ) {
-        console.log(file);
-        var html = ' <div class="webuploader-pick">你选择的文件是：'+file.name+',大小：'+bytesToSize(file.size)+'</div>';
-        $('#picker').html(html);
+    uploader.on( 'fileQueued', function() {
+        $(id).html('正在上传...');
     });
     // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-    uploader.on( 'uploadSuccess', function( file, data ) {
-        if(data.code == 1){
-            if($.inArray(file.type, image) > 0){
-                console.log(file);
-                $("#img").css('display','block');
-                $('#img').attr('src', data.data.path);
-                $('#img_url').attr('href', data.data.path);
-            }
-            $('#process').html('上传成功');
-            $('#ctlBtn').addClass('cancle');
-            var html = ' <div class="webuploader-pick">你已经成功上传'+file.name+'文件</div>';
-            $('#picker').html(html);
-            $('.cancle').html('重新上传');
-            $('.cancle').on('click', function(){
-                $("#img").css('display','none');
-                var upload_html = '<div class="webuploader-pick">选择文件</div>';
-                $('#picker').html(upload_html);
-                $('#ctlBtn').removeClass('cancle');
-                $('#ctlBtn').html('开始上传');
-                $('#process').html('');
-                upload();
+    uploader.on( 'uploadSuccess', function(file, data ) {
+        if(data.result == '0000'){
+            alert('上传成功！');
+            $('#'+id_name+'_data').val(data.data.path2);
+            var second = '<button id="second'+id_name+'" class="btn_primary">重新上传</button>';
+            $(id).html(second);
+            var html = '<a target="_blank" style="margin-left: 20px" href='+data.data.path+ '>点击预览</a>';
+            $(id).after().append(html);
+            $('#second'+id_name).click(function(){
+                $(id).html('重新上传');
+                $('#'+id_name+'_data').val('');//将已经上传成功的文件置空
+                upload(id);
             });
         }else{
-            $('#process').html('');
+           alert('上传失败');
         }
     });
     // 文件上传失败，现实上传出错。
     uploader.on( 'uploadError', function( file, data) {
-
+        $(id).html('上传失败');
     });
     uploader.on( 'uploadProgress', function() {
-        var process_html = '<br><div class="progress progress-striped active right"> <div class="progress-bar progress-bar-success six-sec-ease-in-out" role="progressbar" data-transitiongoal="100"></div></div>';
-        $('#process').html(process_html);
-        $('.progress .progress-bar').progressbar();
+        $(id).html('正在上传...');
     });
 
-    $('#ctlBtn').click(function(){
-        uploader.upload();
+    $(id).click(function(){
+        //uploader.upload(id);
     });
 }
 /**

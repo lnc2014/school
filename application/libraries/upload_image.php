@@ -52,7 +52,6 @@ class Upload_image{
      * @param $fileField    上传文件的表单名称
      */
     function upload($fileField){
-        $return = true;
         if (!$this->checkFilePath()){
             $this->errorMess = $this->getError();
             return false;

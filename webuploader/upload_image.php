@@ -27,7 +27,8 @@ class Upload_image{
 
     public function __construct()
     {
-        $this->path = "upload/".date('Ymd').'/';
+        define("ROOTPATH", str_replace("\\", "/", (realpath(dirname(__FILE__))).'/')) ;
+        $this->path = ROOTPATH."upload/".date('Ymd').'/';
     }
 
     /**

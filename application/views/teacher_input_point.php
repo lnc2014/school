@@ -7,14 +7,14 @@
  */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="/template/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/template/css/lnc.css" rel="stylesheet" type="text/css" />
     <link href="/template/css/select.css" rel="stylesheet" type="text/css" />
     <link href="/template/webuploader/css/webuploader.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/template/js/jquery.js"></script>
+    <script type="text/javascript" src="/template/js/jquery.1.8.js"></script>
     <script type="text/javascript" src="/template/js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="/template/js/select-ui.min.js"></script>
     <script type="text/javascript">
@@ -119,10 +119,11 @@
         <label class="label">兼职校刊、校报编辑工作、青蓝工程指导教师：</label>
         <label class="label">是</label>
         <input type="checkbox" value="1" class="yes"/>
-        <input type="file" id="part_time_magazine_data"/>
-        <label class="label">否</label>
+        <div id="part_time_magazine_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -30px;margin-left: 465px;">上传兼职证明文件</div>&nbsp;
+        <input type="hidden" id="part_time_magazine_upload_data" value=""/>
+        <label class="label" style="margin-left: 200px">否</label>
         <input type="checkbox" value="0" class="no"/>
-        <label class="label2">积点数：12</label>
+        <label class="label2"  >积点数：12</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>提供工作量记录和指导记录。</span>
     </div>
     <div class="option" id="academic">
@@ -236,8 +237,9 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" class="yes"/>
         <input type="text" placeholder="代课节数" class="input_text" style="width: 82px" id="substitute_num"/>
-        <input type="file" style="width: 100px" id="substitute_data"/>
-        <label class="label">否</label>
+        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 550px;">上传代课证明文件</div>&nbsp;
+        <input type="hidden" id="substitute_upload_data" value=""/>
+        <label class="label" style="margin-left: 200px">否</label>
         <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>每带一节加0.5积点。以教务处调课单据为依据</span>
@@ -255,8 +257,9 @@
         <label class="label">出勤，是否全勤：</label>
         <label class="label">是</label>
         <input type="checkbox" value="1" class="yes" />
-        <input type="file" style="width: 100px " id="attendance_award_data"/>
-        <label class="label">否</label>
+        <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 220px;">上传出勤文件</div>&nbsp;
+        <input type="hidden" id="attendance_award_upload_data" value=""/>
+        <label class="label" style="margin-left: 200px">否</label>
         <input type="checkbox" value="0" class="no" />
         <input type="text" placeholder="缺席次数" class="input_text" style="width: 82px" id="attendance_award_num"/>
         <label class="label2">积点数：20</label>
@@ -367,8 +370,9 @@
         <label class="label">学段考试成绩综合排名同备课组内位列前50%：</label>
         <label class="label">是</label>
         <input type="checkbox" value="1" class="yes"/>
-        <input type="file" id="exam_rank_data" />
-        <label class="label">否</label>
+        <div id="exam_rank_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -30px;margin-left: 480px;">上传考试成绩单</div>&nbsp;
+        <input type="hidden" id="exam_rank_upload_data" value=""/>
+        <label class="label" style="margin-left: 200px">否</label>
         <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：6</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>以教务处学段考考试简报为依据，学段考试成绩综合排名（参考B值，均分）在同备课组内位列前50%的，奖励科任老师6个积点。</span>
@@ -383,7 +387,8 @@
             </select>
         </div>
         &nbsp; &nbsp; &nbsp; &nbsp;
-        <input type="file" id="outstand_sub_data"/>
+        <div id="outstand_sub_upload" class="none" style="width: 200px;position: absolute;z-index: 99;margin-left: 350px;margin-top: -18px;">上传证明文件</div>&nbsp;
+        <input type="hidden" id="outstand_sub_upload_data" value=""/>
         <br>
         <label class="label2" >积点数：见积点说明</label>
         <br>
@@ -494,14 +499,13 @@
         <br>
         <span style="margin-top: 20px;z-index: 1000"><b style="color: red">积点说明：</b>获得全日制研究生学历和硕士学位者加9分；获得全日制研究生学历和博士学位者加15分。有研究生学位者视为研究生对待。</span>
     </div>
-    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit2" >确认</button>
-    <button href="#" class="btn_primary" style="margin-left: 20px" id = "submit_check">提交审核</button>
+    <button class="btn_primary" style="margin-left: 20px" id = "submit2" >确认</button>
+    <button class="btn_primary" style="margin-left: 20px" id = "submit_check">提交审核</button>
 </div>
 <script type="text/javascript" src="/template/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="/template/js/zepto.min.js"></script>
 <script type="text/javascript" src="/template/js/input_point.js"></script>
-<script type="text/javascript" src="/template/webuploader/js/webuploader.min.js"></script>
-<script type="text/javascript" src="/template/js/input_point.js"></script>
+<script type="text/javascript" src="/template/webuploader/js/webuploader.js"></script>
 <script type="text/javascript" src="/template/js/upload.js"></script>
 </body>
 </html>

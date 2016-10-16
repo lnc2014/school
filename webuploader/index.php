@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="css/syntax.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/webuploader.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--引入JS-->
 <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="js/webuploader.js"></script>
@@ -39,7 +40,7 @@
      * 上传函数
      */
     function upload(){
-        var $ = jQuery,uploader;
+        var uploader;
         // 初始化Web Uploader
         uploader = WebUploader.create({
             // 自动上传。

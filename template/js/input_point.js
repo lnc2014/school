@@ -131,11 +131,13 @@ $(function(){
             part_time_magazine = 1;
             $('#part_time_magazine').find(".no").attr('checked', false);
             $('#part_time_magazine').find(".yes").attr('checked', true);
+            $('#part_time_magazine_upload').removeClass('none');
         }else{
             part_time_magazine_point = 0;
             part_time_magazine = 0;
             $('#part_time_magazine').find(".no").attr('checked', true);
             $('#part_time_magazine').find(".yes").attr('checked', false);
+            $('#part_time_magazine_upload').addClass('none');
         }
     });
     //学术委员、学堂干事,积点15。1为是。
@@ -298,6 +300,7 @@ $(function(){
             $('#substitute_data').attr('disabled', false);
             $('#substitute').find(".no").attr('checked', false);
             $('#substitute').find(".yes").attr('checked', true);
+            $('#substitute_upload').removeClass('none');
         }else{
             substitute = 0;
             $('#substitute').find(".no").attr('checked', true);
@@ -305,6 +308,7 @@ $(function(){
             $('#substitute_num').attr('disabled', true);
             $('#substitute_data').attr('disabled', true);
             $('#substitute').find(".yes").attr('checked', false);
+            $('#substitute_upload').addClass('none');
         }
     });
     //每学年进行2次满意度调查，每次满意度达80%以上，可获得5个积点奖励。1达到条件
@@ -334,12 +338,14 @@ $(function(){
             $('#attendance_award_num').val('');
             $('#attendance_award').find(".no").attr('checked', false);
             $('#attendance_award').find(".yes").attr('checked', true);
+            $('#attendance_award_upload').removeClass('none');
         }else{
             attendance_award = 0;
             $('#attendance_award_num').attr('disabled', false);
             $('#attendance_award_data').attr('disabled', true);
             $('#attendance_award').find(".no").attr('checked', true);
             $('#attendance_award').find(".yes").attr('checked', false);
+            $('#attendance_award_upload').addClass('none');
         }
     });
     //是不是别聘为高三、初三老师、多语种班项目，1为聘用。积点30个
@@ -502,12 +508,14 @@ $(function(){
             $('#exam_rank_data').attr('disabled', false);
             $('#exam_rank').find(".no").attr('checked', false);
             $('#exam_rank').find(".yes").attr('checked', true);
+            $('#exam_rank_upload').removeClass('none');
         }else{
             exam_rank = 0;
             exam_rank_point = 0;
             $('#exam_rank_data').attr('disabled', true);
             $('#exam_rank').find(".no").attr('checked', true);
             $('#exam_rank').find(".yes").attr('checked', false);
+            $('#exam_rank_upload').addClass('none');
         }
     });
     //以市教科院文件为准，市级以上科组成员人均获得2个积点。科组长另奖励5个积点
@@ -515,13 +523,13 @@ $(function(){
     $("#outstand_sub").live('change', function(e){
         outstand_sub = $(this).find("option:selected").val();
         if(outstand_sub == 1){
-            $('#outstand_sub_data').attr('disabled', false);
+            $('#outstand_sub_upload').removeClass('none');
             outstand_sub_point = 2;
         }else if(outstand_sub == 2){
-            $('#outstand_sub_data').attr('disabled', false);
+            $('#outstand_sub_upload').removeClass('none');
             outstand_sub_point = 7;
         }else{
-            $('#outstand_sub_data').attr('disabled', true);
+            $('#outstand_sub_upload').addClass('none');
             outstand_sub_point = 0
         }
     });
@@ -715,6 +723,31 @@ $(function(){
         var province_point = province_match * 3;
         var city_point = city_match * 1;
 
+        var part_time_magazine_data = $('#part_time_magazine_upload_data').val();
+        if(!part_time_magazine_data && part_time_magazine == 1){
+            alert('请上传兼职证明文件');
+            return;
+        }
+        var substitute_data = $('#substitute_upload_data').val();
+        if(!substitute_data && substitute == 1){
+            alert('请上传代课文件');
+            return;
+        }
+        var attendance_award_data = $('#attendance_award_upload_data').val();
+        if(!attendance_award_data && attendance_award == 1){
+            alert('请上传出勤记录');
+            return;
+        }
+        var exam_rank_data = $('#exam_rank_upload_data').val();
+        if(!exam_rank_data && exam_rank == 1){
+            alert('请上传考试成绩单');
+            return;
+        }
+        var outstand_sub_data = $('#outstand_sub_upload_data').val();
+        if(!outstand_sub_data && outstand_sub != 0){
+            alert('请上传市教科院文件');
+            return;
+        }
         award_point = accAdd(award_point, substitute_point);
         award_point = accAdd(award_point, satisfaction_survey_point);
         award_point = accAdd(award_point, attendance_award_point);
@@ -765,14 +798,17 @@ $(function(){
                 officer : officer,
                 school_leader : school_leader,
                 part_time_magazine : part_time_magazine,
+                part_time_magazine_data : part_time_magazine_data,
                 academic : academic,
                 education_case : education_case,
                 paper : paper,
                 counselor : counselor,
                 substitute : substitute,
+                substitute_data : substitute_data,
                 substitute_num : substitute_num,
                 satisfaction_survey : satisfaction_survey,
                 attendance_award : attendance_award,
+                attendance_award_data : attendance_award_data,
                 school_teacher : school_teacher,
                 finish_goal : finish_goal,
                 college_num : college_num,
@@ -786,7 +822,9 @@ $(function(){
                 city_match : city_match,
                 exam_pro : exam_pro,
                 exam_rank : exam_rank,
+                exam_rank_data : exam_rank_data,
                 outstand_sub : outstand_sub,
+                outstand_sub_data : outstand_sub_data,
                 select_outstand_school : select_outstand_school,
                 select_outstand_year : select_outstand_year,
                 select_outstand_person : select_outstand_person,
