@@ -67,7 +67,7 @@
         <label class="label">是</label>
         <input type="checkbox" <?php if($teacher_point['workload'] == 1){ echo 'checked';}?> value="1" class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" <?php if($teacher_point['workload'] == 0){ echo 'checked';}?> value="0" class="no"/>
+        <input type="checkbox" <?php if($teacher_point['workload'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
         <label class="label2">积点数：100</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>语文、数学、英语10节/周；物理、化学、生物、政治、历史、地理12节/周；体育、艺术、通用技术、信息技术、心理健康14节/周。高三高考科目10节/周，高三高考综合科目两个班为满工作量。</span>
     </div>
@@ -94,7 +94,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['director'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['director'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['director'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
         <label class="label2">积点数：45</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>按照学校岗位需求情况，实行竞争上岗。</span>
     </div>
@@ -103,7 +103,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['officer'] == 1){ echo 'checked';}?>  class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0"  <?php if($teacher_point['officer'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox" value="0"  <?php if($teacher_point['officer'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
         <label class="label2">积点数：40</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>按照学校岗位需求情况，实行竞争上岗。</span>
     </div>
@@ -112,7 +112,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['school_leader'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['school_leader'] == 0){ echo 'checked';}?>  class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['school_leader'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>  class="no"/>
         <label class="label2">积点数：60</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>按照学校岗位需求情况，实行竞争上岗。</span>
     </div>
@@ -126,7 +126,7 @@
 //        }?>
         <input type="hidden" id="part_time_magazine_upload_data" value="<?php echo $teacher_point['part_time_magazine_data'];?>"/>
         <label class="label" style="margin-left: 200px">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['part_time_magazine'] == 0){ echo 'checked';}?>  class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['part_time_magazine'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>  class="no"/>
         <label class="label2"  >积点数：12</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>提供工作量记录和指导记录。</span>
     </div>
@@ -135,7 +135,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['academic'] == 1){ echo 'checked';}?>  class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['academic'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['academic'] == 0 && !empty($teacher_point)){ echo 'checked';}?> class="no"/>
         <label class="label2">积点数：15</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无。</span>
     </div>
@@ -178,7 +178,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['eight_teacher'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['eight_teacher'] == 0){ echo 'checked';}?> class="no" />
+        <input type="checkbox" value="0" <?php if($teacher_point['eight_teacher'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no" />
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
@@ -187,7 +187,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['league_teacher'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['league_teacher'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['league_teacher'] == 0 && !empty($teacher_point)  ){ echo 'checked';}?> class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
@@ -196,7 +196,7 @@
         <label class="label">是</label>
         <input type="checkbox"  value="1" <?php if($teacher_point['tutor'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox"  value="0" <?php if($teacher_point['tutor'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox"  value="0" <?php if($teacher_point['tutor'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
@@ -219,7 +219,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['join_festival'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['join_festival'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['join_festival'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
         <label class="label2">积点数：4</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
@@ -228,7 +228,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['counselor'] == 1){ echo 'checked';}?> class="yes" />
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['counselor'] == 0){ echo 'checked';}?> class="no" />
+        <input type="checkbox" value="0" <?php if($teacher_point['counselor'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no" />
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>无</span>
     </div>
@@ -243,7 +243,7 @@
         <input type="text" placeholder="代课节数" class="input_text" style="width: 82px" id="substitute_num" value="<?php if($teacher_point['substitute_num'] > 0){echo $teacher_point['substitute_num'];} ?>" />
         <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 550px;"> <?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';} else{ echo '上传代课证明文件';}?> </div>&nbsp;
         <input type="hidden" id="substitute_upload_data" value=""/>
-        <label class="label" style="margin-left: 200px" <?php if($teacher_point['substitute'] == 0){ echo 'checked';}?>>否</label>
+        <label class="label" style="margin-left: 200px" <?php if($teacher_point['substitute'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>>否</label>
         <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>每带一节加0.5积点。以教务处调课单据为依据</span>
@@ -253,14 +253,14 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['satisfaction_survey'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['satisfaction_survey'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['satisfaction_survey'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>每学年进行2次满意度调查，每次满意度达80%以上，可获得5个积点奖励。</span>
     </div>
     <div class="option" id="attendance_award">
         <label class="label">出勤，是否全勤：</label>
         <label class="label">是</label>
-        <input type="checkbox" value="1" class="yes" <?php if($teacher_point['attendance_award'] == 0){ echo 'checked';}?> />
+        <input type="checkbox" value="1" class="yes" <?php if($teacher_point['attendance_award'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> />
         <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 220px;"><?php if(!empty($teacher_point['attendance_award_data'])){ echo '重新上传';} else{ echo '上传出勤文件';}?></div>&nbsp;
         <input type="hidden" id="attendance_award_upload_data" value=""/>
         <label class="label" style="margin-left: 200px">否</label>
@@ -274,7 +274,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['school_teacher'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['school_teacher'] == 0){ echo 'checked';}?> class="no" />
+        <input type="checkbox" value="0" <?php if($teacher_point['school_teacher'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no" />
         <label class="label2">积点数：30</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>多语种班和毕业班教师不重复计算。</span>
     </div>
@@ -283,7 +283,7 @@
         <label class="label">是</label>
         <input type="checkbox" value="1" <?php if($teacher_point['finish_goal'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['finish_goal'] == 0){ echo 'checked';}?> class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['finish_goal'] == 0 && !empty($teacher_point) ) { echo 'checked';}?> class="no"/>
         <label class="label2">积点数：5</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>完成高考（中考）预定指标另加5个奖励积点。</span>
     </div>
@@ -293,7 +293,7 @@
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['college_num'] > 0){ echo 'checked';}?>  />
         <input type="text" placeholder="超出指标数量" class="input_text" style="width: 150px" id="college_num" value="<?php if($teacher_point['college_num'] > 0){ echo $teacher_point['college_num'];}?>"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" class="no" <?php if($teacher_point['college_num'] == 0){ echo 'checked';}?> />
+        <input type="checkbox" value="0" class="no" <?php if($teacher_point['college_num'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> />
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>本科生超出指标数量，一个增加6个积点。</span>
     </div>
@@ -303,7 +303,7 @@
         <input type="checkbox" value="1"  <?php if($teacher_point['middle_num'] > 0){ echo 'checked';}?>  class="yes"/>
         <input type="text" placeholder="超出指标数量" class="input_text" style="width: 100px" id="middle_num" value="<?php if($teacher_point['middle_num'] > 0){ echo $teacher_point['middle_num'];}?>" />
         <label class="label">否</label>
-        <input type="checkbox" value="0" <?php if($teacher_point['middle_num'] == 0){ echo 'checked';}?>  class="no"/>
+        <input type="checkbox" value="0" <?php if($teacher_point['middle_num'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>  class="no"/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>重点生指标每多超一个，加10个点。</span>
     </div>
@@ -313,7 +313,7 @@
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['super_workload'] > 0){ echo 'checked';}?> />
         <input type="text" placeholder="超出节课数" class="input_text" style="width: 100px" id="super_workload_num" value="<?php if($teacher_point['super_workload'] > 0){ echo $teacher_point['super_workload'];}?>" />
         <label class="label">否</label>
-        <input type="checkbox" value="0" class="no" <?php if($teacher_point['super_workload'] == 0){ echo 'checked';}?> />
+        <input type="checkbox" value="0" class="no" <?php if($teacher_point['super_workload'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> />
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>超出工作量的上课节数，每节课增加0.5个积点。</span>
     </div>
@@ -323,7 +323,7 @@
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['school_class'] > 0){ echo 'checked';}?> />
         <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="school_class_num" value="<?php if($teacher_point['school_class'] > 0){ echo $teacher_point['school_class'];}?>" />
         <label class="label">否</label>
-        <input type="checkbox" value="0" class="no" <?php if($teacher_point['school_class'] == 0){ echo 'checked';}?>  />
+        <input type="checkbox" value="0" class="no" <?php if($teacher_point['school_class'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>  />
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>校级公开课实验课，每节课增加5个积点。</span>
     </div>
@@ -333,7 +333,7 @@
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['city_class'] > 0){ echo 'checked';}?>/>
         <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="city_class_num" value="<?php if($teacher_point['city_class'] > 0){ echo $teacher_point['city_class'];}?>"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" class="no" <?php if($teacher_point['city_class'] == 0 ){ echo 'checked';}?> />
+        <input type="checkbox" value="0" class="no" <?php if($teacher_point['city_class'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> />
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>校级公开课实验课，每节课增加10个积点。</span>
     </div>
@@ -343,7 +343,7 @@
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['courses'] > 0){ echo 'checked';}?>/>
         <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="courses_num" value="<?php if($teacher_point['courses'] > 0){ echo $teacher_point['courses'];}?>"/>
         <label class="label">否</label>
-        <input type="checkbox" value="0" class="no" <?php if($teacher_point['courses'] == 0){ echo 'checked';}?>/>
+        <input type="checkbox" value="0" class="no" <?php if($teacher_point['courses'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>/>
         <label class="label2">积点数：见积点说明</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>八大学堂精品课程，获得精品课程的次数，每学年最多2次，每次可以增加3个积点。</span>
     </div>
@@ -376,7 +376,7 @@
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['exam_rank'] == 1){ echo 'checked';}?>/>
         <div id="exam_rank_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -30px;margin-left: 480px;"><?php if(!empty($teacher_point['exam_rank_data'])){echo '重新上传';}else{ echo '上传考试成绩单';} ?></div>&nbsp;
         <input type="hidden" id="exam_rank_upload_data" value="<?php if(!empty($teacher_point['exam_rank_data'])){ echo $teacher_point['exam_rank_data'];}?>"/>
-        <label class="label" style="margin-left: 200px" <?php if($teacher_point['exam_rank'] == 0){ echo 'checked';}?>>否</label>
+        <label class="label" style="margin-left: 200px" <?php if($teacher_point['exam_rank'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>>否</label>
         <input type="checkbox" value="0" class="no"/>
         <label class="label2">积点数：6</label>
         <span style="margin-top: 20px"><b style="color: red">积点说明：</b>以教务处学段考考试简报为依据，学段考试成绩综合排名（参考B值，均分）在同备课组内位列前50%的，奖励科任老师6个积点。</span>
