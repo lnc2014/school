@@ -14,39 +14,40 @@ $(function(){
     /************各个项目的分开得分**************/
     var workload = 0;
     var section_leader = 0;
-    var director;
-    var officer;
-    var school_leader;
-    var part_time_magazine;
-    var academic;
-    var education_case;
-    var paper;
-    var eight_teacher;
-    var league_teacher;
-    var tutor;
-    var union;
-    var join_festival;
-    var counselor;
-    var substitute;
-    var satisfaction_survey;
+    var director = 0;
+    var officer = 0;
+    var school_leader = 0;
+    var part_time_magazine = 0;
+    var academic = 0;
+    var education_case = 0;
+    var paper = 0;
+    var eight_teacher = 0;
+    var league_teacher = 0;
+    var tutor = 0;
+    var union = 0;
+    var join_festival = 0;
+    var counselor = 0;
+    var substitute = 0;
+    var satisfaction_survey = 0;
     var attendance_award = 0;
-    var school_teacher;
+    var school_teacher = 0;
     var finish_goal = 0;
-    var college;
-    var middle;
-    var super_workload;
-    var school_class;
-    var city_class;
-    var courses;
-    var exam_pro;
-    var exam_rank;
-    var outstand_sub;
-    var select_outstand_school;
-    var select_outstand_year;
-    var select_outstand_person;
-    var expert;
+    var college = 0;
+    var middle = 0;
+    var super_workload = 0;
+    var school_class = 0;
+    var city_class = 0;
+    var courses = 0;
+    var exam_pro = 0;
+    var exam_rank = 0;
+    var outstand_sub = 0;
+    var select_outstand_school = 0;
+    var select_outstand_year = 0;
+    var select_outstand_person = 0;
+    var expert = 0;
 
     //获取基本岗位的积分，用于前台计算
+    workload = $('#workload_value').val();
     $("#base_point input[type='checkbox']").live('click', function(e){
         var is_base_point = $(this).val();
         if($(this).is(':checked') && is_base_point == 1){
@@ -63,6 +64,7 @@ $(function(){
     });
     /*********************兼职岗位积点**************************/
     //科组长45、备课组长30
+    section_leader = $('#is_section_leader').val();
     var section_leader_point = 0;
     $("#is_section_leader").live('change', function(e){
         section_leader = $(this).find("option:selected").val();
@@ -74,6 +76,7 @@ $(function(){
             section_leader_point = 0;
         }
     });
+    director = $('#is_section_leader').val();
     //主任、副主任、部门干事 、年级长、副级长、班主任。积点45。1为是
     var director_point = 0;
     $("#director input[type='checkbox']").live('click', function(e){
@@ -597,22 +600,6 @@ $(function(){
             expert_point = 0
         }
     });
-    //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
-    var expert_point = 0;
-    $("#expert").live('change', function(e){
-        expert = $(this).find("option:selected").val();
-        if(expert == 1){
-            expert_point = 5;
-        }else if(expert == 2){
-            expert_point = 10;
-        }else if(expert == 3){
-            expert_point = 15;
-        }else if(expert == 4){
-            expert_point = 20;
-        }else{
-            expert_point = 0
-        }
-    });
     $('#submit2').click(function(){
         var point_id = $('#point_id').val();
         var part_time_point = 0; //兼职岗位积点
@@ -745,6 +732,7 @@ $(function(){
             return;
         }
         var outstand_sub_data = $('#outstand_sub_upload_data').val();
+        alert(outstand_sub);
         if(!outstand_sub_data && outstand_sub != 0){
             alert('请上传市教科院文件');
             return;

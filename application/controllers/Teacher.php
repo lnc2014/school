@@ -166,6 +166,7 @@ class Teacher extends BaseController{
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;
         }
+        var_dump($_POST);exit;
         //查找需要填写的年度
         $this->load->model('M_sch_system_point');
         $system_year = $this->M_sch_system_point->get_one(array('status' => 1));
