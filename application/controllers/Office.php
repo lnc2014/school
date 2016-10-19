@@ -31,6 +31,11 @@ class Office extends BaseController{
     //审核通过
     public function submit_check(){
         $ponit_id = $this->input->post('ponit_id', true);
+        $no_pass = $this->input->post('no_pass', true);
+        $status = 4;
+        if($no_pass == 1){
+            $status = 1;
+        }
         if(empty($ponit_id)){
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;
@@ -41,7 +46,7 @@ class Office extends BaseController{
             echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
             return;
         }
-        $update = $this->M_sch_point->update(array('status' => 4), array(
+        $update = $this->M_sch_point->update(array('status' => $status), array(
             'id' => $ponit_id
         ));
         if($update){

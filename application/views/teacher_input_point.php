@@ -483,7 +483,7 @@
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
                                                         <input type="text" placeholder="代课节数" class="input_text" style="width: 82px;" id="substitute_num" value="<?php if($teacher_point['substitute_num'] > 0){echo $teacher_point['substitute_num'];} ?>" />
                                                         <input type="hidden" id="substitute_upload_data" value="<?php echo $teacher_point['substitute_data'];?>"/>
-                                                        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';}else{ echo '上传代课证明文件';}?>
+                                                        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 150px;"><?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';}else{ echo '上传代课证明文件';}?>
                                                         </div>
                                                         <?php if(!empty($teacher_point['substitute_data'])){
                                                             echo '<a target="_blank" id="substitute_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['substitute_data'].'">点击预览</a>';
@@ -895,6 +895,8 @@
                                             <option value="1" <?php if($teacher_point['outstand_sub'] == 1){ echo 'selected';}?>>市级以上科组成员</option>
                                             <option value="2" <?php if($teacher_point['outstand_sub'] == 2){ echo 'selected';}?>>市级以上科组组长</option>
                                         </select>
+                                        <div id="outstand_sub_upload"  style="width: 200px;position: absolute;z-index: 99;margin-left: 200px;margin-top: -45px;"><?php if(!empty($teacher_point['outstand_sub_data'])){echo '重新上传';}else{ echo '上传证明文件';}?></div>&nbsp;
+                                        <input type="hidden" id="outstand_sub_upload_data" value="<?php echo $teacher_point['outstand_sub_data'];?>"/>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
                                                 <b style="color: red">积点说明：</b>以市教科院文件为准，市级以上科组成员人均获得2个积点。科组长另奖励5个积点。

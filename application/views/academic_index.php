@@ -104,7 +104,36 @@
                     success: function (data)
                     {
                         if (data.result == '0000') {
-                            alert('提交审核成功');
+                            alert('审核成功');
+                            location.reload();
+                        } else {
+                            alert(data.info);
+                        }
+                    }
+                });
+
+            }
+        });
+        $("#check2").click(function(){
+            if(confirm('审核不通过之后，则会让教师重新修改填写！')){
+                var ponit_id = $('#point_id').val();
+                if(!ponit_id){
+                    alert('操作错误，请联系管理员');
+                    return;
+                }
+                $.ajax({
+                    async:false,
+                    type : 'POST',
+                    url: '/index.php/academic/submit_check',
+                    data : {
+                        ponit_id:ponit_id,
+                        no_pass:1
+                    },
+                    dataType : 'json',
+                    success: function (data)
+                    {
+                        if (data.result == '0000') {
+                            alert('审核成功');
                             location.reload();
                         } else {
                             alert(data.info);
