@@ -762,7 +762,6 @@ $(function(){
             return;
         }
         var outstand_sub_data = $('#outstand_sub_upload_data').val();
-        alert(outstand_sub);
         if(!outstand_sub_data && outstand_sub != 0){
             alert('请上传市教科院文件');
             return;
@@ -806,6 +805,7 @@ $(function(){
             alert('职称资格时间不能为空');
             return;
         }
+
         //校验完毕，提交
         $.ajax({
             type: "POST",

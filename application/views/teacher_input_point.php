@@ -482,8 +482,13 @@
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
                                                         <input type="text" placeholder="代课节数" class="input_text" style="width: 82px;" id="substitute_num" value="<?php if($teacher_point['substitute_num'] > 0){echo $teacher_point['substitute_num'];} ?>" />
-                                                        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 150px;"> <?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';} else{ echo '上传代课证明文件';}?> </div>&nbsp;
-                                                        <input type="hidden" id="substitute_upload_data" value=""/>
+                                                        <input type="hidden" id="substitute_upload_data" value="<?php echo $teacher_point['substitute_data'];?>"/>
+                                                        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';}else{ echo '上传代课证明文件';}?>
+                                                        </div>
+                                                        <?php if(!empty($teacher_point['substitute_data'])){
+                                                            echo '<a target="_blank" id="substitute_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['substitute_data'].'">点击预览</a>';
+                                                        }?>
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -541,8 +546,12 @@
                                                 <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['attendance_award'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 150px;"><?php if(!empty($teacher_point['attendance_award_data'])){ echo '重新上传';} else{ echo '上传出勤文件';}?></div>&nbsp;
-                                                        <input type="hidden" id="attendance_award_upload_data" value=""/>
+                                                        <input type="hidden" id="attendance_award_upload_data" value="<?php echo $teacher_point['attendance_award_data'];?>"/>
+                                                        <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['attendance_award_data'])){ echo '重新上传';}else{ echo '上传出勤文件';}?>
+                                                        </div>
+                                                        <?php if(!empty($teacher_point['attendance_award_data'])){
+                                                            echo '<a target="_blank" id="attendance_award_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['attendance_award_data'].'">点击预览</a>';
+                                                        }?>
                                                     </div>
                                                 </div>
                                             </li>
