@@ -55,7 +55,7 @@
     <b>当前页面：</b>2016年度积点录入页面
     <button href="#" class="btn_primary" onclick = "javascript:window.location.href='/index.php/teacher/input_point_index' ">返回</button>
 </div>
-<div class="formtitle"></div>
+<div class="formtitle" style="height: 20px"></div>
 <div class="div_border">
     <div class="div_title">
         基本岗位积点

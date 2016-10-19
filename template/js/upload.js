@@ -33,7 +33,9 @@ function upload(id, id_name){
     uploader.on( 'uploadSuccess', function(file, data ) {
         if(data.result == '0000'){
             alert('上传成功！');
+
             $('#'+id_name+'_data').val(data.data.path2);
+            $('#'+id_name+'_url').addClass('none');
             var second = '<button id="second'+id_name+'" class="btn_primary">重新上传</button>';
             $(id).html(second);
             var html = '<a target="_blank" style="margin-left: 20px" href='+data.data.path+ '>点击预览</a>';
@@ -41,10 +43,18 @@ function upload(id, id_name){
             $('#second'+id_name).click(function(){
                 $(id).html('重新上传');
                 $('#'+id_name+'_data').val('');//将已经上传成功的文件置空
-                upload(id);
+                upload(id, id_name);
             });
         }else{
            alert('上传失败');
+            $(id).html('上传失败');
+            var second = '<button id="second'+id_name+'" class="btn_primary">重新上传</button>';
+            $(id).html(second);
+            $('#second'+id_name).click(function(){
+                $(id).html('重新上传');
+                $('#'+id_name+'_data').val('');//将已经上传成功的文件置空
+                upload(id, id_name);
+            });
         }
     });
     // 文件上传失败，现实上传出错。
