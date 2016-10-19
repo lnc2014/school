@@ -76,7 +76,7 @@ $(function(){
             section_leader_point = 0;
         }
     });
-    director = $('#is_section_leader').val();
+    director = $('#director_value').val();
     //主任、副主任、部门干事 、年级长、副级长、班主任。积点45。1为是
     var director_point = 0;
     $("#director input[type='checkbox']").live('click', function(e){
@@ -94,6 +94,7 @@ $(function(){
         }
     });
     //部门干事，积点为40。1是
+    officer = $('#officer_value').val();
     var officer_point = 0;
     $("#officer input[type='checkbox']").live('click', function(e){
         var is_officer = $(this).val();
@@ -109,6 +110,7 @@ $(function(){
             $('#officer').find(".yes").attr('checked', false);
         }
     });
+    school_leader = $('#school_leader_value').val();
     //校级领导，积点为60。1是
     var school_leader_point = 0;
     $("#school_leader input[type='checkbox']").live('click', function(e){
@@ -125,6 +127,7 @@ $(function(){
             $('#school_leader').find(".yes").attr('checked', false);
         }
     });
+    part_time_magazine = $('#part_time_magazine_value').val();
     //兼职校刊、校报编辑工作、青蓝工程指导教师,积点为12。1是
     var part_time_magazine_point = 0;
     $("#part_time_magazine input[type='checkbox']").live('click', function(e){
@@ -143,6 +146,7 @@ $(function(){
             $('#part_time_magazine_upload').addClass('none');
         }
     });
+    academic = $('#academic_value').val();
     //学术委员、学堂干事,积点15。1为是。
     var academic_point = 0;
     $("#academic input[type='checkbox']").live('click', function(e){
@@ -159,6 +163,7 @@ $(function(){
             $('#academic').find(".yes").attr('checked', false);
         }
     });
+    education_case = $('#education_case').val();
     //为在研的校级课题：主持人7，成员排序前三位4，其他成员2；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。
     var education_case_point = 0;
     $("#education_case").live('change', function(e){
@@ -184,6 +189,7 @@ $(function(){
             education_case_point = 0;
         }
     });
+    paper = $('#paper').val();
     //1为校级，2为市级，3为省级，4为国家级。每年提交一项最高级别的发表论文：校级5点、市级10点、省级15点、国家级20点。
     var paper_point = 0;
     $("#paper").live('change', function(e){
@@ -200,6 +206,7 @@ $(function(){
             paper_point = 0;
         }
     });
+    eight_teacher = $('#eight_teacher_value').val();
     //八大学堂选修课主讲教师,1为是。5个积点
     var eight_teacher_point = 0;
     $("#eight_teacher input[type='checkbox']").live('click', function(e){
@@ -216,6 +223,7 @@ $(function(){
             $('#eight_teacher').find(".yes").attr('checked', false);
         }
     });
+    league_teacher = $('#league_teacher_value').val();
     //社团指导老师,1为是。5个积点
     var league_teacher_point = 0;
     $("#league_teacher input[type='checkbox']").live('click', function(e){
@@ -232,6 +240,7 @@ $(function(){
             $('#league_teacher').find(".yes").attr('checked', false);
         }
     });
+    tutor = $('#tutor_value').val();
     //导师制导师，1为是。5个积点
     var tutor_point = 0;
     $("#tutor input[type='checkbox']").live('click', function(e){
@@ -248,6 +257,7 @@ $(function(){
             $('#tutor').find(".yes").attr('checked', false);
         }
     });
+    union = $('#union').val();
     //是不是工会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加9个积点。
     var union_point = 0;
     $("#union").live('change', function(e){
@@ -260,6 +270,7 @@ $(function(){
             union_point = 0;
         }
     });
+    join_festival = $('#join_festival_value').val();
     //参与学校重大节日的专业教师加4分,1为参加。
     var join_festival_point = 0;
     $("#join_festival input[type='checkbox']").live('click', function(e){
@@ -276,6 +287,7 @@ $(function(){
             $('#join_festival').find(".yes").attr('checked', false);
         }
     });
+    counselor = $('#counselor_value').val();
     //心理咨询师。1是，积点为5
     var counselor_point = 0;
     $("#counselor input[type='checkbox']").live('click', function(e){
@@ -292,6 +304,7 @@ $(function(){
             $('#counselor').find(".yes").attr('checked', false);
         }
     });
+    substitute = $('#substitute_value').val();
     /*********************奖励性积点**************************/
     //是不是有代课，1为有。代课的节数，1节课0.5个积点
     var substitute_point = 0;
@@ -314,6 +327,7 @@ $(function(){
             $('#substitute_upload').addClass('none');
         }
     });
+    satisfaction_survey = $('#satisfaction_survey_value').val();
     //每学年进行2次满意度调查，每次满意度达80%以上，可获得5个积点奖励。1达到条件
     var satisfaction_survey_point = 0;
     $("#satisfaction_survey input[type='checkbox']").live('click', function(e){
@@ -330,6 +344,7 @@ $(function(){
             $('#satisfaction_survey').find(".yes").attr('checked', false);
         }
     });
+    attendance_award = $('#attendance_award_value').val();
     //缺席次数，每缺席一次扣除1点积点，如果不填写则为全勤。要提供考勤记录。总的积点20点
     var attendance_award_point = 20;
     $("#attendance_award input[type='checkbox']").live('click', function(e){
@@ -351,6 +366,7 @@ $(function(){
             $('#attendance_award_upload').addClass('none');
         }
     });
+    school_teacher = $('#school_teacher_value').val();
     //是不是别聘为高三、初三老师、多语种班项目，1为聘用。积点30个
     var school_teacher_point = 0;
     $("#school_teacher input[type='checkbox']").live('click', function(e){
@@ -367,7 +383,7 @@ $(function(){
             $('#school_teacher').find(".yes").attr('checked', false);
         }
     });
-
+    finish_goal = $('#finish_goal_value').val();
     //是否完成高考（中考）预定指标，奖励积点5个
     var finish_goal_point = 0;
     $("#finish_goal input[type='checkbox']").live('click', function(e){
@@ -384,7 +400,7 @@ $(function(){
             $('#finish_goal').find(".yes").attr('checked', false);
         }
     });
-
+    college = $('#college_value').val();
     //本科生超出指标数量，一个增加6个积点
     var college_point = 0;
     $("#college input[type='checkbox']").live('click', function(e){
@@ -402,6 +418,7 @@ $(function(){
             $('#college').find(".yes").attr('checked', false);
         }
     });
+    middle = $('#middle_value').val();
     //重点高中生超出指标数量，一个增加10个积点
     var middle_point = 0;
     $("#middle input[type='checkbox']").live('click', function(e){
@@ -419,6 +436,7 @@ $(function(){
             $('#middle').find(".yes").attr('checked', false);
         }
     });
+    super_workload = $('#super_workload_value').val();
     //超出工作量的上课节数，每节课增加0.5个积点
     var super_workload_point = 0;
     $("#super_workload input[type='checkbox']").live('click', function(e){
@@ -436,6 +454,7 @@ $(function(){
             $('#super_workload').find(".yes").attr('checked', false);
         }
     });
+    school_class = $('#school_class_value').val();
     //校级公开课实验课，每节课增加5个积点
     var school_class_point = 0;
     $("#school_class input[type='checkbox']").live('click', function(e){
@@ -453,6 +472,7 @@ $(function(){
             $('#school_class').find(".yes").attr('checked', false);
         }
     });
+    city_class = $('#city_class_value').val();
     //市级公开课实验课，每节课增加10个积点
     var city_class_point = 0;
     $("#city_class input[type='checkbox']").live('click', function(e){
@@ -470,6 +490,7 @@ $(function(){
             $('#city_class').find(".yes").attr('checked', false);
         }
     });
+    courses = $('#courses_value').val();
     //八大学堂精品课程，获得精品课程的次数，每学年最多2次，每次可以增加3个积点
     var courses_point = 0;
     $("#courses input[type='checkbox']").live('click', function(e){
@@ -487,6 +508,7 @@ $(function(){
             $('#courses').find(".yes").attr('checked', false);
         }
     });
+    exam_pro = $('#exam_pro').val();
     //一等试卷可获得3个积点，二等试卷2个积点，三等试卷1个积点
     var exam_pro_point = 0;
     $("#exam_pro").live('change', function(e){
@@ -501,6 +523,7 @@ $(function(){
             exam_pro_point = 0
         }
     });
+    exam_rank = $('#exam_rank_value').val();
     //以教务处学段考考试简报为依据，学段考试成绩综合排名（参考B值，均分）在同备课组内位列前50%的，奖励科任老师6个积点。1为是。
     var exam_rank_point = 0;
     $("#exam_rank input[type='checkbox']").live('click', function(e){
@@ -521,6 +544,7 @@ $(function(){
             $('#exam_rank_upload').addClass('none');
         }
     });
+    outstand_sub = $('#outstand_sub').val();
     //以市教科院文件为准，市级以上科组成员人均获得2个积点。科组长另奖励5个积点
     var outstand_sub_point = 0;
     $("#outstand_sub").live('change', function(e){
@@ -536,6 +560,7 @@ $(function(){
             outstand_sub_point = 0
         }
     });
+    select_outstand_school = $('#select_outstand_school').val();
     //含优秀班主任或工作人员或优秀课题组主持人或课题组科研骨干 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
     var select_outstand_school_point = 0;
     $("#select_outstand_school").live('change', function(e){
@@ -552,6 +577,7 @@ $(function(){
             select_outstand_school_point = 0
         }
     });
+    select_outstand_year = $('#select_outstand_year').val();
     //考核优秀 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
     var select_outstand_year_point = 0;
     $("#select_outstand_year").live('change', function(e){
@@ -568,6 +594,7 @@ $(function(){
             select_outstand_year_point = 0
         }
     });
+    select_outstand_person = $('#select_outstand_person').val();
     //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
     var select_outstand_person_point = 0;
     $("#select_outstand_person").live('change', function(e){
@@ -584,6 +611,7 @@ $(function(){
             select_outstand_person_point = 0
         }
     });
+    expert = $('#expert').val();
     //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
     var expert_point = 0;
     $("#expert").live('change', function(e){

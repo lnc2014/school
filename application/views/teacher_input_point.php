@@ -103,7 +103,7 @@
     <div class="option" id="officer">
         <label class="label">部门干事：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="officer_value" value="<?php echo $teacher_point['officer'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['officer'] == 1){ echo 'checked';}?>  class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0"  <?php if($teacher_point['officer'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
@@ -113,7 +113,7 @@
     <div class="option" id="school_leader">
         <label class="label">校级领导：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="school_leader_value" value="<?php echo $teacher_point['school_leader'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['school_leader'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['school_leader'] == 0 && !empty($teacher_point) ){ echo 'checked';}?>  class="no"/>
@@ -123,7 +123,7 @@
     <div class="option" id="part_time_magazine">
         <label class="label">兼职校刊、校报编辑工作、青蓝工程指导教师：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="part_time_magazine_value" value="<?php echo $teacher_point['part_time_magazine'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['part_time_magazine'] == 1){ echo 'checked';}?>  class="yes"/>
         <div id="part_time_magazine_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -30px;margin-left: 465px;"><?php if(!empty($teacher_point['part_time_magazine_data'])){ echo '重新上传';}else{ echo '上传兼职证明文件';}?></div>&nbsp;
 <!--        --><?php //if(!empty($teacher_point['part_time_magazine'])){
@@ -138,7 +138,7 @@
     <div class="option" id="academic">
         <label class="label">学术委员、学堂干事：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="academic_value" value="<?php echo $teacher_point['academic'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['academic'] == 1){ echo 'checked';}?>  class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['academic'] == 0 && !empty($teacher_point)){ echo 'checked';}?> class="no"/>
@@ -182,7 +182,7 @@
     <div class="option" id="eight_teacher">
         <label class="label">八大学堂选修课主讲教师：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="eight_teacher_value" value="<?php echo $teacher_point['eight_teacher'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['eight_teacher'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['eight_teacher'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no" />
@@ -192,7 +192,7 @@
     <div class="option" id="league_teacher">
         <label class="label">社团指导老师：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="league_teacher_value" value="<?php echo $teacher_point['league_teacher'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['league_teacher'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['league_teacher'] == 0 && !empty($teacher_point)  ){ echo 'checked';}?> class="no"/>
@@ -202,7 +202,7 @@
     <div class="option" id="tutor">
         <label class="label">导师制导师：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="tutor_value" value="<?php echo $teacher_point['tutor'];?>"/>
         <input type="checkbox"  value="1" <?php if($teacher_point['tutor'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox"  value="0" <?php if($teacher_point['tutor'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
@@ -226,7 +226,7 @@
     <div class="option" id="join_festival">
         <label class="label">参与学校重大节日：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="join_festival_value" value="<?php echo $teacher_point['join_festival'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['join_festival'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['join_festival'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
@@ -236,7 +236,7 @@
     <div class="option" id="counselor">
         <label class="label">心理咨询师：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="counselor_value" value="<?php echo $teacher_point['counselor'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['counselor'] == 1){ echo 'checked';}?> class="yes" />
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['counselor'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no" />
@@ -250,7 +250,7 @@
     <div class="option" id="substitute">
         <label class="label">替公假、事假、病假、婚假老师顶岗代课：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="substitute_value" value="<?php echo $teacher_point['substitute'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['substitute'] == 1){ echo 'checked';}?> class="yes"/>
         <input type="text" placeholder="代课节数" class="input_text" style="width: 82px" id="substitute_num" value="<?php if($teacher_point['substitute_num'] > 0){echo $teacher_point['substitute_num'];} ?>" />
         <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 550px;"> <?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';} else{ echo '上传代课证明文件';}?> </div>&nbsp;
@@ -263,7 +263,7 @@
     <div class="option" id="satisfaction_survey">
         <label class="label">学生满意度调查,满意度达80%以上：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="satisfaction_survey_value" value="<?php echo $teacher_point['satisfaction_survey'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['satisfaction_survey'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['satisfaction_survey'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no"/>
@@ -273,7 +273,7 @@
     <div class="option" id="attendance_award">
         <label class="label">出勤，是否全勤：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="attendance_award_value" value="<?php echo $teacher_point['attendance_award'];?>"/>
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['attendance_award'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> />
         <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 220px;"><?php if(!empty($teacher_point['attendance_award_data'])){ echo '重新上传';} else{ echo '上传出勤文件';}?></div>&nbsp;
         <input type="hidden" id="attendance_award_upload_data" value=""/>
@@ -286,7 +286,7 @@
     <div class="option" id="school_teacher">
         <label class="label">高三（初三）教师、多语种班项目：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="school_teacher_value" value="<?php echo $teacher_point['school_teacher'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['school_teacher'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['school_teacher'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> class="no" />
@@ -296,7 +296,7 @@
     <div class="option" id="finish_goal">
         <label class="label">完成高考（中考）预定指标：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="finish_goal_value" value="<?php echo $teacher_point['finish_goal'];?>"/>
         <input type="checkbox" value="1" <?php if($teacher_point['finish_goal'] == 1){ echo 'checked';}?> class="yes"/>
         <label class="label">否</label>
         <input type="checkbox" value="0" <?php if($teacher_point['finish_goal'] == 0 && !empty($teacher_point) ) { echo 'checked';}?> class="no"/>
@@ -306,7 +306,7 @@
     <div class="option" id="college">
         <label class="label">本科生超出指标数量：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="college_value" value="<?php if($teacher_point['college_num'] > 0){ echo 1;}else{ echo 0;} ?>"/>
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['college_num'] > 0){ echo 'checked';}?>  />
         <input type="text" placeholder="超出指标数量" class="input_text" style="width: 150px" id="college_num" value="<?php if($teacher_point['college_num'] > 0){ echo $teacher_point['college_num'];}?>"/>
         <label class="label">否</label>
@@ -317,7 +317,7 @@
     <div class="option" id="middle">
         <label class="label">重点高中生超出指标数量：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="middle_value" value="<?php if($teacher_point['middle_num'] > 0){ echo 1;}else{ echo 0;} ?>"/>
         <input type="checkbox" value="1"  <?php if($teacher_point['middle_num'] > 0){ echo 'checked';}?>  class="yes"/>
         <input type="text" placeholder="超出指标数量" class="input_text" style="width: 100px" id="middle_num" value="<?php if($teacher_point['middle_num'] > 0){ echo $teacher_point['middle_num'];}?>" />
         <label class="label">否</label>
@@ -328,7 +328,7 @@
     <div class="option" id="super_workload">
         <label class="label">超出工作量：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="super_workload_value" value="<?php if($teacher_point['super_workload'] > 0){ echo 1;}else{ echo 0;} ?>"/>
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['super_workload'] > 0){ echo 'checked';}?> />
         <input type="text" placeholder="超出节课数" class="input_text" style="width: 100px" id="super_workload_num" value="<?php if($teacher_point['super_workload'] > 0){ echo $teacher_point['super_workload'];}?>" />
         <label class="label">否</label>
@@ -339,7 +339,7 @@
     <div class="option" id="school_class">
         <label class="label">校级公开课实验课：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="school_class_value" value="<?php if($teacher_point['school_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['school_class'] > 0){ echo 'checked';}?> />
         <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="school_class_num" value="<?php if($teacher_point['school_class'] > 0){ echo $teacher_point['school_class'];}?>" />
         <label class="label">否</label>
@@ -350,7 +350,7 @@
     <div class="option" id="city_class">
         <label class="label">市级公开课实验课：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="city_class_value" value="<?php if($teacher_point['city_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['city_class'] > 0){ echo 'checked';}?>/>
         <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="city_class_num" value="<?php if($teacher_point['city_class'] > 0){ echo $teacher_point['city_class'];}?>"/>
         <label class="label">否</label>
@@ -361,7 +361,7 @@
     <div class="option" id="courses">
         <label class="label">八大学堂精品课程：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="courses_value" value="<?php if($teacher_point['courses'] > 0){ echo 1;}else{ echo 0;} ?>"/>
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['courses'] > 0){ echo 'checked';}?>/>
         <input type="text" placeholder="节课数" class="input_text" style="width: 100px" id="courses_num" value="<?php if($teacher_point['courses'] > 0){ echo $teacher_point['courses'];}?>"/>
         <label class="label">否</label>
@@ -395,7 +395,7 @@
     <div class="option" id="exam_rank">
         <label class="label">学段考试成绩综合排名同备课组内位列前50%：</label>
         <label class="label">是</label>
-        <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
+        <input type="hidden" id="exam_rank_value" value="<?php echo $teacher_point['exam_rank'];?>"/>
         <input type="checkbox" value="1" class="yes" <?php if($teacher_point['exam_rank'] == 1){ echo 'checked';}?>/>
         <div id="exam_rank_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -30px;margin-left: 480px;"><?php if(!empty($teacher_point['exam_rank_data'])){echo '重新上传';}else{ echo '上传考试成绩单';} ?></div>&nbsp;
         <input type="hidden" id="exam_rank_upload_data" value="<?php if(!empty($teacher_point['exam_rank_data'])){ echo $teacher_point['exam_rank_data'];}?>"/>
