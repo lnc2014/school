@@ -56,7 +56,7 @@
             }elseif($teacher['department'] == 5){
                 echo '校长';
             } ?></cite></li>
-            <li><input style="margin-left: 26px;" type="button" class="btn" value="修改" onclick="javascript:window.location='/index.php/teacher/edit_info'"></li>
+            <li><input style="margin-left: 26px;margin-top: 10px;" type="button" class="btn" value="修改" onclick="javascript:window.location='/index.php/teacher/edit_info'"></li>
         </ul>
     </div>
 </div>
