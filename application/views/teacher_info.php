@@ -24,7 +24,7 @@
 <div class="mainindex">
     <div class="formbody">
         <div class="formtitle"><span>教师基本信息</span></div>
-        <ul class="forminfo">
+        <ul class="forminfo" style="margin-top: -20px;">
             <li><label>姓名</label><cite><?php echo $teacher['name'] ?></cite></li>
             <li><label>电话号码</label><cite><?php echo $teacher['mobile'] ?></cite></li>
             <li><label>所教学科</label><cite><?php
@@ -56,7 +56,7 @@
             }elseif($teacher['department'] == 5){
                 echo '校长';
             } ?></cite></li>
-            <li><label>&nbsp;</label><input name="" type="button" class="btn" value="修改" onclick="javascript:window.location='/index.php/teacher/edit_info'"></li>
+            <li><input style="margin-left: 26px;" type="button" class="btn" value="修改" onclick="javascript:window.location='/index.php/teacher/edit_info'"></li>
         </ul>
     </div>
 </div>
