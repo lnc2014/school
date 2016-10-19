@@ -18,31 +18,47 @@ class SchoolMaster extends BaseController{
         //TODO检测权限
     }
     /**
-     * 教务处首页
-     * 展示教务处应该要审核的教师。积点审核第一步【不用等到所有的记录提交过来就可以进行审核】
+     *校长首页，必须等到所有的教师审核完成之后才能发布
+     *
      */
     public function index(){
         $this->data['title'] = '校长审核首页';
         $this->load->model('M_sch_point');
         $year = $this->get_fill_point_year();
-        $this->data['first_teacher_check'] = $this->M_sch_point->get_list(array('year' => $year, 'status' => 2));
-        $this->load->view('academic_index', $this->data);
+        $page = $this->input->get('page', true);
+        if(empty($page)){
+            $page = 1;
+        }
+        $page_size = 200;//每页十条记录
+        if(empty($page) || $page == 1){
+            $page = 1;
+            $limit = $page_size;
+            $offset = 0;
+        }else{
+            $limit = $page_size;
+            $offset =  ($page-1)*$page_size;
+        }
+//        $this->data['first_teacher_check'] = $this->M_sch_point->get_list(array('year' => $year, 'status' => 5), '*', $limit, $offset);
+        $this->data['first_teacher_check'] = $this->M_sch_point->get_all_teacher_rank($limit, $offset, $year);
+        $all_teacher = $this->M_sch_point->get_list(array('year' => $year, 'status' => 5));
+        $this->data['all_teacher'] = count($all_teacher);
+        $this->data['current_page'] = $page;
+        $this->data['pages'] = ceil(count($all_teacher)/$page_size);
+
+        $this->load->view('schoolmaster_index', $this->data);
     }
-    //审核通过
-    public function submit_check(){
-        $ponit_id = $this->input->post('ponit_id', true);
-        if(empty($ponit_id)){
-            echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
-            return;
-        }
+    //发布本年度考核
+    public function rank(){
+        $year = $this->get_fill_point_year();
         $this->load->model('M_sch_point');
-        $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status, year');
-        if(empty($ponit_info)){
-            echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
-            return;
-        }
-        $update = $this->M_sch_point->update(array('status' => 3), array(
-            'id' => $ponit_id
+        $this->load->model('M_sch_system_point');
+        $update = $this->M_sch_point->update(array('status' => 6), array(
+            'year' => $year
+        ));
+        $this->M_sch_system_point->update(array(
+            'is_public' => 1
+        ),array(
+            'year' => $year
         ));
         if($update){
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
@@ -65,7 +81,7 @@ class SchoolMaster extends BaseController{
         }
         $this->data['teacher_point'] = $teacher_point;
         $this->data['title'] = '修改积点';
-        $this->load->view('academic_show_teacher_point', $this->data);
+        $this->load->view('schoolmaster_show_teacher_point', $this->data);
     }
 
 }
