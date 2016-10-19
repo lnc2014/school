@@ -150,7 +150,7 @@ class Teacher extends BaseController{
         }
         $this->data['teacher_point'] = $teacher_point;
         $this->data['title'] = '修改积点';
-        $this->load->view('teacher_input_point_test', $this->data);
+        $this->load->view('teacher_input_point', $this->data);
     }
     /**
      * 教师积点录入接口

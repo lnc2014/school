@@ -535,10 +535,12 @@ $(function(){
             $('#exam_rank').find(".no").attr('checked', false);
             $('#exam_rank').find(".yes").attr('checked', true);
             $('#exam_rank_upload').removeClass('none');
+            $('#exam_rank_upload_url').addClass('none');
         }else{
             exam_rank = 0;
             exam_rank_point = 0;
             $('#exam_rank_data').attr('disabled', true);
+            $('#exam_rank_upload_url').addClass('none');
             $('#exam_rank').find(".no").attr('checked', true);
             $('#exam_rank').find(".yes").attr('checked', false);
             $('#exam_rank_upload').addClass('none');
