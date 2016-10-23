@@ -7,7 +7,6 @@
  */
 include_once "BaseController.php";
 class Teacher extends BaseController{
-    private $data;
     /**
      * 教师个人信息
      */

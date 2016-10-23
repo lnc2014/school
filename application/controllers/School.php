@@ -8,7 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include_once "BaseController.php";
 class School extends BaseController {
 
-	private $data;
 
 	public function index()
 	{

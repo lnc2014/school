@@ -55,8 +55,8 @@
                 <td><?php echo $teacher_total_point['part_time_point']?></td>
                 <td><?php echo $teacher_total_point['award_point']?></td>
                 <td><?php echo $teacher_total_point['person_point']?></td>
-                <td><?php echo $teacher_total_point['year']?></td>
-                <td>0</td>
+                <td><?php echo $teacher_total_point['per_point']?></td>
+                <td><?php echo $teacher_total_point['all_point']?></td>
                 <td>
                     <?php
                     if($teacher_total_point['status'] == 1){ ?>

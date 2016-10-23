@@ -36,10 +36,10 @@
         <thead>
         <tr>
             <th>ID<i class="sort"><img src="/template/images/px.gif" /></i></th>
-            <th>教师名字</th>
-            <th>教师账号</th>
+            <th>名字</th>
+            <th>账号</th>
             <th>手机号码</th>
-            <th>教师所属部门</th>
+            <th>所属部门</th>
             <th>操作</th>
         </tr>
         </thead>

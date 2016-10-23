@@ -7,7 +7,6 @@
  */
 include_once "BaseController.php";
 class SchoolMaster extends BaseController{
-    private $data;
     public function __construct()
     {
         parent::__construct();

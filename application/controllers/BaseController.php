@@ -6,7 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class BaseController extends CI_Controller {
 
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -16,6 +15,7 @@ class BaseController extends CI_Controller {
 		$this->config->load('common/config_response', TRUE); //统一返回状态码loading
 		$this->load->helper('url');
 		$this->response_msg = $this->config->item('response', 'common/config_response');
+		$this->data['year'] = $this->get_fill_point_year();
 	}
 
 	/**
