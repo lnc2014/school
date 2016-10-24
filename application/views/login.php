@@ -75,7 +75,7 @@
     </div>
 
 </div>
-<div class="loginbm">版权所有@2016 深圳市第二外国语学校</div>
+<div class="loginbm">版权所有@2016 深圳第二外国语学校</div>
 </body>
 </html>
 

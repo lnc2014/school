@@ -17,7 +17,7 @@ class School extends BaseController {
 	 * 登录
 	 */
 	public function login(){
-		$this->data['title'] = '欢迎登录深圳市第二外国语学校绩效考核系统';
+		$this->data['title'] = '欢迎登录深圳第二外国语学校绩效考核系统';
 		$this->load->view('login', $this->data);
 	}
 	//登录验证
