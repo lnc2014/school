@@ -67,7 +67,7 @@
                         <div id="edit-survey-content">
                             <div class="rows2">
 
-                                <form action="/index.php/academic/add_per_point/<?php echo $teacher_id; ?>" method="post">
+                                <form action="/index.php/academic/add_per_point?teacher_id=<?php echo $teacher_id; ?>&is_update=<?php echo $is_update?>" method="post">
                                 <div id="question-box" class="ui-sortable">
 
                                     <div class="survey-title">
@@ -79,16 +79,16 @@
                                                 <span class="question-id"><?php echo $per['topic']?>：</span>
                                                 <span class="question-id" style="float: right;margin-top: -9px;"><b><?php echo $per['point']?>分</b></span>
                                             </div>
-                                            <input type="hidden" name="is_<?php echo $per['alias']?>" value="0" id="is_<?php echo $per['alias']?>"/>
+                                            <input type="hidden" name="is_<?php echo $per['alias']?>" value="<?php echo !empty($per['answer'])?$per['answer']:0; ?>" id="is_<?php echo $per['alias']?>"/>
                                             <ul class="question-choice">
                                                 <li class="choice">
-                                                    <input type="checkbox" style="width: 16px;height: 16px" value="1" class="yes"/>
+                                                    <input type="checkbox" style="width: 16px;height: 16px" value="1" <?php echo ($per['answer'] == 1)?'checked':''; ?> class="yes"/>
                                                     <div class="position-relative">
-                                                        <div class="edit-area edit-child-element"  style="background: rgb(255, 255, 255);">是</div></div>
+                                                        <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                     <div class="option-tips"></div>
                                                 </li>
                                                 <li class="choice">
-                                                    <input type="checkbox" style="width: 16px;height: 16px"  value="0" class="no"/>
+                                                    <input type="checkbox" style="width: 16px;height: 16px"  value="0" <?php echo isset($per['answer'])&&($per['answer'] == 0)?'checked':''; ?> class="no"/>
                                                     <div class="position-relative">
                                                         <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                     <div class="option-tips"></div>
@@ -96,13 +96,15 @@
                                                 <li class="choice">
                                                     <div class="position-relative">
                                                         <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                            <b style="color: red">情况说明：</b><input type="text" name="<?php echo $per['alias']?>">
+                                                            <b style="color: red">情况说明：</b><input type="text" value="<?php echo $per['explain']; ?>" name="<?php echo $per['alias']?>">
                                                         </div>
                                                     </div>
                                                 </li>
                                             </ul>
                                         </div>
-                                    <?php } ?>
+                                    <?php
+                                        }
+                                    ?>
                                     <div class="survey-title">
                                         <div class="title-content edit-area"   tabindex="1" style="background: rgb(255, 255, 255);">专业发展类(10分)</div>
                                     </div>
@@ -112,16 +114,16 @@
                                                 <span class="question-id"><?php echo $per['topic']?>：</span>
                                                 <span class="question-id" style="float: right;margin-top: -9px;"><b><?php echo $per['point']?>分</b></span>
                                             </div>
-                                            <input type="hidden" name="is_<?php echo $per['alias']?>" value="0" id="is_<?php echo $per['alias']?>"/>
+                                            <input type="hidden" name="is_<?php echo $per['alias']?>" value="<?php echo !empty($per['answer'])?$per['answer']:0; ?>" id="is_<?php echo $per['alias']?>"/>
                                             <ul class="question-choice">
                                                 <li class="choice">
-                                                    <input type="checkbox" style="width: 16px;height: 16px" value="1" class="yes"/>
+                                                    <input type="checkbox" style="width: 16px;height: 16px" <?php echo ($per['answer'] == 1)?'checked':''; ?>  value="1" class="yes"/>
                                                     <div class="position-relative">
                                                         <div class="edit-area edit-child-element"  style="background: rgb(255, 255, 255);">是</div></div>
                                                     <div class="option-tips"></div>
                                                 </li>
                                                 <li class="choice">
-                                                    <input type="checkbox" style="width: 16px;height: 16px"  value="0" class="no"/>
+                                                    <input type="checkbox" style="width: 16px;height: 16px"  <?php echo isset($per['answer'])&&($per['answer'] == 0)?'checked':''; ?>  value="0" class="no"/>
                                                     <div class="position-relative">
                                                         <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                     <div class="option-tips"></div>
@@ -129,7 +131,7 @@
                                                 <li class="choice">
                                                     <div class="position-relative">
                                                         <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                            <b style="color: red">情况说明：</b><input type="text" name="<?php echo $per['alias']?>">
+                                                            <b style="color: red">情况说明：</b><input type="text" value="<?php echo $per['explain']; ?>" name="<?php echo $per['alias']?>">
                                                         </div>
                                                     </div>
                                                 </li>
@@ -145,16 +147,16 @@
                                                 <span class="question-id"><?php echo $per['topic']?>：</span>
                                                 <span class="question-id" style="float: right;margin-top: -9px;"><b><?php echo $per['point']?>分</b></span>
                                             </div>
-                                            <input type="hidden" name="is_<?php echo $per['alias']?>" value="0" id="is_<?php echo $per['alias']?>"/>
+                                            <input type="hidden" name="is_<?php echo $per['alias']?>" value="<?php echo !empty($per['answer'])?$per['answer']:0; ?>" id="is_<?php echo $per['alias']?>"/>
                                             <ul class="question-choice">
                                                 <li class="choice">
-                                                    <input type="checkbox" style="width: 16px;height: 16px" value="1" class="yes"/>
+                                                    <input type="checkbox" style="width: 16px;height: 16px" <?php echo ($per['answer'] == 1)?'checked':''; ?> value="1" class="yes"/>
                                                     <div class="position-relative">
-                                                        <div class="edit-area edit-child-element"  style="background: rgb(255, 255, 255);">是</div></div>
+                                                        <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                     <div class="option-tips"></div>
                                                 </li>
                                                 <li class="choice">
-                                                    <input type="checkbox" style="width: 16px;height: 16px"  value="0" class="no"/>
+                                                    <input type="checkbox" style="width: 16px;height: 16px"  <?php echo isset($per['answer'])&&($per['answer'] == 0)?'checked':''; ?> value="0" class="no"/>
                                                     <div class="position-relative">
                                                         <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                     <div class="option-tips"></div>
@@ -162,7 +164,7 @@
                                                 <li class="choice">
                                                     <div class="position-relative">
                                                         <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                            <b style="color: red">情况说明：</b><input type="text" name="<?php echo $per['alias']?>">
+                                                            <b style="color: red">情况说明：</b><input type="text" value="<?php echo $per['explain']; ?>" name="<?php echo $per['alias']?>">
                                                         </div>
                                                     </div>
                                                 </li>

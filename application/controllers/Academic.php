@@ -25,7 +25,24 @@ class Academic extends BaseController{
         $this->data['title'] = '教务处审核首页';
         $this->load->model('M_sch_point');
         $year = $this->get_fill_point_year();
-        $this->data['first_teacher_check'] = $this->M_sch_point->get_list(array('year' => $year, 'status' => 2));
+        $page = $this->input->get('page', true);
+        if(empty($page)){
+            $page = 1;
+        }
+        $page_size = 2;//每页十条记录
+        if(empty($page) || $page == 1){
+            $page = 1;
+            $limit = $page_size;
+            $offset = 0;
+        }else{
+            $limit = $page_size;
+            $offset =  ($page-1)*$page_size;
+        }
+        $this->data['first_teacher_check'] = $this->M_sch_point->get_all_point(2, $year, $limit, $offset);
+        $all_point = $this->M_sch_point->get_all_point(2, $year);
+        $this->data['all_pages'] = count($all_point);
+        $this->data['current_page'] = $page;
+        $this->data['pages'] = ceil($this->data['all_pages']/$page_size);
         $this->load->view('academic_index', $this->data);
     }
     //审核通过
@@ -87,18 +104,24 @@ class Academic extends BaseController{
             show_error('academic/index', 500,'非法操作');
         }
         $per_point_list = $this->M_sch_per_teacher->get_list(array('teacher_id' => $teacher_id, 'year' => $this->data['year']));
-        var_dump($per_point_list);exit;
+        if(!empty($per_point_list)){
+            $this->data['is_update'] = 1;
+        }
+        $this->data['per_point_list'] = $per_point_list;
         $this->data['title'] = '修改积点';
         $this->data['teacher_id'] = $teacher_id;
         $this->load->model('M_sch_teaching_performance');
         //第一类教学绩效
-        $this->data['teaching_per'] = $this->M_sch_teaching_performance->get_list(array('type' => 1));
-        $this->data['profession'] = $this->M_sch_teaching_performance->get_list(array('type' => 2));
-        $this->data['education'] = $this->M_sch_teaching_performance->get_list(array('type' => 3));
+        $this->data['teaching_per'] = $this->M_sch_teaching_performance->get_all_per_type(1, $this->data['year']);
+        $this->data['profession'] = $this->M_sch_teaching_performance->get_all_per_type(2, $this->data['year']);
+        $this->data['education'] = $this->M_sch_teaching_performance->get_all_per_type(3, $this->data['year']);
         $this->load->view('add_performance_point', $this->data);
     }
     //将积点添加到数据库
-    public function add_per_point($teacher_id){
+    public function add_per_point(){
+        $teacher_id = $this->input->get('teacher_id', true);
+        $is_update = $this->input->get('is_update', true);
+
         $post = $this->input->post(NULL, true);
         if(empty($post)){
             show_error('academic/index', 500,'数据传递不正确');
@@ -106,15 +129,19 @@ class Academic extends BaseController{
         if(empty($teacher_id)){
             show_error('academic/index', 500,'非法操作');
         }
-        //教师ID数据校验
         $this->load->model('Teacher_sch');
+        //教师ID数据校验
         $is_exit_teacher = $this->Teacher_sch->get_one(array('teacher_id' => $teacher_id), 'name');
         if(empty($is_exit_teacher)){
             show_error('academic/index', 500,'非法操作');
         }
+
         $this->load->model('M_sch_per_teacher');
         $this->load->model('M_sch_teaching_performance');
         $this->load->model('M_sch_point');
+        if(!empty($is_update) && $is_update == 1){ //修改不需要校验
+            $this->M_sch_per_teacher->delete(array('year' => $this->data['year'], 'teacher_id' => $teacher_id)); //删除之前的
+        }
         $per_point = 0;
         while (list($key, $val) = each($post))
         {
