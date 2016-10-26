@@ -29,12 +29,14 @@
     <div class="xline"></div>
 
     <table class="tablelist">
-        <?php if(empty($first_teacher_check)){
+        <?php if(empty($teacher_check)){
             echo '<tr>暂无可以审核的记录</tr>';
         }else{ ?>
         <thead>
         <tr>
             <th>年度<i class="sort"><img src="/template/images/px.gif" /></i></th>
+            <th>教师名字</th>
+            <th>所教学科</th>
             <th>基本岗位积点</th>
             <th>兼职岗位积点</th>
             <th>奖励性积点</th>
@@ -46,10 +48,26 @@
         </thead>
         <tbody>
         <?php
-        foreach($first_teacher_check as $point){ ?>
+        foreach($teacher_check as $point){ ?>
             <tr>
                 <input id="point_id" type="hidden" value="<?php echo $point['id']; ?>">
                 <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['name']; ?></td>
+                <td><?php
+                    if($point['subject'] == 1){
+                        echo '语文';
+                    }elseif($point['subject'] == 2){
+                        echo '数学';
+                    }elseif($point['subject'] == 3){
+                        echo '英语';
+                    }elseif($point['subject'] == 4){
+                        echo '计算机';
+                    }elseif($point['subject'] == 5){
+                        echo '音乐';
+                    }else{
+                        echo '管理人员';
+                    }
+                    ?></td>
                 <td><?php  echo $point['base_point']; ?></td>
                 <td><?php  echo $point['part_time_point']; ?></td>
                 <td><?php  echo $point['award_point']; ?></td>
@@ -68,17 +86,13 @@
         </tbody>
     </table>
     <div class="pagin">
-        <div class="message">共<i class="blue">3</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页</div>
+        <div class="message">共<i class="blue"><?php echo $all_pages; ?></i>条记录，当前显示第&nbsp;<i class="blue"><?php echo $current_page ?>&nbsp;</i>页</div>
         <ul class="paginList">
-            <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">1</a></li>
-            <li class="paginItem current"><a href="javascript:;">2</a></li>
-            <li class="paginItem"><a href="javascript:;">3</a></li>
-            <li class="paginItem"><a href="javascript:;">4</a></li>
-            <li class="paginItem"><a href="javascript:;">5</a></li>
-            <li class="paginItem more"><a href="javascript:;">...</a></li>
-            <li class="paginItem"><a href="javascript:;">10</a></li>
-            <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+            <?php
+            for($i=1;$i<=$pages;$i++){ ?>
+                <li class="paginItem <?php if($i == $current_page){ echo 'current'; } ?>"><a href="/index.php/committee/index?page=<?php echo $i?>"><?php echo $i;?></a></li>
+            <?php }
+            ?>
         </ul>
     </div>
 </div>
@@ -104,7 +118,7 @@
                     {
                         if (data.result == '0000') {
                             alert('提交审核成功');
-                            location.reload();
+                            location.href = "/index.php/committee/index" ;
                         } else {
                             alert(data.info);
                         }
@@ -133,7 +147,7 @@
                     {
                         if (data.result == '0000') {
                             alert('审核成功');
-                            location.reload();
+                            location.href = "/index.php/committee/index" ;
                         } else {
                             alert(data.info);
                         }

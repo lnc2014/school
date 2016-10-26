@@ -29,7 +29,7 @@ class Academic extends BaseController{
         if(empty($page)){
             $page = 1;
         }
-        $page_size = 2;//每页十条记录
+        $page_size = 20;//每页十条记录
         if(empty($page) || $page == 1){
             $page = 1;
             $limit = $page_size;
@@ -167,11 +167,9 @@ class Academic extends BaseController{
         //更新积分表
         $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $teacher_id, 'year' => $this->data['year']),'total_point,per_point,all_point');
 
-        if(empty($teacher_point['per_point'])){
-            $data['per_point'] = $per_point;
-            $data['all_point'] = bcadd(round(0.8*$teacher_point['total_point']), round(0.2*$per_point));
-            $this->M_sch_point->update($data, array('teacher_id' => $teacher_id, 'year' => $this->data['year']));
-        }
+        $data['per_point'] = $per_point;
+        $data['all_point'] = bcadd(round(0.8*$teacher_point['total_point']), round(0.2*$per_point));
+        $this->M_sch_point->update($data, array('teacher_id' => $teacher_id, 'year' => $this->data['year']));
         echo '<script>alert("添加成功");window.location = "/index.php/academic/index"</script>';
     }
 }

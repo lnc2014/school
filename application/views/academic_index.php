@@ -126,7 +126,7 @@
                     {
                         if (data.result == '0000') {
                             alert('审核成功');
-                            location.reload();
+                            location.href = "/index.php/academic/index" ;
                         } else {
                             alert(data.info);
                         }
@@ -155,7 +155,7 @@
                     {
                         if (data.result == '0000') {
                             alert('审核成功');
-                            location.reload();
+                            location.href = "/index.php/academic/index" ;
                         } else {
                             alert(data.info);
                         }

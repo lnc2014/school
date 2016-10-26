@@ -24,7 +24,25 @@ class Committee extends BaseController{
         $this->data['title'] = '评审委员会审核首页';
         $this->load->model('M_sch_point');
         $year = $this->get_fill_point_year();
-        $this->data['first_teacher_check'] = $this->M_sch_point->get_list(array('year' => $year, 'status' => 4));
+        $page = $this->input->get('page', true);
+        if(empty($page)){
+            $page = 1;
+        }
+        $page_size = 2;//每页十条记录
+        if(empty($page) || $page == 1){
+            $page = 1;
+            $limit = $page_size;
+            $offset = 0;
+        }else{
+            $limit = $page_size;
+            $offset =  ($page-1)*$page_size;
+        }
+
+        $this->data['teacher_check'] = $this->M_sch_point->get_all_point(4, $year, $limit, $offset);
+        $all_point = $this->M_sch_point->get_all_point(4, $year);
+        $this->data['all_pages'] = count($all_point);
+        $this->data['current_page'] = $page;
+        $this->data['pages'] = ceil($this->data['all_pages']/$page_size);
         $this->load->view('committee_index', $this->data);
     }
     //审核通过
