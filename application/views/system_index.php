@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="/template/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/template/webuploader/css/webuploader.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -23,8 +24,13 @@
 
 <div class="mainindex">
     <div class="welinfo">
+
         <input name="" class="btn" value="新增账号" onclick="javascript:window.location='/index.php/system/add_teacher'" type="button">
-        <input name="" class="btn" value="批量导入" onclick="javascript:window.location='/index.php/system/add_teacher'" type="button">
+        <div id="picker" class="webuploader-container" style="float: right; margin-right: 1050px;margin-top: -13px;">
+            <div class="webuploader-pick" style="padding: 0px 0px;">批量导入</div>
+        </div>
+        <input name="" class="btn" value="导入模板" style="float: right;margin-right: -250px;" onclick="javascript:window.location='/index.php/system/add_teacher'" type="button">
+        <div style="float: right;margin-right: -630px;color: red">注：批量导入的时候严格按照所给的模板导入，不然会导致不成功！</div>
     </div>
     <div class="xline"></div>
     <div id="tab2" class="tabson" style="display: block;">
@@ -92,7 +98,8 @@
     }
     ?>
 </div>
-<script type="text/javascript" src="/template/js/zepto.min.js"></script>
+<script type="text/javascript" src="/template/js/jquery.1.8.js"></script>
+<script type="text/javascript" src="/template/webuploader/js/webuploader.js"></script>
 <script type="text/javascript">
 
     function del_teacher(teacher_id){
@@ -121,6 +128,44 @@
     function search_data(){
         var search_data = $("#search_data").val();
         window.location = '/index.php/system/index?search_data='+search_data;
+    }
+     $(function() {
+        upload();
+    });
+    /**
+     * 上传函数
+     */
+    function upload(){
+        var uploader;
+        // 初始化Web Uploader
+        uploader = WebUploader.create({
+            // 自动上传。
+            auto: true,
+            // swf文件路径
+            swf: 'Uploader.swf',
+            // 文件接收服务端。
+            server: '/index.php/system/add_batch_data',
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#picker'
+            // 只允许选择文件，可选。
+        });
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on( 'uploadSuccess', function( file, data ) {
+            console.log(data);
+            if(data.result == '0000'){
+                alert('导入成功');
+                location.reload();
+            }else{
+                alert(data.info);
+                location.reload();
+            }
+        });
+        // 文件上传失败，现实上传出错。
+        uploader.on( 'uploadError', function( file, data) {
+
+        });
+
     }
 </script>
 </body>

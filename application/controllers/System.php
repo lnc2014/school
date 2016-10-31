@@ -304,4 +304,74 @@ class System extends BaseController{
             return;
         }
     }
+
+    /**
+     * 批量导入
+     */
+    public function add_batch_data(){
+        $file_path = $this->check_excel($_FILES);
+        //加载工厂类
+        include_once(APPPATH."libraries/PHPExcel/IOFactory.php");
+        /** 用IOFactory的load方法得到excel操作对象  **/
+        $objPHPExcel = PHPExcel_IOFactory::load($file_path);
+        //得到当前活动表格，调用toArray方法，得到表格的二维数组
+        $sheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+        unlink($file_path);
+        $this->load->model('Admin');
+        $this->load->model('Teacher_sch');
+        //插入数据库
+        foreach ($sheet as $k => $value) {
+            if($k == 1){
+                continue;
+            }
+            $teacher_data['name'] = $value['A'];
+            $teacher_data['mobile'] = $value['B'];
+            $teacher_data['subject'] = $value['C'];
+            $teacher_data['address'] = $value['D'];
+            $teacher_data['department'] = $value['E'];
+            $teacher_data['is_admin'] = $value['F'];
+            $teacher_data['point'] = 0;
+            $teacher_data['create_time'] = date('Y-m-d H:i:s', time());
+            $teacher_id = $this->Teacher_sch->add($teacher_data);
+            //添加后台登录账号
+            $admin_data['teacher_id'] = $teacher_id;
+            $admin_data['user_name'] = $teacher_data['name'];
+            $admin_data['account'] = $teacher_data['mobile'];
+            $admin_data['psw'] = md5($teacher_data['mobile']);
+            $admin_data['flag'] = 1;
+            $admin_data['auth'] = 1;
+            $admin_data['create_time'] = date('Y-m-d H:i:s', time());
+            $this->Admin->add($admin_data);
+        }
+        echo $this->apiReturn('0000', '', $this->response_msg['0000']);
+        return;
+    }
+    public function check_excel($files)
+    {
+        $tmp_file = $files['file']['tmp_name'];
+        $file_types = explode(".", $files ['file'] ['name']);
+        $file_type = $file_types [count($file_types) - 1];
+        /*判别是不是.xls文件，判别是不是excel文件*/
+        if (!in_array(strtolower($file_type), array('xls', 'xlsx'))) {
+            echo $this->apiReturn('9001', '', "不是EXCEL格式文件，请重新上传");
+            exit();
+        }
+        /*设置上传路径*/
+        $savePath = FCPATH . '/upload/excel/';
+        if (!is_dir($savePath)) {
+            mkdir($savePath);
+        }
+        /*以时间来命名上传的文件*/
+        $str = date('YmdHis');
+        $file_name = "excel_name_" . $str . "." . $file_type;
+        $file_path = $savePath . $file_name;
+        /*是否上传成功*/
+        $ret = move_uploaded_file($tmp_file, $file_path);
+        if (!$ret) {
+            echo $this->apiReturn('9002', '', "文件上传失败");
+            exit();
+        }
+        return $file_path;
+    }
+
 }
