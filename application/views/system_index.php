@@ -66,6 +66,7 @@
                     ?></td>
                 <td>
                     <a href="/index.php/system/add_teacher/<?php echo $teacher['teacher_id']?>" id="edit" class="tablelink">修改</a>&nbsp;&nbsp;
+                    <a href="/index.php/system/change_psw/<?php echo $teacher['teacher_id']?>" id="edit" class="tablelink">修改密码</a>&nbsp;&nbsp;
                     <a href="#" onclick="del_teacher(<?php echo $teacher['teacher_id']?>)" class="tablelink" style="color: red">删除</a>
                 </td>
             </tr>

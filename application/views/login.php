@@ -15,6 +15,9 @@
     <script language="JavaScript" src="/template/js/jquery.js"></script>
     <script src="/template/js/cloud.js" type="text/javascript"></script>
     <script language="javascript">
+        function forgot(){
+            alert('请联系管理员修改密码！');
+        }
         $(function(){
             $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
             $(window).resize(function(){
@@ -70,7 +73,7 @@
         <ul>
             <li><input  type="text" class="loginuser"  placeholder="账号"  maxlength="11"/></li>
             <li><input type="password" class="loginpwd"  placeholder="密码" /></li>
-            <li><input id="login" type="button" class="loginbtn" value="登录" /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
+            <li><input id="login" type="button" class="loginbtn" value="登录" /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#" onclick="forgot()">忘记密码？</a></label></li>
         </ul>
     </div>
 

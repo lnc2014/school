@@ -25,7 +25,7 @@ class School extends BaseController {
 		$username = $this->input->post('username');
 		$psw = $this->input->post('psw');
 		if(empty($username) || empty($psw)){
-			echo $this->api_return("0000", new stdClass(), $this->response_msg["0003"]);
+			echo $this->apiReturn("0000", new stdClass(), $this->response_msg["0003"]);
 			return;
 		}
 		$psw = md5($psw);//使用md5加密
@@ -150,6 +150,59 @@ class School extends BaseController {
 	public function login_out(){
 		if(session_destroy()){
 			redirect('school/login');
+		}
+	}
+	/**
+	 * 修改密码
+	 */
+	public function change_psw(){
+		//检验是不是登录
+		if(!$this->check_login()){
+			redirect('school/login');
+		}
+		$this->data['title'] = '修改密码';
+		$this->load->view('change_psw_home', $this->data);
+	}
+	public function change_psw2(){
+		//检验是不是登录
+		if(!$this->check_login()){
+			redirect('school/login');
+		}
+		$this->data['title'] = '修改密码';
+		$this->load->view('change_psw', $this->data);
+	}
+	public function save_psw(){
+		//检验是不是登录
+		if(!$this->check_login()){
+			redirect('school/login');
+		}
+		$old_psw = $this->input->post('old_psw');
+		$new_psw = $this->input->post('new_psw');
+		$new_psw2= $this->input->post('new_psw2');
+		if(empty($old_psw) || empty($new_psw) || empty($new_psw2)){
+			echo $this->apiReturn("0003", new stdClass(), '密码不能为空');
+			return;
+		}
+		if($new_psw2 != $new_psw){
+			echo $this->apiReturn("0002", new stdClass(), '两次密码不一致');
+			return;
+		}
+		$this->load->model('Admin');
+		if(empty($_SESSION['teacher_id'])){//超级管理员修改密码
+			$_SESSION['teacher_id'] = 0;
+		}
+		$admin = $this->Admin->get_one(array('teacher_id' => $_SESSION['teacher_id']));
+		if(empty($admin) || $admin['psw'] != md5($old_psw)){
+			echo $this->apiReturn("0002", new stdClass(), '旧密码不正确');
+			return;
+		}
+		$update = $this->Admin->update(array('psw' => md5($new_psw)), array('teacher_id' => $_SESSION['teacher_id']));
+		if($update){
+			echo $this->apiReturn("0000", new stdClass(), '修改成功');
+			return;
+		}else{
+			echo $this->apiReturn("0002", new stdClass(), '修改失败');
+			return;
 		}
 	}
 }

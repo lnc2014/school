@@ -270,5 +270,38 @@ class System extends BaseController{
         }
     }
 
+    //增加年度积分
+    public function change_psw($teacher_id = ''){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $this->data['teacher_id'] = $teacher_id;
+        $this->load->view('system_change_psw', $this->data);
+    }
 
+    /**
+     *  保存新密码
+     */
+    public function save_sys_psw(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $psw = $this->input->post('psw');
+        $teacher_id = $this->input->post('teacher_id');
+        if(empty($psw) || empty($teacher_id)){
+            echo $this->apiReturn("0003", new stdClass(), '非法操作');
+            return;
+        }
+        $this->load->model('Admin');
+        $update = $this->Admin->update(array('psw' => md5($psw)), array('teacher_id' => $teacher_id));
+        if($update){
+            echo $this->apiReturn("0000", new stdClass(), '修改成功');
+            return;
+        }else{
+            echo $this->apiReturn("0002", new stdClass(), '修改失败');
+            return;
+        }
+    }
 }

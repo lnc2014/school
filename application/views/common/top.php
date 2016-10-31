@@ -27,9 +27,9 @@
 
     <div class="user">
         <span>欢迎：<?php echo $_SESSION['name']?></span>
-        <i>消息</i>
-        <b>5</b>
+        <a style="font-size: 13px;margin-right: 20px;color: #e9f2f7;" href="/index.php/school/change_psw" target="_parent">修改密码</a>
     </div>
+
 
 </div>
 </body>
@@ -63,6 +63,9 @@
         else return temp;
     }
     setInterval("get_time()",1000);
+    function change_psw(){
+        alert(1);
+    }
 </script>
 </html>
 
