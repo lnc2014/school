@@ -52,6 +52,7 @@ class System extends BaseController{
         $this->data['current_page']  = $page;
         $this->data['search_data']  = $search_data;
         $this->data['title'] = '系统设置';
+        $this->data['excel_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/upload/excel/批量导入模板.xls';
         $this->load->view('system_index', $this->data);
     }
     /**
@@ -322,6 +323,9 @@ class System extends BaseController{
         //插入数据库
         foreach ($sheet as $k => $value) {
             if($k == 1){
+                continue;
+            }
+            if(empty($value['A']) || empty($value['B'])){
                 continue;
             }
             $teacher_data['name'] = $value['A'];
