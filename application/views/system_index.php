@@ -24,6 +24,7 @@
 <div class="mainindex">
     <div class="welinfo">
         <input name="" class="btn" value="新增账号" onclick="javascript:window.location='/index.php/system/add_teacher'" type="button">
+        <input name="" class="btn" value="批量导入" onclick="javascript:window.location='/index.php/system/add_teacher'" type="button">
     </div>
     <div class="xline"></div>
     <div id="tab2" class="tabson" style="display: block;">
