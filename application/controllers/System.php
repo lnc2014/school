@@ -322,26 +322,48 @@ class System extends BaseController{
         $this->load->model('Teacher_sch');
         //插入数据库
         foreach ($sheet as $k => $value) {
-            if($k == 1){
+            if($k == 1 || $k == 2){
                 continue;
             }
-            if(empty($value['A']) || empty($value['B'])){
-                continue;
+            //需要导入的教师的信息
+            $teacher_data['level'] = $value['B'];
+            $teacher_data['name'] = $value['C'];
+            $teacher_data['sex'] = ($value['D'] == '男')?1:2;
+            $teacher_data['teacher_status'] = ($value['E'] == '在职')?1:0;
+            $teacher_data['born'] = $value['F'];
+            if($value['G'] == '大学本科'){
+                $teacher_data['education'] = 1;
+            }elseif($value['G'] == '研究生'){
+                $teacher_data['education'] = 2;
+            }elseif($value['G'] == '硕士研究生'){
+                $teacher_data['education'] = 3;
             }
-            $teacher_data['name'] = $value['A'];
-            $teacher_data['mobile'] = $value['B'];
-            $teacher_data['subject'] = $value['C'];
-            $teacher_data['address'] = $value['D'];
-            $teacher_data['department'] = $value['E'];
-            $teacher_data['is_admin'] = $value['F'];
+            $teacher_data['now_level_info'] = $value['H'];
+            $teacher_data['now_level'] = $value['I'];
+            $teacher_data['work_start_time'] = $value['J'];
+            $teacher_data['now_work_duty'] = $value['K'];
+            $teacher_data['now_work_time'] = $value['L'];
+            $teacher_data['now_work_level'] = $value['M'];
+            $teacher_data['work_time'] = date('Y-m-d', strtotime($value['N']));
+            $teacher_data['work_year'] = $value['O'];
+            $teacher_data['school_work_time'] = date('Y-m-d', strtotime($value['P']));
+            $teacher_data['school_work_year'] = $value['Q'];
+            $teacher_data['er_school_time'] = date('Y-m-d', strtotime($value['R']));
+            $teacher_data['er_school_year'] = $value['S'];
+            $teacher_data['qua_time'] = date('Y-m-d', strtotime($value['T']));
+            $teacher_data['qua_year'] = $value['U'];
+            $teacher_data['qua_name'] = $value['V'];
             $teacher_data['point'] = 0;
             $teacher_data['create_time'] = date('Y-m-d H:i:s', time());
             $teacher_id = $this->Teacher_sch->add($teacher_data);
+            //中文转拼音
+            $this->load->library('pinyin/Pinyin');
+            $teacher_name = strtolower($this->pinyin->ChineseToPinyin($value['C']));
             //添加后台登录账号
             $admin_data['teacher_id'] = $teacher_id;
-            $admin_data['user_name'] = $teacher_data['name'];
-            $admin_data['account'] = $teacher_data['mobile'];
-            $admin_data['psw'] = md5($teacher_data['mobile']);
+            $admin_data['user_name'] = $value['C'];
+            $admin_data['account'] = $teacher_name;
+            $admin_data['psw'] = md5($teacher_name);
             $admin_data['flag'] = 1;
             $admin_data['auth'] = 1;
             $admin_data['create_time'] = date('Y-m-d H:i:s', time());

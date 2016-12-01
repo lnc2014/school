@@ -19,7 +19,7 @@ class Admin extends BaseModel{
         $this->db->select('a.`user_name`,a.account, t.*')->from();
         $this->db->where('a.teacher_id = t.teacher_id');
         $this->db->where('a.auth = 1');
-        $this->db->order_by('t.create_time', 'DESC');
+        $this->db->order_by('a.id', 'DESC');
         if(!empty($where)){
             $this->db->where($where);
         }
