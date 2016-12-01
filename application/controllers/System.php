@@ -344,13 +344,13 @@ class System extends BaseController{
             $teacher_data['now_work_duty'] = $value['K'];
             $teacher_data['now_work_time'] = $value['L'];
             $teacher_data['now_work_level'] = $value['M'];
-            $teacher_data['work_time'] = date('Y-m-d', strtotime($value['N']));
+            $teacher_data['work_time'] = $value['N'];
             $teacher_data['work_year'] = $value['O'];
-            $teacher_data['school_work_time'] = date('Y-m-d', strtotime($value['P']));
+            $teacher_data['school_work_time'] = $value['P'];
             $teacher_data['school_work_year'] = $value['Q'];
-            $teacher_data['er_school_time'] = date('Y-m-d', strtotime($value['R']));
+            $teacher_data['er_school_time'] = $value['R'];
             $teacher_data['er_school_year'] = $value['S'];
-            $teacher_data['qua_time'] = date('Y-m-d', strtotime($value['T']));
+            $teacher_data['qua_time'] = $value['T'];
             $teacher_data['qua_year'] = $value['U'];
             $teacher_data['qua_name'] = $value['V'];
             $teacher_data['point'] = 0;
