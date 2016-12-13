@@ -71,7 +71,7 @@
     <span class="systemlogo"></span>
     <div class="loginbox">
         <ul>
-            <li><input  type="text" class="loginuser"  placeholder="账号"  maxlength="11"/></li>
+            <li><input  type="text" class="loginuser"  placeholder="账号"  maxlength="20"/></li>
             <li><input type="password" class="loginpwd"  placeholder="密码" /></li>
             <li><input id="login" type="button" class="loginbtn" value="登录" /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#" onclick="forgot()">忘记密码？</a></label></li>
         </ul>

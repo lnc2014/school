@@ -39,55 +39,46 @@
 <div class="lefttop"><span></span></div>
 <dl class="leftmenu">
     <dd>
-        <div class="title">
-            <span><img src="/template/images/leftico01.png"/></span>菜单
-        </div>
         <?php
         if($_SESSION['auth'] == 1 ){
-            if($_SESSION['department'] == 1){
+            //权限更改一下
+            $department = explode(',', $_SESSION['department']);
+            if(in_array(1, $department)){
             ?>
-                <!--        教师菜单栏-->
+                <!--教师菜单栏-->
                 <ul class="menuson">
                     <li class="active"><cite></cite><a href="/index.php/teacher/index" target="rightFrame">教师首页</a><i></i></li>
                     <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
                     <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
                 </ul>
             <?php } ?>
-           <?php if($_SESSION['department'] == 2){
+            <?php if(in_array(2, $department)){
+                ?>
+                <!--办公室成员-->
+                <ul class="menuson">
+                    <li><cite></cite><a href="/index.php/office/index" target="rightFrame">办公室审核首页</a><i></i></li>
+                </ul>
+            <?php } ?>
+           <?php if(in_array(3, $department)){
             ?>
-            <!--        教务处成员-->
+            <!--教务处成员-->
             <ul class="menuson">
-                <li class="active"><cite></cite><a href="/index.php/academic/index" target="rightFrame">教务处首页</a><i></i></li>
-                <li><cite></cite><a href="/index.php/teacher/index" target="rightFrame">教师首页</a><i></i></li>
-                <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
-                <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+                <li><cite></cite><a href="/index.php/academic/index" target="rightFrame">教务处审核首页</a><i></i></li>
             </ul>
             <?php } ?>
-            <?php if($_SESSION['department'] == 3){
+
+            <?php if(in_array(4, $department)){
                 ?>
-                <!--        办公室成员-->
+                <!--科研处-->
                 <ul class="menuson">
-                    <li class="active"><cite></cite><a href="/index.php/office/index" target="rightFrame">办公室首页</a><i></i></li>
-                    <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
-                    <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/committee/index" target="rightFrame">科研处审核首页</a><i></i></li>
                 </ul>
             <?php } ?>
-            <?php if($_SESSION['department'] == 4){
+            <?php if(in_array(5, $department)){
                 ?>
-                <!--        评审委员会成员-->
+                <!--学生处审核人员-->
                 <ul class="menuson">
-                    <li class="active"><cite></cite><a href="/index.php/committee/index" target="rightFrame">评审委员会首页</a><i></i></li>
-                    <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
-                    <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
-                </ul>
-            <?php } ?>
-            <?php if($_SESSION['department'] == 5){
-                ?>
-                <!--        校长-->
-                <ul class="menuson">
-                    <li class="active"><cite></cite><a href="/index.php/schoolmaster/index" target="rightFrame">校长首页</a><i></i></li>
-                    <li><cite></cite><a href="/index.php/teacher/info" target="rightFrame">教师个人信息</a><i></i></li>
-                    <li><cite></cite><a href="/index.php/teacher/input_point_index" target="rightFrame">积点录入</a><i></i></li>
+                    <li><cite></cite><a href="/index.php/affairs/index" target="rightFrame">学生处审核人员首页</a><i></i></li>
                 </ul>
             <?php } ?>
         <?php } ?>

@@ -38,8 +38,8 @@ class Academic extends BaseController{
             $limit = $page_size;
             $offset =  ($page-1)*$page_size;
         }
-        $this->data['first_teacher_check'] = $this->M_sch_point->get_all_point(2, $year, $limit, $offset);
-        $all_point = $this->M_sch_point->get_all_point(2, $year);
+        $this->data['first_teacher_check'] = $this->M_sch_point->get_all_point(3, $year, $limit, $offset);
+        $all_point = $this->M_sch_point->get_all_point(3, $year);
         $this->data['all_pages'] = count($all_point);
         $this->data['current_page'] = $page;
         $this->data['pages'] = ceil($this->data['all_pages']/$page_size);
@@ -49,6 +49,7 @@ class Academic extends BaseController{
     public function submit_check(){
         $ponit_id = $this->input->post('ponit_id', true);
         $no_pass = $this->input->post('no_pass', true);
+        $refuse_reason = $this->input->post('refuse_reason', true);
         if(empty($ponit_id)){
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;
@@ -59,7 +60,7 @@ class Academic extends BaseController{
             echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
             return;
         }
-        $status = 3;
+        $status = 4;
         if($no_pass == 1){
             $status = 1;
         }
@@ -67,6 +68,17 @@ class Academic extends BaseController{
             'id' => $ponit_id
         ));
         if($update){
+            if($no_pass == 1){
+                $this->load->model('M_sch_point_check');
+                $check_data = array(
+                    'point_id' => $ponit_id,
+                    'reason' => $refuse_reason,
+                    'refuse_status' => 3,
+                    'create_time' => date('Y-m-d H:i:s'),
+                    'update_time' => date('Y-m-d H:i:s'),
+                );
+                $this->M_sch_point_check->add($check_data);
+            }
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
             return;
         }else{

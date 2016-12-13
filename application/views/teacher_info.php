@@ -24,40 +24,99 @@
 <div class="mainindex">
     <div class="formbody">
         <div class="formtitle"><span>教师基本信息</span></div>
-        <ul class="forminfo" style="margin-top: -20px;">
-            <li><label>姓名</label><cite><?php echo $teacher['name'] ?></cite></li>
-            <li><label>电话号码</label><cite><?php echo $teacher['mobile'] ?></cite></li>
-            <li><label>所教学科</label><cite><?php
-            if($teacher['subject'] == 1){
-                echo '语文';
-//                1为语文，2为数学，3为英语，4为计算机，5为音乐（后面扩展），0为没有学科
-            }elseif($teacher['subject'] == 2){
-                echo '数学';
-            }elseif($teacher['subject'] == 3){
-                echo '计算机';
-            }elseif($teacher['subject'] == 4){
-                echo '音乐';
-            }elseif($teacher['subject'] == 5){
-                echo '数学';
-            }else{
-                echo '管理人员';
-            }  ?></cite></li>
-            <li><label>居住地</label><cite><?php echo $teacher['address'] ?></cite></li>
-            <li><label>所属部门</label><cite><?php
-            if($teacher['department'] == 1){
-//                所属部门，1为教师队伍，没有所属部门，2为教务处成员，3办公室成员，4为评审委员会成员,5为校长
-                echo '教师队伍';
-            }elseif($teacher['department'] == 2){
-                echo '教务处';
-            }elseif($teacher['department'] == 3){
-                echo '办公室';
-            }elseif($teacher['department'] == 4){
-                echo '评审委员会成员';
-            }elseif($teacher['department'] == 5){
-                echo '校长';
-            } ?></cite></li>
-            <li><input style="margin-left: 26px;margin-top: 10px;" type="button" class="btn" value="修改" onclick="javascript:window.location='/index.php/teacher/edit_info'"></li>
-        </ul>
+        <table class="imgtable" style="    margin-left: 200px; width: 50%;font-size: 50px">
+            <tbody>
+
+
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">姓名</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"> <?php echo $teacher['name'] ?></a></td>
+            </tr>
+
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">性别</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"> <?php echo ($teacher['sex'] == 1)?'男':'女'; ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">人员状态</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo ($teacher['teacher_status'] == 1)?'在职':'不在职'; ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">出生日期</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['born'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">学历</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php
+                        if($teacher['education'] == 1){
+                            echo '大学本科';
+                        }elseif($teacher['education'] == 1){
+                            echo '研究生';
+                        }else{
+                            echo '硕士研究生';
+                        }
+                        ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">现聘岗位</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['now_level_info'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">岗位级别</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['now_level'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">现聘岗位起始时间</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['work_start_time'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">现任职务名称</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['now_work_duty'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">现任职务层次</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['now_work_level'] ?></a></td>
+            </tr>            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">现任职务层次起始时间</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['now_work_time'] ?></a></td>
+            </tr>            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">参加工作时间</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['work_time'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">工作年限</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['work_year'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">来校时间</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['school_work_time'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">来校年限</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['school_work_year'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">二外入编时间</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['er_school_time'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">入编年限</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['er_school_year'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">职称取得时间</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['qua_time'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">职称年限</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['qua_year'] ?></a></td>
+            </tr>
+            <tr class="odd">
+                <td class="imgtd" style="line-height: 36px; text-indent: 24px;font-size: 16px;">职称</td>
+                <td><a href="#" style="line-height: 36px; text-indent: 24px;font-size: 16px;"><?php echo $teacher['qua_name'] ?></a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

@@ -96,8 +96,11 @@ class Teacher extends BaseController{
         }
         $this->data['is_fill_point'] = 0;//是不是已经填写本年度的积点,默认为没有填写
         if(!empty($teacher_point)){
-            //TODO 填写了积点要通过算法计算其积点的排名
             $this->data['is_fill_point'] = 1;
+            //计算教师是不是已经审核过，如果是审核过的要查找到审核原因并且显示出来
+            $this->load->model('M_sch_point_check');
+            $refuse_reason = $this->M_sch_point_check->find_is_no_check($teacher_point['id']);
+            $teacher_point['refuse_reason'] = $refuse_reason['reason'];
             $this->data['teacher_total_point'] = $teacher_point;
         }
         $this->load->view('teacher_input_index', $this->data);
@@ -115,7 +118,14 @@ class Teacher extends BaseController{
             echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
             return;
         }
-        $update = $this->M_sch_point->update(array('status' => 2), array(
+        $status = 2;
+        //增加一个审核的跳转的问题
+        $this->load->model('M_sch_point_check');
+        $refuse_reason = $this->M_sch_point_check->find_is_no_check($ponit_id);
+        if(!empty($refuse_reason)){
+            $status = $refuse_reason['refuse_status'];
+        }
+        $update = $this->M_sch_point->update(array('status' => $status), array(
             'id' => $ponit_id
         ));
         if($update){
@@ -134,7 +144,9 @@ class Teacher extends BaseController{
         if(!$this->check_login()){
             redirect('school/login');
         }
-        $this->load->view('teacher_input_point');
+        $this->load->model('Teacher_sch');
+        $this->data['teacher'] = $this->Teacher_sch->get_one(array('teacher_id' => $_SESSION['teacher_id']));
+        $this->load->view('teacher_input_point', $this->data);
     }
     //修改教师录入的积点
     public function edit_point(){

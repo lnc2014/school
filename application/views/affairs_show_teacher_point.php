@@ -37,11 +37,11 @@
             });
         });
     </script>
-<style>
-    .uew-select {
-        margin-left: 35px;
-    }
-</style>
+    <style>
+        .uew-select {
+            margin-left: 35px;
+        }
+    </style>
 
 <body>
 <div class="place">
@@ -81,13 +81,13 @@
                                         <input type="hidden" id="workload_value" value="<?php echo $teacher_point['workload'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['workload'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['workload'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['workload'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['workload'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -110,7 +110,7 @@
                                             <span class="question-id" >科组长、备课组长：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：科组长45、备课组长30</b></span>
                                         </div>
-                                        <select class="select4 " id="is_section_leader"   style="width: 250px">
+                                        <select class="select4 " id="is_section_leader"   disabled style="width: 250px">
                                             <option value="0"  selected>不是</option>
                                             <option value="1" <?php if($teacher_point['section_leader'] == 1){ echo 'selected';}?> >科组长</option>
                                             <option value="2" <?php if($teacher_point['section_leader'] == 2){ echo 'selected';}?>>备课组长</option>
@@ -129,13 +129,13 @@
                                         <input type="hidden" id="director_value" value="<?php echo $teacher_point['director'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['director'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['director'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['director'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['director'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -157,13 +157,13 @@
                                         <input type="hidden" id="officer_value" value="<?php echo $teacher_point['officer'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['officer'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['officer'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['officer'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['officer'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -185,13 +185,13 @@
                                         <input type="hidden" id="school_leader_value" value="<?php echo $teacher_point['school_leader'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['school_leader'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['school_leader'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['school_leader'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['school_leader'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -213,13 +213,13 @@
                                         <input type="hidden" id="part_time_magazine_value" value="<?php echo $teacher_point['part_time_magazine'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['part_time_magazine'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['part_time_magazine'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <div id="part_time_magazine_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['part_time_magazine_data'])){ echo '重新上传';}else{ echo '上传兼职证明文件';}?>
+                                                        <div  style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;">
                                                         </div>
                                                         <?php if(!empty($teacher_point['part_time_magazine_data'])){
-                                                            echo '<a target="_blank" id="part_time_magazine_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['part_time_magazine_data'].'">点击预览</a>';
+                                                            echo '<a target="_blank" id="part_time_magazine_upload_url" style="color:red;margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['part_time_magazine_data'].'">点击预览附件</a>';
                                                         }?>
                                                         <input type="hidden" id="part_time_magazine_upload_data" value="<?php echo $teacher_point['part_time_magazine_data'];?>"/>
 
@@ -228,7 +228,7 @@
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['part_time_magazine'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" disabled style="width: 16px;height: 16px" <?php if($teacher_point['part_time_magazine'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -253,13 +253,13 @@
                                         <input type="hidden" id="academic_value" value="<?php echo $teacher_point['academic'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['academic'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['academic'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['academic'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px"  disabled <?php if($teacher_point['academic'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -278,7 +278,7 @@
                                             <span class="question-id" >教科研情况：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select2" id="education_case" style="width: 250px">
+                                        <select class="select2" id="education_case" style="width: 250px" disabled>
                                             <option value="0"  selected>不是</option>
                                             <option value="1" <?php if($teacher_point['education_case'] == 1){ echo 'selected';}?>>在研的校级课题主持人</option>
                                             <option value="2" <?php if($teacher_point['education_case'] == 2){ echo 'selected';}?>>在研的校级课题成员排序前三位</option>
@@ -298,7 +298,7 @@
                                             <span class="question-id" >每年提交一项最高级别的发表论文：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select2" id="paper" style="width: 250px">
+                                        <select class="select2" id="paper" style="width: 250px" disabled>
                                             <option value="0" selected >无</option>
                                             <option value="1" <?php if($teacher_point['paper'] == 1){ echo 'selected';}?>>校级</option>
                                             <option value="2" <?php if($teacher_point['paper'] == 2){ echo 'selected';}?>>市级</option>
@@ -306,7 +306,7 @@
                                             <option value="4" <?php if($teacher_point['paper'] == 4){ echo 'selected';}?>>国家级</option>
                                         </select>
                                         <div class="position-relative choice question-choice">
-                                            <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                            <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);" disabled>
                                                 <b style="color: red">积点说明：</b>校级5点、市级10点、省级15点、国家级20点。
                                             </div>
                                         </div>
@@ -319,13 +319,13 @@
                                         <input type="hidden" id="eight_teacher_value" value="<?php echo $teacher_point['eight_teacher'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['eight_teacher'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['eight_teacher'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['eight_teacher'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['eight_teacher'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -347,13 +347,13 @@
                                         <input type="hidden" id="league_teacher_value" value="<?php echo $teacher_point['league_teacher'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['league_teacher'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['league_teacher'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['league_teacher'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['league_teacher'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -375,13 +375,13 @@
                                         <input type="hidden" id="tutor_value" value="<?php echo $teacher_point['tutor'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['tutor'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['tutor'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['tutor'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['tutor'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -400,7 +400,7 @@
                                             <span class="question-id" >工会委员会：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select2" id="union" style="width: 250px">
+                                        <select class="select2" id="union" style="width: 250px" disabled>
                                             <option value="0" selected>不是</option>
                                             <option value="1" <?php if($teacher_point['union'] == 1){ echo 'selected';}?> >工会委员会成员</option>
                                             <option value="2" <?php if($teacher_point['union'] == 2){ echo 'selected';}?>>工会委员会组长</option>
@@ -419,13 +419,13 @@
                                         <input type="hidden" id="join_festival_value" value="<?php echo $teacher_point['join_festival'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['join_festival'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['join_festival'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['join_festival'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['join_festival'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -447,13 +447,13 @@
                                         <input type="hidden" id="counselor_value" value="<?php echo $teacher_point['counselor'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['counselor'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['counselor'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['counselor'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['counselor'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -478,22 +478,20 @@
                                         <input type="hidden" id="substitute_value" value="<?php echo $teacher_point['substitute'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['substitute'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['substitute'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="text" placeholder="代课节数" class="input_text" style="width: 82px;" id="substitute_num" value="<?php if($teacher_point['substitute_num'] > 0){echo $teacher_point['substitute_num'];} ?>" />
-                                                        <input type="hidden" id="substitute_upload_data" value="<?php echo $teacher_point['substitute_data'];?>"/>
-                                                        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 150px;"><?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';}else{ echo '上传代课证明文件';}?>
+                                                        <input type="text" disabled placeholder="代课节数" class="input_text" style="width: 82px;" id="substitute_num" value="<?php if($teacher_point['substitute_num'] > 0){echo $teacher_point['substitute_num'];} ?>" />
+                                                        <div  style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;">
                                                         </div>
-                                                        <?php if(!empty($teacher_point['substitute_data'])){
-                                                            echo '<a target="_blank" id="substitute_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['substitute_data'].'">点击预览</a>';
+                                                        <?php if(!empty($teacher_point['substitute_upload_data'])){
+                                                            echo '<a target="_blank" id="substitute_upload_data_url" style="color:red;margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['substitute_upload_data'].'">点击预览附件</a>';
                                                         }?>
-
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['substitute'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['substitute'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -515,13 +513,13 @@
                                         <input type="hidden" id="satisfaction_survey_value" value="<?php echo $teacher_point['satisfaction_survey'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['satisfaction_survey'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['satisfaction_survey'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['satisfaction_survey'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['satisfaction_survey'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -543,23 +541,21 @@
                                         <input type="hidden" id="attendance_award_value" value="<?php echo $teacher_point['attendance_award'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['attendance_award'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['attendance_award'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="hidden" id="attendance_award_upload_data" value="<?php echo $teacher_point['attendance_award_data'];?>"/>
-                                                        <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['attendance_award_data'])){ echo '重新上传';}else{ echo '上传出勤文件';}?>
-                                                        </div>
+                                                        <div style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 150px;"> </div>&nbsp;
                                                         <?php if(!empty($teacher_point['attendance_award_data'])){
-                                                            echo '<a target="_blank" id="attendance_award_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['attendance_award_data'].'">点击预览</a>';
+                                                            echo '<a target="_blank" id="attendance_award_url" style="margin-left: 150px;color:red;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['attendance_award_data'].'">点击预览附件</a>';
                                                         }?>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['attendance_award'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['attendance_award'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否
-                                                        <input type="text" placeholder="缺席次数" class="input_text" style="width: 82px" id="attendance_award_num" value="<?php echo $teacher_point['attendance_award'];?>"/>
+                                                        <input type="text" disabled placeholder="缺席次数" class="input_text" style="width: 82px" id="attendance_award_num" value="<?php echo $teacher_point['attendance_award'];?>"/>
                                                     </div></div>
                                                 <div class="option-tips"></div>
                                             </li>
@@ -580,13 +576,13 @@
                                         <input type="hidden" id="school_teacher_value" value="<?php echo $teacher_point['school_teacher'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['school_teacher'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled  <?php if($teacher_point['school_teacher'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['school_teacher'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px"  disabled <?php if($teacher_point['school_teacher'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -608,13 +604,13 @@
                                         <input type="hidden" id="finish_goal_value" value="<?php echo $teacher_point['finish_goal'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['finish_goal'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['finish_goal'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是</div></div>
                                                 <div class="option-tips"></div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['finish_goal'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['finish_goal'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -636,15 +632,15 @@
                                         <input type="hidden" id="college_value" value="<?php if($teacher_point['college_num'] > 0){ echo 1;}else{ echo 0;} ?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['college_num'] > 0){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['college_num'] > 0){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="text" placeholder="超出指标数量" <?php if($teacher_point['college_num'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="college_num" value="<?php if($teacher_point['college_num'] > 0){echo $teacher_point['college_num'];} ?>" />
+                                                        <input type="text" disabled placeholder="超出指标数量" <?php if($teacher_point['college_num'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="college_num" value="<?php if($teacher_point['college_num'] > 0){echo $teacher_point['college_num'];} ?>" />
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['college_num'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['college_num'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element" style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -666,15 +662,15 @@
                                         <input type="hidden" id="middle_value" value="<?php if($teacher_point['middle_num'] > 0){ echo 1;}else{ echo 0;} ?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['middle_num'] > 0){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['middle_num'] > 0){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="text" placeholder="超出指标数量" <?php if($teacher_point['middle_num'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="middle_num" value="<?php if($teacher_point['middle_num'] > 0){echo $teacher_point['middle_num'];} ?>" />
+                                                        <input type="text" disabled placeholder="超出指标数量" <?php if($teacher_point['middle_num'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="middle_num" value="<?php if($teacher_point['middle_num'] > 0){echo $teacher_point['middle_num'];} ?>" />
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['middle_num'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['middle_num'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element" style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -696,15 +692,15 @@
                                         <input type="hidden" id="super_workload_value" value="<?php if($teacher_point['super_workload'] > 0){ echo 1;}else{ echo 0;} ?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['super_workload'] > 0){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['super_workload'] > 0){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="text" placeholder="超出节课数" <?php if($teacher_point['super_workload'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="super_workload_num" value="<?php if($teacher_point['super_workload'] > 0){echo $teacher_point['super_workload'];} ?>" />
+                                                        <input type="text" disabled placeholder="超出节课数" <?php if($teacher_point['super_workload'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="super_workload_num" value="<?php if($teacher_point['super_workload'] > 0){echo $teacher_point['super_workload'];} ?>" />
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['super_workload'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['super_workload'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element" style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -723,18 +719,18 @@
                                             <span class="question-id">校级公开课实验课：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <input type="hidden" id="school_class_value" value="<?php if($teacher_point['school_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
+                                        <input type="hidden" id="school_class_value" disabled value="<?php if($teacher_point['school_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['school_class'] > 0){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['school_class'] > 0){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="text" placeholder="节课数" <?php if($teacher_point['school_class'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="school_class_num" value="<?php if($teacher_point['school_class'] > 0){echo $teacher_point['school_class'];} ?>" />
+                                                        <input type="text" disabled placeholder="节课数" <?php if($teacher_point['school_class'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="school_class_num" value="<?php if($teacher_point['school_class'] > 0){echo $teacher_point['school_class'];} ?>" />
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['school_class'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['school_class'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element" style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -753,18 +749,18 @@
                                             <span class="question-id">市级公开课实验课：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <input type="hidden" id="school_class_value" value="<?php if($teacher_point['city_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
+                                        <input type="hidden" id="school_class_value" disabled value="<?php if($teacher_point['city_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['city_class'] > 0){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['city_class'] > 0){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="text" placeholder="节课数" <?php if($teacher_point['city_class'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="city_class_num" value="<?php if($teacher_point['city_class'] > 0){echo $teacher_point['city_class'];} ?>" />
+                                                        <input type="text" placeholder="节课数" disabled <?php if($teacher_point['city_class'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="city_class_num" value="<?php if($teacher_point['city_class'] > 0){echo $teacher_point['city_class'];} ?>" />
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['city_class'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['city_class'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element" style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -786,15 +782,15 @@
                                         <input type="hidden" id="courses_value" value="<?php if($teacher_point['courses'] > 0){ echo 1;}else{ echo 0;} ?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['courses'] > 0){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['courses'] > 0){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="text" placeholder="节课数" <?php if($teacher_point['courses'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="courses_num" value="<?php if($teacher_point['courses'] > 0){echo $teacher_point['courses'];} ?>" />
+                                                        <input type="text" disabled placeholder="节课数" <?php if($teacher_point['courses'] == 0 && !empty($teacher_point) ){ echo 'disabled';}?> class="input_text" style="width: 100px;" id="courses_num" value="<?php if($teacher_point['courses'] > 0){echo $teacher_point['courses'];} ?>" />
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['courses'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['courses'] == 0 && !empty($teacher_point) ){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element" style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -817,9 +813,9 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input type="text" placeholder="学生进入国家集训队的个数" class="input_text" style="width: 200px" id="country_match_num" value="<?php echo $teacher_point['country_match'];?>" />
-                                                        <input type="text" placeholder="学生进入省级的个数" class="input_text" style="width: 150px" id="province_match_num" value="<?php echo $teacher_point['province_match'];?>" />
-                                                        <input type="text" placeholder="学生进入市级的个数" class="input_text" style="width: 150px" id="city_match_num" value="<?php echo $teacher_point['city_match'];?>" />
+                                                        <input type="text" disabled placeholder="学生进入国家集训队的个数" class="input_text" style="width: 200px" id="country_match_num" value="<?php echo $teacher_point['country_match'];?>" />
+                                                        <input type="text" disabled placeholder="学生进入省级的个数" class="input_text" style="width: 150px" id="province_match_num" value="<?php echo $teacher_point['province_match'];?>" />
+                                                        <input type="text" disabled placeholder="学生进入市级的个数" class="input_text" style="width: 150px" id="city_match_num" value="<?php echo $teacher_point['city_match'];?>" />
                                                     </div>
                                                 </div>
                                             </li>
@@ -838,7 +834,7 @@
                                             <span class="question-id" >学段考的试卷是否优秀试卷：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select2" id="exam_pro">
+                                        <select class="select2" id="exam_pro" disabled>
                                             <option value="0" selected>无</option>
                                             <option value="1" <?php if($teacher_point['exam_pro'] == 1){ echo 'selected';}?> >一等试卷</option>
                                             <option value="2" <?php if($teacher_point['exam_pro'] == 2){ echo 'selected';}?>>二等试卷</option>
@@ -858,10 +854,10 @@
                                         <input type="hidden" id="exam_rank_value" value="<?php echo $teacher_point['exam_rank'];?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['exam_rank'] == 1){ echo 'checked';}?> value="1" class="yes"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['exam_rank'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <div id="exam_rank_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['exam_rank_data'])){ echo '重新上传';}else{ echo '上传证明文件';}?>
+                                                        <div style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;">
                                                         </div>
                                                         <?php if(!empty($teacher_point['exam_rank_data'])){
                                                             echo '<a target="_blank" id="exam_rank_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['exam_rank_data'].'">点击预览</a>';
@@ -871,7 +867,7 @@
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['part_time_magazine'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['part_time_magazine'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -890,13 +886,11 @@
                                             <span class="question-id" >优秀特色学科组：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select6" id="outstand_sub" style="width: 250px">
+                                        <select class="select6" id="outstand_sub" style="width: 250px" disabled>
                                             <option value="0" selected>不是</option>
                                             <option value="1" <?php if($teacher_point['outstand_sub'] == 1){ echo 'selected';}?>>市级以上科组成员</option>
                                             <option value="2" <?php if($teacher_point['outstand_sub'] == 2){ echo 'selected';}?>>市级以上科组组长</option>
                                         </select>
-                                        <div id="outstand_sub_upload"  style="width: 200px;position: absolute;z-index: 99;margin-left: 200px;margin-top: -45px;"><?php if(!empty($teacher_point['outstand_sub_data'])){echo '重新上传';}else{ echo '上传证明文件';}?></div>&nbsp;
-                                        <input type="hidden" id="outstand_sub_upload_data" value="<?php echo $teacher_point['outstand_sub_data'];?>"/>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
                                                 <b style="color: red">积点说明：</b>以市教科院文件为准，市级以上科组成员人均获得2个积点。科组长另奖励5个积点。
@@ -908,7 +902,7 @@
                                             <span class="question-id" >优秀班主任或工作人员或优秀课题组主持人或课题组科研骨干：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select4" id="select_outstand_school" >
+                                        <select class="select4" id="select_outstand_school" disabled >
                                             <option value="0" selected>不是</option>
                                             <option value="1" <?php if($teacher_point['select_outstand_school'] == 1){ echo 'selected';}?>>校级</option>
                                             <option value="2" <?php if($teacher_point['select_outstand_school'] == 2){ echo 'selected';}?>>市级</option>
@@ -926,7 +920,7 @@
                                             <span class="question-id" >年度考核优秀：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select4" id="select_outstand_year">
+                                        <select class="select4" id="select_outstand_year" disabled>
                                             <option value="0" selected>不是</option>
                                             <option value="1" <?php if($teacher_point['select_outstand_year'] == 1){ echo 'selected';}?>>校级</option>
                                             <option value="2" <?php if($teacher_point['select_outstand_year'] == 2){ echo 'selected';}?>>市级</option>
@@ -944,7 +938,7 @@
                                             <span class="question-id" >教育系统表彰高考工作先进个人（学科先进个人）：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select4" id="select_outstand_person">
+                                        <select class="select4" id="select_outstand_person" disabled>
                                             <option value="0" selected>不是</option>
                                             <option value="1" <?php if($teacher_point['select_outstand_person'] == 1){ echo 'selected';}?>>校级</option>
                                             <option value="2" <?php if($teacher_point['select_outstand_person'] == 2){ echo 'selected';}?>>市级</option>
@@ -962,7 +956,7 @@
                                             <span class="question-id" >专家、特级教师名师、名班主任、骨干教师、教坛新秀：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select4" id="expert">
+                                        <select class="select4" id="expert" disabled>
                                             <option value="0" selected>不是</option>
                                             <option value="1" <?php if($teacher_point['expert'] == 1){ echo 'selected';}?>>市级</option>
                                             <option value="2" <?php if($teacher_point['expert'] == 2){ echo 'selected';}?>>省级</option>
@@ -986,14 +980,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="work_year" value="<?php
-                                                        if(!empty($teacher_point['work_year'])){
-                                                            echo $teacher_point['work_year'];
-                                                        }else{
-                                                            echo $teacher['work_time'];
-                                                        }
-
-                                                       ?>" type="text" placeholder="竞聘人员参加工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                        <input disabled class="input_text" id="work_year" value="<?php echo $teacher_point['work_year']?>" type="text" placeholder="竞聘人员参加工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                     </div>
                                                 </div>
                                             </li>
@@ -1015,7 +1002,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="city_year" value="<?php echo $teacher_point['city_year']?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                        <input disabled class="input_text" id="city_year" value="<?php echo $teacher_point['city_year']?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                     </div>
                                                 </div>
                                             </li>
@@ -1037,8 +1024,8 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="job_title_time" value="<?php echo $teacher_point['job_title']?>" type="text" placeholder="专业技术职称资格时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-                                                        </div>
+                                                        <input disabled class="input_text" id="job_title_time" value="<?php echo $teacher_point['job_title']?>" type="text" placeholder="专业技术职称资格时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                    </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
@@ -1055,7 +1042,7 @@
                                             <span class="question-id" >研究生学历（位）：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <select class="select5" id="postgraduate">
+                                        <select class="select5" id="postgraduate" disabled>
                                             <option value="0" selected>不是</option>
                                             <option value="1" <?php if($teacher_point['postgraduate'] == 1){ echo 'selected';}?>>全日制研究生学历和硕士学位</option>
                                             <option value="2" <?php if($teacher_point['postgraduate'] == 2){ echo 'selected';}?>>全日制研究生学历和博士学位</option>
@@ -1066,25 +1053,25 @@
                                             </div>
                                         </div>
                                     </div>
-                            <div id="survey-tail">
-                                <ul>
-                                    <li style="height: 40px;">
-                                        <div id="survey-op" class="after-clear">
-                                            <div class="preview-survey dib">
-                                                <button class="btn_primary" style="margin-left: 20px" id = "submit2" >确认</button>
-                                                <button class="btn_primary" style="margin-left: 20px" id = "submit_check">提交审核</button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    <div id="survey-tail">
+                                        <ul>
+                                            <li style="height: 40px;">
+                                                <div id="survey-op" class="after-clear">
+                                                    <div class="preview-survey dib">
+                                                        <button class="btn_primary" style="margin-left: 20px" id = "submit_check">审核通过</button>
+                                                        <button class="btn_primary" style="margin-left: 20px" id = "submit_check2">审核不通过</button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
         <script type="text/javascript" src="/template/js/DatePicker/WdatePicker.js"></script>
         <script type="text/javascript" src="/template/js/zepto.min.js"></script>
         <script type="text/javascript" src="/template/js/input_point.js"></script>
@@ -1102,7 +1089,7 @@
                         $.ajax({
                             async:false,
                             type : 'POST',
-                            url: '/index.php/teacher/submit_check',
+                            url: '/index.php/office/submit_check',
                             data : {
                                 ponit_id:ponit_id
                             },
@@ -1111,6 +1098,35 @@
                             {
                                 if (data.result == '0000') {
                                     alert('提交审核成功');
+                                    location.href = '/index.php/school/home';
+                                } else {
+                                    alert(data.info);
+                                }
+                            }
+                        });
+
+                    }
+                });
+                $("#submit_check2").click(function(){
+                    if(confirm('审核不通过之后，则会让教师重新修改填写！')){
+                        var ponit_id = $('#point_id').val();
+                        if(!ponit_id){
+                            alert('操作错误，请联系管理员');
+                            return;
+                        }
+                        $.ajax({
+                            async:false,
+                            type : 'POST',
+                            url: '/index.php/office/submit_check',
+                            data : {
+                                ponit_id:ponit_id,
+                                no_pass:1
+                            },
+                            dataType : 'json',
+                            success: function (data)
+                            {
+                                if (data.result == '0000') {
+                                    alert('审核成功');
                                     location.href = '/index.php/school/home';
                                 } else {
                                     alert(data.info);

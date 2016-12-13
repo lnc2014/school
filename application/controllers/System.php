@@ -74,6 +74,41 @@ class System extends BaseController{
         $this->data['teacher'] = $teacher;
         $this->load->view('system_add_teacher', $this->data);
     }
+
+    /**
+     * 增加权限页面
+     */
+    public function add_permissions($teacher_id){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $this->data['title'] = '增加权限';
+        $this->data['teacher_id'] = $teacher_id;
+        $this->load->view('system_add_permission', $this->data);
+    }
+    public function save_permission_info(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $post = $this->input->post(null , true);
+        if(empty($post)){
+            echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
+            return;
+        }
+        $teacher_id = $post['teacher_id'];
+        $this->load->model('Teacher_sch');
+        $department = trim($post['permission'], ',');
+        $update = $this->Teacher_sch->update(array('department' => $department), array('teacher_id' => $teacher_id));
+        if($update){
+            echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
+            return;
+        }else{
+            echo $this->apiReturn('0002', new stdClass(), $this->response_msg["0002"]);
+            return;
+        }
+    }
     //保存新增教师信息
     public function save_teacher_info(){
         //检验是不是登录

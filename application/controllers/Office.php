@@ -18,7 +18,7 @@ class Office extends BaseController{
     }
     /**
      * 办公室审核首页
-     * 展示办公室应该要审核的教师。办公室审核第二步【等到所有的记录提交过来就可以进行审核】
+     * 展示办公室应该要审核的教师。办公室审核第一步【等到所有的记录提交过来就可以进行审核】
      */
     public function index(){
         $this->data['title'] = '办公室审核首页';
@@ -37,9 +37,9 @@ class Office extends BaseController{
             $limit = $page_size;
             $offset =  ($page-1)*$page_size;
         }
-
-        $this->data['teacher_check'] = $this->M_sch_point->get_all_point(3, $year, $limit, $offset);
-        $all_point = $this->M_sch_point->get_all_point(3, $year);
+        //1为待审核，2办公室审核中，3教务处审核中，4科研处审核中，5学生处审核中，6已完成',
+        $this->data['teacher_check'] = $this->M_sch_point->get_all_point(2, $year, $limit, $offset);
+        $all_point = $this->M_sch_point->get_all_point(2, $year);
         $this->data['all_pages'] = count($all_point);
         $this->data['current_page'] = $page;
         $this->data['pages'] = ceil($this->data['all_pages']/$page_size);
@@ -49,7 +49,8 @@ class Office extends BaseController{
     public function submit_check(){
         $ponit_id = $this->input->post('ponit_id', true);
         $no_pass = $this->input->post('no_pass', true);
-        $status = 4;
+        $refuse_reason = $this->input->post('refuse_reason', true);
+        $status = 3;
         if($no_pass == 1){
             $status = 1;
         }
@@ -67,6 +68,17 @@ class Office extends BaseController{
             'id' => $ponit_id
         ));
         if($update){
+            if($no_pass == 1){
+                $this->load->model('M_sch_point_check');
+                $check_data = array(
+                    'point_id' => $ponit_id,
+                    'reason' => $refuse_reason,
+                    'refuse_status' => 2,
+                    'create_time' => date('Y-m-d H:i:s'),
+                    'update_time' => date('Y-m-d H:i:s'),
+                );
+                $this->M_sch_point_check->add($check_data);
+            }
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
             return;
         }else{

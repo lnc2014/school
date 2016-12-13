@@ -1,6 +1,6 @@
 <?php
 /**
- * Description 教务处首页
+ * Description 首页
  * Author: LNC
  * Date: 2016/9/22
  * Time: 21:56
@@ -17,7 +17,7 @@
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="#">教师首页</a></li>
+        <li><a href="#">学生处审核首页</a></li>
     </ul>
 </div>
 
@@ -29,7 +29,7 @@
     <div class="xline"></div>
 
     <table class="tablelist">
-        <?php if(empty($first_teacher_check)){
+        <?php if(empty($teacher_check)){
             echo '<tr>暂无可以审核的记录</tr>';
         }else{ ?>
         <thead>
@@ -48,8 +48,7 @@
         </thead>
         <tbody>
         <?php
-//        1为语文，2为数学，3为英语，4为计算机，5为音乐（后面扩展）
-        foreach($first_teacher_check as $point){ ?>
+        foreach($teacher_check as $point){ ?>
             <tr>
                 <input id="point_id" type="hidden" value="<?php echo $point['id']; ?>">
                 <td><?php  echo $point['year']; ?></td>
@@ -73,17 +72,10 @@
                 <td><?php  echo $point['part_time_point']; ?></td>
                 <td><?php  echo $point['award_point']; ?></td>
                 <td><?php  echo $point['person_point']; ?></td>
-                <td><?php  echo $point['per_point']; ?>
-                <?php if($point['per_point'] > 0){ ?>
-                    <a href="/index.php/academic/add_performance_point/<?php echo $point['teacher_id'];?>"  class="tablelink" style="color: blue">修改</a>
-                <?php } ?>
-                </td>
+                <td><?php  echo $point['per_point']; ?></td>
                 <td><?php  echo $point['all_point']; ?></td>
                 <td style="width: 350px">
-                    <a href="/index.php/academic/show_teacher_point?point_id=<?php echo $point['id'];?>"  class="tablelink" style="color: black">查看</a>
-                    <?php if($point['per_point'] == 0){ ?>
-                        <a href="/index.php/academic/add_performance_point/<?php echo $point['teacher_id'];?>"  class="tablelink" style="color: blue">添加教务处绩效得分</a>
-                    <?php } ?>
+                    <a href="/index.php/committee/show_teacher_point?point_id=<?php echo $point['id'];?>"  class="tablelink" style="color: black">查看</a>
                     <a href="#" id="check" class="tablelink" style="color: red">通过审核</a>
                     <a href="#" onclick="no_pass(<?php echo $point['id'];?>)" class="tablelink" style="color: red">不通过审核</a>
                 </td>
@@ -98,7 +90,7 @@
         <ul class="paginList">
             <?php
             for($i=1;$i<=$pages;$i++){ ?>
-                <li class="paginItem <?php if($i == $current_page){ echo 'current'; } ?>"><a href="/index.php/academic/index?page=<?php echo $i?>"><?php echo $i;?></a></li>
+                <li class="paginItem <?php if($i == $current_page){ echo 'current'; } ?>"><a href="/index.php/committee/index?page=<?php echo $i?>"><?php echo $i;?></a></li>
             <?php }
             ?>
         </ul>
@@ -124,6 +116,7 @@
 </div>
 <script type="text/javascript" src="/template/js/zepto.min.js"></script>
 <script type="text/javascript">
+    var point_id;
     $(function(){
         $("#check").click(function(){
             if(confirm('审核通过之后，将不可以修改！')){
@@ -135,7 +128,7 @@
                 $.ajax({
                     async:false,
                     type : 'POST',
-                    url: '/index.php/academic/submit_check',
+                    url: '/index.php/affairs/submit_check',
                     data : {
                         ponit_id:ponit_id
                     },
@@ -143,8 +136,8 @@
                     success: function (data)
                     {
                         if (data.result == '0000') {
-                            alert('审核成功');
-                            location.href = "/index.php/academic/index" ;
+                            alert('提交审核成功');
+                            location.href = "/index.php/affairs/index" ;
                         } else {
                             alert(data.info);
                         }
@@ -171,7 +164,7 @@
         $.ajax({
             async:false,
             type : 'POST',
-            url: '/index.php/academic/submit_check',
+            url: '/index.php/affairs/submit_check',
             data : {
                 ponit_id:point_id,
                 no_pass:1,
@@ -182,7 +175,7 @@
             {
                 if (data.result == '0000') {
                     alert('审核成功');
-                    location.href = "/index.php/academic/index" ;
+                    location.href = "/index.php/affairs/index" ;
                 } else {
                     alert(data.info);
                 }
