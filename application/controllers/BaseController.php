@@ -68,4 +68,40 @@ class BaseController extends CI_Controller {
 		}
 		return $system_year['year'];
 	}
+
+	/**
+	 * 获取当两个日期相差的月数
+	 * @param $date1
+	 * @param $date2
+	 * @return number
+	 */
+	public function getMonthNum($date1,$date2){
+		$date1_stamp=strtotime($date1);
+		$date2_stamp=strtotime($date2);
+		if ($date1 < $date2) {
+			$tmp = $date2;
+			$date2 = $date1;
+			$date1 = $tmp;
+		}
+		list($date_1['y'],$date_1['m']) = explode("-",date('Y-m',$date1_stamp));
+		list($date_2['y'],$date_2['m']) = explode("-",date('Y-m',$date2_stamp));
+		return abs($date_1['y']-$date_2['y'])*12 +$date_2['m']-$date_1['m'];
+	}
+	/**
+	 * 求两个日期之间相差的天数
+	 * (针对1970年1月1日之后，求之前可以采用泰勒公式)
+	 * @param string $day1
+	 * @param string $day2
+	 * @return number
+	 */
+	public  function diffBetweenTwoDays($day1, $day2) {
+		$second1 = strtotime($day1);
+		$second2 = strtotime($day2);
+		if ($second1 < $second2) {
+			$tmp = $second2;
+			$second2 = $second1;
+			$second1 = $tmp;
+		}
+		return ($second1 - $second2) / 86400;
+	}
 }

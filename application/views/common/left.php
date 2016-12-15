@@ -87,8 +87,9 @@
         if($_SESSION['auth'] == 2){ ?>
             <ul class="menuson">
                 <li class="active"><cite></cite><a href="/index.php/system/index" target="rightFrame">账号列表</a><i></i></li>
-                <li><cite></cite><a href="/index.php/system/add_teacher" target="rightFrame">新增账号</a><i></i></li>
+<!--                <li><cite></cite><a href="/index.php/system/add_teacher" target="rightFrame">新增账号</a><i></i></li>-->
                 <li><cite></cite><a href="/index.php/system/point" target="rightFrame">往年积点管理</a><i></i></li>
+                <li><cite></cite><a href="/index.php/system/teacher_download" target="rightFrame">教师积点信息下载</a><i></i></li>
                 <li><cite></cite><a href="/index.php/system/add_point" target="rightFrame">发布新的积点</a><i></i></li>
             </ul>
         <?php } ?>

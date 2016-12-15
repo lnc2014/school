@@ -55,7 +55,9 @@ class Affairs extends BaseController{
             return;
         }
         $this->load->model('M_sch_point');
+        $this->load->model('Teacher_sch');
         $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status, year');
+        $teacher_info = $this->Teacher_sch->get_one(array('teacher_id' => $ponit_info['teacher_id']));
         if(empty($ponit_info)){
             echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
             return;
@@ -79,6 +81,12 @@ class Affairs extends BaseController{
                 );
                 $this->M_sch_point_check->add($check_data);
             }
+            if($status == 6){
+                $data_url = $this->save_data_to_word($teacher_info, $ponit_info);
+                $this->M_sch_point->update(array('data_url' => $data_url), array(
+                    'id' => $ponit_id
+                ));
+            }
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
             return;
         }else{
@@ -100,5 +108,173 @@ class Affairs extends BaseController{
         $this->data['teacher_point'] = $teacher_point;
         $this->data['title'] = '修改积点';
         $this->load->view('affairs_show_teacher_point', $this->data);
+    }
+    public function save_data_to_word($teacher, $point){
+        if(empty($teacher) || empty($point)){
+            return false;
+        }
+        $this->load->library('PHPWord');
+        $PHPWord = new PHPWord();
+        $year = $this->get_fill_point_year();
+        $save_path = ROOTPATH.'teacher'.'/'.$year.'/';
+        $this->check_path($save_path);
+        $document = $PHPWord->loadTemplate(ROOTPATH.'teacher/teacher.docx');
+
+        $document->setValue('now_level_info',  iconv('utf-8', 'GB2312//IGNORE', $teacher['now_level_info']));
+        $document->setValue('qua_name',  iconv('utf-8', 'GB2312//IGNORE', $teacher['qua_name']));
+        $document->setValue('name',  iconv('utf-8', 'GB2312//IGNORE', $teacher['name']));
+        $document->setValue('year', date('Y'));
+        $document->setValue('month', date('m'));
+        $document->setValue('day', date('d'));
+        $sex = '女';
+        $teacher_status = '离职';
+        if($teacher['sex'] == 1){
+            $sex = '男';
+        }
+        if($teacher['teacher_status'] == 1){
+            $teacher_status = '在职';
+        }
+        if($teacher['education'] == 1){
+            $education = '大学本科';
+        }elseif($teacher['education'] == 2){
+            $education = '研究生';
+        }elseif($teacher['education'] == 3){
+            $education = '硕士研究生';
+        }
+        $document->setValue('sex',  iconv('utf-8', 'GB2312//IGNORE', $sex));
+        $document->setValue('born',  iconv('utf-8', 'GB2312//IGNORE', $teacher['born']));
+        $document->setValue('teacher_status',  iconv('utf-8', 'GB2312//IGNORE', $teacher_status));
+        $document->setValue('education',  iconv('utf-8', 'GB2312//IGNORE', $education));
+        $document->setValue('now_level_info',  iconv('utf-8', 'GB2312//IGNORE', $teacher['now_level_info']));
+        $document->setValue('now_level',  iconv('utf-8', 'GB2312//IGNORE', $teacher['now_level']));
+        $document->setValue('work_start_time',  iconv('utf-8', 'GB2312//IGNORE', $teacher['work_start_time']));
+        $document->setValue('now_work_duty',  iconv('utf-8', 'GB2312//IGNORE', $teacher['now_work_duty']));
+        $document->setValue('now_work_level',  iconv('utf-8', 'GB2312//IGNORE', $teacher['now_work_level']));
+        $document->setValue('now_work_time',  iconv('utf-8', 'GB2312//IGNORE', $teacher['now_work_time']));
+        $document->setValue('work_time',  iconv('utf-8', 'GB2312//IGNORE', $teacher['work_time']));
+        $document->setValue('er_school_time',  iconv('utf-8', 'GB2312//IGNORE', $teacher['er_school_time']));
+        $document->setValue('school_work_time',  iconv('utf-8', 'GB2312//IGNORE', $teacher['school_work_time']));
+        $document->setValue('qua_time',  iconv('utf-8', 'GB2312//IGNORE', $teacher['qua_time']));
+        $document->setValue('qua_name',  iconv('utf-8', 'GB2312//IGNORE', $teacher['qua_name']));
+        //处理积分的问题
+        $document->setValue('workload',  iconv('utf-8', 'GB2312//IGNORE', ($point['workload'] == 1 ) ? 100 : 0));
+        $document->setValue('director',  iconv('utf-8', 'GB2312//IGNORE', ($point['director'] == 1 ) ? 45 : 0));
+        $document->setValue('school_leader',  iconv('utf-8', 'GB2312//IGNORE', ($point['school_leader'] == 1 ) ? 60 : 0));
+        $document->setValue('part_time_magazine',  iconv('utf-8', 'GB2312//IGNORE', ($point['part_time_magazine'] == 1 ) ? 12 : 0));
+        $document->setValue('academic',  iconv('utf-8', 'GB2312//IGNORE', ($point['academic'] == 1 ) ? 12 : 0));
+        $document->setValue('counselor',  iconv('utf-8', 'GB2312//IGNORE', ($point['counselor'] == 1 ) ? 5 : 0));
+        $document->setValue('satisfaction_survey',  iconv('utf-8', 'GB2312//IGNORE', ($point['satisfaction_survey'] == 1 ) ? 5 : 0));
+        $document->setValue('school_teacher',  iconv('utf-8', 'GB2312//IGNORE', ($point['school_teacher'] == 1 ) ? 30 : 0));
+        $document->setValue('exam_pro',  iconv('utf-8', 'GB2312//IGNORE', ($point['exam_pro'] == 1 ) ? 6 : 0));
+        $section_leader = 0;
+        if($point['section_leader'] == 1){
+            $section_leader = 45;
+        }elseif($point['section_leader'] == 2){
+            $section_leader = 30;
+        }
+        $document->setValue('section_leader',  iconv('utf-8', 'GB2312//IGNORE', $section_leader));
+        $outstand_sub = 0;
+        if($point['outstand_sub'] == 1){
+            $outstand_sub = 2;
+        }elseif($point['outstand_sub'] == 2){
+            $outstand_sub = 7;
+        }
+        $document->setValue('outstand_sub',  iconv('utf-8', 'GB2312//IGNORE', $outstand_sub));
+        $education_case_point = 0;
+        $education_case = $point['education_case'];
+        if($education_case == 1){
+            $education_case_point = 7;
+        }else if($education_case == 2){
+            $education_case_point = 4;
+        }else if($education_case == 3){
+            $education_case_point = 2;
+        }else if($education_case == 4){
+            $education_case_point = 11;
+        }else if($education_case == 5){
+            $education_case_point = 6;
+        }else if($education_case == 6){
+            $education_case_point = 3;
+        }
+        $document->setValue('education_case',  iconv('utf-8', 'GB2312//IGNORE', $education_case_point));
+
+        $expert = 0;
+        $expert_ = $point['expert'];
+        if($expert_ == 1){
+            $expert = 10;
+        }else if($expert_ == 2){
+            $expert = 15;
+        }else if($expert_ == 3){
+            $expert = 20;
+        }
+        $document->setValue('expert',  iconv('utf-8', 'GB2312//IGNORE', $expert));
+        $select_outstand_school = 0;
+        $select_outstand_school_ = $point['select_outstand_school'];
+        if($select_outstand_school_ == 1){
+            $select_outstand_school = 5;
+        }else if($select_outstand_school_ == 2){
+            $select_outstand_school = 10;
+        }else if($select_outstand_school_ == 3){
+            $select_outstand_school = 15;
+        } else if($select_outstand_school_ == 4){
+            $select_outstand_school = 20;
+        }
+        $document->setValue('select_outstand_school',  iconv('utf-8', 'GB2312//IGNORE', $select_outstand_school));
+        $eight_teacher_point = 0;
+        if($point['eight_teacher'] == 1){
+            $eight_teacher_point = bcadd($eight_teacher_point, 5);
+        }
+        if($point['league_teacher'] == 1){
+            $eight_teacher_point = bcadd($eight_teacher_point, 5);
+        }
+        if($point['tutor'] == 1){
+            $eight_teacher_point = bcadd($eight_teacher_point, 5);
+        }
+        if($point['union'] == 1){
+            $eight_teacher_point = bcadd($eight_teacher_point, 5);
+        }elseif($point['union'] == 2){
+            $eight_teacher_point = bcadd($eight_teacher_point, 9);
+        }
+        $document->setValue('eight_teacher',  iconv('utf-8', 'GB2312//IGNORE', $eight_teacher_point));
+        $document->setValue('substitute',  iconv('utf-8', 'GB2312//IGNORE', round($point['substitute_num'] * 0.5, 2)));
+        $document->setValue('super_workload',  iconv('utf-8', 'GB2312//IGNORE', round($point['super_workload'] * 0.5, 2)));
+        $document->setValue('courses',  iconv('utf-8', 'GB2312//IGNORE', round($point['courses'] * 3, 2)));
+        if($point['attendance_award'] >= 20){
+            $attendance_award_point = 0;
+        }else{
+            $attendance_award_point = bcsub(20, $point['attendance_award']);
+        }
+        $document->setValue('attendance_award',  iconv('utf-8', 'GB2312//IGNORE', $attendance_award_point));
+        $school_class_point = $point['school_class'] * 5 + $point['city_class']*10;
+        $document->setValue('school_class',  iconv('utf-8', 'GB2312//IGNORE', $school_class_point));
+        $document->setValue('country_match',  iconv('utf-8', 'GB2312//IGNORE',  $point['country_match'] * 5 + $point['province_match']*3 + $point['city_match']));
+
+
+        $today_month = date('Y-09', time());
+        $work_year_month = $this->getMonthNum($today_month, $point['work_year']);
+        $job_title_month = $this->getMonthNum($today_month, $point['job_title']);
+
+        $work_year_point = round(0.4 * $work_year_month, 2);
+        $job_title_point = round(0.8 * $job_title_month, 2);
+        $document->setValue('work_year',  iconv('utf-8', 'GB2312//IGNORE', $work_year_point));
+        $document->setValue('job_title',  iconv('utf-8', 'GB2312//IGNORE', $job_title_point));
+        $postgraduate = 0;
+        $postgraduate_ = $point['postgraduate'];
+        if($postgraduate_ == 1){
+            $postgraduate = 9;
+        }else if($postgraduate_ == 2){
+            $postgraduate = 15;
+        }
+        $document->setValue('postgraduate',  iconv('utf-8', 'GB2312//IGNORE', $postgraduate));
+        $name = date('YmdHis').rand(1000, 9999).'.doc';
+        $document->save($save_path.'/'.$name);
+        return $save_path.'/'.$name;
+    }
+    private function check_path($save_path){
+        if (!file_exists($save_path) || !is_writable($save_path)) {
+            if (!@mkdir($save_path, 0755)) {
+                return false;
+            }
+            return true;
+        }
     }
 }

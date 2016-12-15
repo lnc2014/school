@@ -53,7 +53,7 @@
 </div>
 
 <div id="first_div">
-    <b>当前页面：</b>2016年度积点录入页面
+    <b>当前页面：</b>积点录入页面
     <button href="#" class="btn_primary" onclick = "javascript:window.location.href='/index.php/teacher/input_point_index' ">返回</button>
 </div>
 <div class="formtitle" style="height: 10px"></div>
@@ -1083,7 +1083,7 @@
                                         <div id="survey-op" class="after-clear">
                                             <div class="preview-survey dib">
                                                 <button class="btn_primary" style="margin-left: 20px" id = "submit2" >确认</button>
-                                                <button class="btn_primary" style="margin-left: 20px" id = "submit_check">提交审核</button>
+<!--                                                <button class="btn_primary" style="margin-left: 20px" id = "submit_check">提交审核</button>-->
                                             </div>
                                         </div>
                                     </li>
