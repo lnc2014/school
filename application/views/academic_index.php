@@ -36,7 +36,7 @@
         <tr>
             <th>年度<i class="sort"><img src="/template/images/px.gif" /></i></th>
             <th>教师名字</th>
-            <th>所教学科</th>
+<!--            <th>所教学科</th>-->
             <th>基本岗位积点</th>
             <th>兼职岗位积点</th>
             <th>奖励性积点</th>
@@ -54,21 +54,21 @@
                 <input id="point_id" type="hidden" value="<?php echo $point['id']; ?>">
                 <td><?php  echo $point['year']; ?></td>
                 <td><?php  echo $point['name']; ?></td>
-                <td><?php
-                    if($point['subject'] == 1){
-                        echo '语文';
-                    }elseif($point['subject'] == 2){
-                        echo '数学';
-                    }elseif($point['subject'] == 3){
-                        echo '英语';
-                    }elseif($point['subject'] == 4){
-                        echo '计算机';
-                    }elseif($point['subject'] == 5){
-                        echo '音乐';
-                    }else{
-                        echo '管理人员';
-                    }
-                    ?></td>
+<!--                <td>--><?php
+//                    if($point['subject'] == 1){
+//                        echo '语文';
+//                    }elseif($point['subject'] == 2){
+//                        echo '数学';
+//                    }elseif($point['subject'] == 3){
+//                        echo '英语';
+//                    }elseif($point['subject'] == 4){
+//                        echo '计算机';
+//                    }elseif($point['subject'] == 5){
+//                        echo '音乐';
+//                    }else{
+//                        echo '管理人员';
+//                    }
+//                    ?><!--</td>-->
                 <td><?php  echo $point['base_point']; ?></td>
                 <td><?php  echo $point['part_time_point']; ?></td>
                 <td><?php  echo $point['award_point']; ?></td>
@@ -84,7 +84,7 @@
                     <?php if($point['per_point'] == 0){ ?>
                         <a href="/index.php/academic/add_performance_point/<?php echo $point['teacher_id'];?>"  class="tablelink" style="color: blue">添加教务处绩效得分</a>
                     <?php } ?>
-                    <a href="#" id="check" class="tablelink" style="color: red">通过审核</a>
+                    <a href="#" id="check" class="tablelink" style="color: red" onclick="pass(<?php echo $point['id'];?>)">通过审核</a>
                     <a href="#" onclick="no_pass(<?php echo $point['id'];?>)" class="tablelink" style="color: red">不通过审核</a>
                 </td>
             </tr>
@@ -124,36 +124,33 @@
 </div>
 <script type="text/javascript" src="/template/js/zepto.min.js"></script>
 <script type="text/javascript">
-    $(function(){
-        $("#check").click(function(){
-            if(confirm('审核通过之后，将不可以修改！')){
-                var ponit_id = $('#point_id').val();
-                if(!ponit_id){
-                    alert('操作错误，请联系管理员');
-                    return;
-                }
-                $.ajax({
-                    async:false,
-                    type : 'POST',
-                    url: '/index.php/academic/submit_check',
-                    data : {
-                        ponit_id:ponit_id
-                    },
-                    dataType : 'json',
-                    success: function (data)
-                    {
-                        if (data.result == '0000') {
-                            alert('审核成功');
-                            location.href = "/index.php/academic/index" ;
-                        } else {
-                            alert(data.info);
-                        }
-                    }
-                });
-
+    function pass(ponit_id){
+        if(confirm('审核通过之后，将不可以修改！')){
+            if(!ponit_id){
+                alert('操作错误，请联系管理员');
+                return;
             }
-        });
-    });
+            $.ajax({
+                async:false,
+                type : 'POST',
+                url: '/index.php/academic/submit_check',
+                data : {
+                    ponit_id:ponit_id
+                },
+                dataType : 'json',
+                success: function (data)
+                {
+                    if (data.result == '0000') {
+                        alert('审核成功');
+                        location.href = "/index.php/academic/index" ;
+                    } else {
+                        alert(data.info);
+                    }
+                }
+            });
+
+        }
+    }
     function no_pass(ponit_id){
         point_id = ponit_id;//全局变量暂时封装为现有的
         if(!ponit_id){

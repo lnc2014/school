@@ -145,7 +145,12 @@ class Teacher extends BaseController{
             redirect('school/login');
         }
         $this->load->model('Teacher_sch');
-        $this->data['teacher'] = $this->Teacher_sch->get_one(array('teacher_id' => $_SESSION['teacher_id']));
+        $teacher = $this->Teacher_sch->get_one(array('teacher_id' => $_SESSION['teacher_id']));
+        //处理下时间
+        $teacher['work_time'] = substr($teacher['work_time'], 0, 4).'-'.substr($teacher['work_time'], 4, 2).'-01';
+        $teacher['school_work_time'] = substr($teacher['school_work_time'], 0, 4).'-'.substr($teacher['school_work_time'], 4, 2).'-01';
+        $teacher['qua_time'] = substr($teacher['qua_time'], 0, 4).'-'.substr($teacher['qua_time'], 4, 2).'-01';
+        $this->data['teacher'] = $teacher;
         $this->load->view('teacher_input_point', $this->data);
     }
     //修改教师录入的积点

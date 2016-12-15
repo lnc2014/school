@@ -73,7 +73,7 @@
                     if(in_array(4, $department)){
                         $permission = $permission.'科研处审核人员；';
                     }
-                    if(in_array(4, $department)){
+                    if(in_array(5, $department)){
                         $permission = $permission.'学生处审核人员；';
                     }
                     echo trim($permission, '；');

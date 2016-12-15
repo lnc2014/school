@@ -20,7 +20,7 @@ class M_sch_teaching_performance extends BaseModel{
      */
     public function get_all_per_type($type, $year){
         $this->db->select()->from('sch_teaching_performance AS p');
-        $this->db->join('sch_per_teacher AS t', "p.`alias` = t.`per_id` and t.year = $year", 'left');
+//        $this->db->join('sch_per_teacher AS t', "p.`alias` = t.`per_id` and t.year = $year", 'left');
         $this->db->where('p.`type`', $type);
 //        $this->db->where('t.`year`', $year);
         $query = $this->db->get();

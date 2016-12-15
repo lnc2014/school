@@ -986,13 +986,12 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="work_year" value="<?php
+                                                        <input class="input_text" id="work_year" disabled value="<?php
                                                         if(!empty($teacher_point['work_year'])){
                                                             echo $teacher_point['work_year'];
                                                         }else{
                                                             echo $teacher['work_time'];
                                                         }
-
                                                        ?>" type="text" placeholder="竞聘人员参加工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                     </div>
                                                 </div>
@@ -1015,7 +1014,13 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="city_year" value="<?php echo $teacher_point['city_year']?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                        <input class="input_text" id="city_year" disabled value="<?php
+                                                        if(!empty($teacher_point['city_year'])){
+                                                            echo $teacher_point['city_year'];
+                                                        }else{
+                                                            echo $teacher['school_work_time'];
+                                                        }
+                                                        ?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                     </div>
                                                 </div>
                                             </li>
@@ -1037,7 +1042,13 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="job_title_time" value="<?php echo $teacher_point['job_title']?>" type="text" placeholder="专业技术职称资格时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                        <input class="input_text" id="job_title_time" disabled value="<?php
+                                                        if(!empty($teacher_point['job_title'])){
+                                                            echo $teacher_point['job_title'];
+                                                        }else{
+                                                            echo $teacher['qua_time'];
+                                                        }
+                                                        ?>" type="text" placeholder="专业技术职称资格时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                         </div>
                                                 </div>
                                             </li>

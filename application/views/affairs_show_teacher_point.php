@@ -53,8 +53,8 @@
 </div>
 
 <div id="first_div">
-    <b>当前页面：</b>2016年度积点录入页面
-    <button href="#" class="btn_primary" onclick = "javascript:window.location.href='/index.php/teacher/input_point_index' ">返回</button>
+    <b>当前页面：</b>学生处查看教师积点详情页面
+    <button href="#" class="btn_primary" onclick = "javascript:window.location.href='/index.php/affairs/index' ">返回</button>
 </div>
 <div class="formtitle" style="height: 10px"></div>
 <div id="page">
@@ -1059,7 +1059,7 @@
                                                 <div id="survey-op" class="after-clear">
                                                     <div class="preview-survey dib">
                                                         <button class="btn_primary" style="margin-left: 20px" id = "submit_check">审核通过</button>
-                                                        <button class="btn_primary" style="margin-left: 20px" id = "submit_check2">审核不通过</button>
+                                                        <button class="btn_primary" style="margin-left: 20px" onclick="no_pass()">审核不通过</button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -1072,15 +1072,35 @@
                 </div>
             </div>
         </div>
+
+        <div class="tip" id="check_reason" style="display: none;top: 600%; left: 45%">
+            <div class="tiptop"><span>审核不通过原因</span>
+                <a onclick="cancel()"></a>
+            </div>
+
+            <div class="tipinfo">
+                <div class="tipright">
+                    <label>审核不通过原因：</label>
+                    <input name="" type="text" class="dfinput" id="refuse_reason">
+                </div>
+            </div>
+
+            <div class="tipbtn">
+                <input onclick="is_no_pass()" type="button" class="sure" value="确定">&nbsp;
+                <input onclick="cancel()" type="button" class="cancel" value="取消">
+            </div>
+
+        </div>
         <script type="text/javascript" src="/template/js/DatePicker/WdatePicker.js"></script>
         <script type="text/javascript" src="/template/js/zepto.min.js"></script>
         <script type="text/javascript" src="/template/js/input_point.js"></script>
         <script type="text/javascript" src="/template/webuploader/js/webuploader.js"></script>
         <script type="text/javascript" src="/template/js/upload.js"></script>
         <script type="text/javascript">
+            var point_id;
             $(function(){
                 $("#submit_check").click(function(){
-                    if(confirm('提交审核之后，将不可以修改！')){
+                    if(confirm('审核通过之后，将不可以修改！')){
                         var ponit_id = $('#point_id').val();
                         if(!ponit_id){
                             alert('操作错误，请联系管理员');
@@ -1089,7 +1109,7 @@
                         $.ajax({
                             async:false,
                             type : 'POST',
-                            url: '/index.php/office/submit_check',
+                            url: '/index.php/affairs/submit_check',
                             data : {
                                 ponit_id:ponit_id
                             },
@@ -1097,37 +1117,8 @@
                             success: function (data)
                             {
                                 if (data.result == '0000') {
-                                    alert('提交审核成功');
-                                    location.href = '/index.php/school/home';
-                                } else {
-                                    alert(data.info);
-                                }
-                            }
-                        });
-
-                    }
-                });
-                $("#submit_check2").click(function(){
-                    if(confirm('审核不通过之后，则会让教师重新修改填写！')){
-                        var ponit_id = $('#point_id').val();
-                        if(!ponit_id){
-                            alert('操作错误，请联系管理员');
-                            return;
-                        }
-                        $.ajax({
-                            async:false,
-                            type : 'POST',
-                            url: '/index.php/office/submit_check',
-                            data : {
-                                ponit_id:ponit_id,
-                                no_pass:1
-                            },
-                            dataType : 'json',
-                            success: function (data)
-                            {
-                                if (data.result == '0000') {
                                     alert('审核成功');
-                                    location.href = '/index.php/school/home';
+                                    location.href = "/index.php/affairs/index" ;
                                 } else {
                                     alert(data.info);
                                 }
@@ -1137,6 +1128,42 @@
                     }
                 });
             });
+            function cancel(){
+                $('#check_reason').hide();
+                $('#refuse_reason').val('');
+
+            }
+            function no_pass(){
+                $('#check_reason').show();
+            }
+            function is_no_pass(){
+                var refuse_reason = $('#refuse_reason').val();
+                var  point_id = $('#point_id').val();
+                if(!refuse_reason){
+                    alert('审核拒绝原因不能为空!');
+                    return;
+                }
+                $.ajax({
+                    async:false,
+                    type : 'POST',
+                    url: '/index.php/affairs/submit_check',
+                    data : {
+                        ponit_id:point_id,
+                        no_pass:1,
+                        refuse_reason:refuse_reason
+                    },
+                    dataType : 'json',
+                    success: function (data)
+                    {
+                        if (data.result == '0000') {
+                            alert('审核成功');
+                            location.href = "/index.php/affairs/index" ;
+                        } else {
+                            alert(data.info);
+                        }
+                    }
+                });
+            }
         </script>
 </body>
 </html>

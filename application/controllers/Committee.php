@@ -28,7 +28,7 @@ class Committee extends BaseController{
         if(empty($page)){
             $page = 1;
         }
-        $page_size = 2;//每页十条记录
+        $page_size = 20;//每页十条记录
         if(empty($page) || $page == 1){
             $page = 1;
             $limit = $page_size;
