@@ -20,11 +20,13 @@ $(function(){
     var part_time_magazine = 0;
     var academic = 0;
     var education_case = 0;
+    var education_case2 = 0;
     var paper = 0;
     var eight_teacher = 0;
     var league_teacher = 0;
     var tutor = 0;
     var union = 0;
+    var woman = 0;
     var join_festival = 0;
     var counselor = 0;
     var substitute = 0;
@@ -47,21 +49,21 @@ $(function(){
     var expert = 0;
 
     //获取基本岗位的积分，用于前台计算
-    workload = $('#workload_value').val();
-    $("#base_point input[type='checkbox']").live('click', function(e){
-        var is_base_point = $(this).val();
-        if($(this).is(':checked') && is_base_point == 1){
-            base_point = 100;
-            workload = 1;
-            $('#base_point').find(".no").attr('checked', false);
-            $('#base_point').find(".yes").attr('checked', true);
-        }else{
-            base_point = 0;
-            workload = 0;
-            $('#base_point').find(".no").attr('checked', true);
-            $('#base_point').find(".yes").attr('checked', false);
-        }
-    });
+    //workload = $('#workload_value').val();
+    //$("#base_point input[type='checkbox']").live('click', function(e){
+    //    var is_base_point = $(this).val();
+    //    if($(this).is(':checked') && is_base_point == 1){
+    //        base_point = 100;
+    //        workload = 1;
+    //        $('#base_point').find(".no").attr('checked', false);
+    //        $('#base_point').find(".yes").attr('checked', true);
+    //    }else{
+    //        base_point = 0;
+    //        workload = 0;
+    //        $('#base_point').find(".no").attr('checked', true);
+    //        $('#base_point').find(".yes").attr('checked', false);
+    //    }
+    //});
     /*********************兼职岗位积点**************************/
     //科组长45、备课组长30
     section_leader = $('#is_section_leader').val();
@@ -189,6 +191,32 @@ $(function(){
             education_case_point = 0;
         }
     });
+    education_case2 = $('#education_case2').val();
+    //为在研的校级课题：主持人7，成员排序前三位4，其他成员2；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。
+    var education_case_point2 = 0;
+    $("#education_case2").live('change', function(e){
+        education_case2 = $(this).find("option:selected").val();
+        if(education_case2 == 1){
+            education_case_point2 = 7;
+        }else if(education_case2 == 2){
+
+            education_case_point2 = 4;
+        }else if(education_case2 == 3){
+
+            education_case_point2 = 2;
+        }else if(education_case2 == 4){
+
+            education_case_point2 = 11;
+        }else if(education_case2 == 5){
+
+            education_case_point2 = 6;
+
+        }else if(education_case2 == 6){
+            education_case_point2 = 3;
+        }else{
+            education_case_point2 = 0;
+        }
+    });
     paper = $('#paper').val();
     //1为校级，2为市级，3为省级，4为国家级。每年提交一项最高级别的发表论文：校级5点、市级10点、省级15点、国家级20点。
     var paper_point = 0;
@@ -268,6 +296,19 @@ $(function(){
             union_point = 9;
         }else {
             union_point = 0;
+        }
+    });
+    woman = $('#woman').val();
+    //是不是妇女委员会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加9个积点。
+    var woman_point = 0;
+    $("#woman").live('change', function(e){
+        woman = $(this).find("option:selected").val();
+        if(woman == 1){
+            woman_point = 5;
+        }else if(woman == 2){
+            woman_point = 9;
+        }else {
+            woman_point = 0;
         }
     });
     join_festival = $('#join_festival_value').val();
@@ -632,6 +673,34 @@ $(function(){
     });
     $('#submit2').click(function(){
         var point_id = $('#point_id').val();
+        var subject = $('#subject').val();//科目
+        var subject_nums = $('#subject_num').val();//科目
+        if(!subject_nums){
+            alert('每周上课节数不能为空！');
+            return;
+        }
+        var workload = 0;
+        if(1 <= subject && subject <= 3){
+            if(subject_nums > 10){
+                alert('语文、数学、英语每周不能大于10节！');
+                return;
+            }
+            workload = (subject_nums/10)*100;
+        }
+        if(4 <= subject && subject <= 9){
+            if(subject_nums > 12){
+                alert('物理、化学、生物、政治、历史、地理每周不能大于12节！');
+                return;
+            }
+            workload = (subject_nums/12)*100;
+        }
+        if(10 <= subject && subject <= 14){
+            if(subject_nums > 14){
+                alert('体育、艺术、通用技术、信息技术、心理健康每周不能大于14节！');
+                return;
+            }
+            workload = (subject_nums/14)*100;
+        }
         var part_time_point = 0; //兼职岗位积点
         var award_point = 0; //奖励性积点
         //兼职积点分数
@@ -642,11 +711,13 @@ $(function(){
         part_time_point = accAdd(part_time_point, part_time_magazine_point);
         part_time_point = accAdd(part_time_point, academic_point);
         part_time_point = accAdd(part_time_point, education_case_point);
+        part_time_point = accAdd(part_time_point, education_case_point2);
         part_time_point = accAdd(part_time_point, paper_point);
         part_time_point = accAdd(part_time_point, eight_teacher_point);
         part_time_point = accAdd(part_time_point, league_teacher_point);
         part_time_point = accAdd(part_time_point, tutor_point);
         part_time_point = accAdd(part_time_point, union_point);
+        part_time_point = accAdd(part_time_point, woman_point);
         part_time_point = accAdd(part_time_point, join_festival_point);
         part_time_point = accAdd(part_time_point, counselor_point);
         //奖励性积点分数
@@ -812,6 +883,8 @@ $(function(){
             url: "/index.php/teacher/add_point_to_db",
             data: {
                 point_id :point_id,
+                subject :subject,
+                subject_num :subject_nums,
                 workload : workload,
                 section_leader : section_leader,
                 director : director,
@@ -821,6 +894,7 @@ $(function(){
                 part_time_magazine_data : part_time_magazine_data,
                 academic : academic,
                 education_case : education_case,
+                education_case2 : education_case2,
                 paper : paper,
                 counselor : counselor,
                 substitute : substitute,
@@ -857,8 +931,9 @@ $(function(){
                 league_teacher : league_teacher,
                 tutor : tutor,
                 union : union,
+                woman : woman,
                 join_festival : join_festival,
-                base_point :base_point,
+                base_point :workload,
                 part_time_point :part_time_point,
                 award_point :award_point,
             },

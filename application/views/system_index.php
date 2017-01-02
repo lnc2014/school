@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Description：系统设置首页
  * Author: LNC

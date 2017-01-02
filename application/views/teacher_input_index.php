@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Description：教师录入积点首页
  * Author: LNC
@@ -31,7 +31,7 @@
         ?>
         <div class="welinfo">
             <span><img src="/template/images/sun.png" alt="天气" /></span>
-            <b><?php echo $_SESSION['name']?>,您好！你已经填写了本年度的积点，如若确定无误，可以提交审核。</b>
+            <b><?php echo $_SESSION['name']?>,您好！您已经填写了本年度的积点。</b>
         </div>
         <div class="xline"></div>
         <table class="tablelist">
@@ -69,10 +69,12 @@
                         <?php }else{ ?>
                             <a href="#" id = "submit_check" class="tablelink" style="color: red"> 提交审核</a>
                         <?php }
-                    }else{
+                    }elseif($teacher_total_point['status'] == 6){
                         ?>
-                        <a href="#" class="tablelink">审核中</a>
-                    <?php } ?>
+                        <a href="#" class="tablelink">已公布</a>
+                    <?php }else{ ?>
+<a href="#" class="tablelink">审核中</a>
+		 <?php }?>
                 </td>
             </tr>
             </tbody>

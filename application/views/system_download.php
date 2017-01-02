@@ -28,7 +28,7 @@
         <thead>
         <tr>
             <th>ID<i class="sort"><img src="/template/images/px.gif" /></i></th>
-            <th>积分年度</th>  
+            <th>积分年度</th>
             <th>操作</th>
         </tr>
         </thead>

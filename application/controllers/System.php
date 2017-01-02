@@ -486,7 +486,7 @@ class System extends BaseController{
                     continue;
                 }
                 elseif (is_dir($dir.$file)){
-                    $result = array_merge($result, list_dir($dir.$file.'/'));
+                    $result = array_merge($result, $this->list_dir($dir.$file.'/'));
                 }
                 else{
                     array_push($result, $dir.$file);
