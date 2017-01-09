@@ -150,6 +150,7 @@ class Teacher extends BaseController{
         $teacher['work_time'] = substr($teacher['work_time'], 0, 4).'-'.substr($teacher['work_time'], 4, 2).'-01';
         $teacher['school_work_time'] = substr($teacher['school_work_time'], 0, 4).'-'.substr($teacher['school_work_time'], 4, 2).'-01';
         $teacher['qua_time'] = substr($teacher['qua_time'], 0, 4).'-'.substr($teacher['qua_time'], 4, 2).'-01';
+        $teacher['er_school_time'] = substr($teacher['er_school_time'], 0, 4).'-'.substr($teacher['er_school_time'], 4, 2).'-01';
         $this->data['teacher'] = $teacher;
         $this->load->view('teacher_input_point', $this->data);
     }
@@ -205,7 +206,7 @@ class Teacher extends BaseController{
         $today_work = date('Y-09-01', time());
         $work_year_month = $this->getMonthNum($today_month, $post['work_year']);
         $city_year_month = $this->getMonthNum($today_work, $post['city_year']);
-        $school_work_days = $this->diffBetweenTwoDays($today_work, $post['city_year']);
+        $school_work_days = $this->diffBetweenTwoDays($today_work, $post['school_year']);
         $job_title_month = $this->getMonthNum($today_month, $post['job_title']);
 
         $work_year_point = round(0.4 * $work_year_month, 2);
@@ -220,6 +221,9 @@ class Teacher extends BaseController{
             $postgraduate_point = 15;
         }
         $person_point = round($work_year_point +  $city_year_point + $school_work_days_point + $job_title_point + $postgraduate_point, 2);
+        //后端计算兼职积点分数、奖励性分数
+
+
         $total_point = round($post['base_point'] + $post['part_time_point'] + $post['award_point'] + $person_point, 2);
 
         $post['teacher_id'] = $_SESSION['teacher_id'];

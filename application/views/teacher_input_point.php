@@ -76,6 +76,7 @@
                                             <span class="question-id" >1、基本工作量：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：100</b></span>
                                         </div>
+                                        <input type="hidden" id="point_id" value="<?php echo $teacher_point['id'];?>">
                                         <select class="select3 " id="subject"   style="width: 100px">
                                             <option value="1" <?php if($teacher_point['subject'] == 1){ echo 'selected';}?> >语文</option>
                                             <option value="2" <?php if($teacher_point['subject'] == 2){ echo 'selected';}?> >数学</option>
@@ -92,7 +93,7 @@
                                             <option value="13" <?php if($teacher_point['subject'] == 13){ echo 'selected';}?>>信息技术</option>
                                             <option value="14" <?php if($teacher_point['subject'] == 14){ echo 'selected';}?>>心理健康</option>
                                         </select>
-                                        <input type="text" placeholder="每周上课节数" id="subject_num" value="<?php echo $teacher_point['subject_num']; ?>" class="input_text" style="float:left;width: 82px;margin-top: -60px;margin-left: 300px;z-index: 9999" />
+                                        <input type="text" placeholder="每周上课节数" id="subject_num" value="<?php echo $teacher_point['subject_num']; ?>" class="input_text" style="position:relative;float:left;width: 82px;margin-top: -50px;margin-left: 300px;z-index: 9999" />
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
                                                 <b style="color: red">积点说明：</b>语文、数学、英语10节/周；物理、化学、生物、政治、历史、地理12节/周；体育、艺术、通用技术、信息技术、心理健康14节/周。高三高考科目10节/周，高三高考综合科目两个班为满工作量。
@@ -414,7 +415,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>工会委员增加5个积点，工会组长增加9个积点。
+                                                <b style="color: red">积点说明：</b>工会委员增加5个积点，工会组长增加4个积点。
                                             </div>
                                         </div>
                                     </div>
@@ -430,7 +431,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>妇女委员会委员增加5个积点，组长增加9个积点。
+                                                <b style="color: red">积点说明：</b>妇女委员会委员增加5个积点，组长增加4个积点。
                                             </div>
                                         </div>
                                     </div>
@@ -582,7 +583,7 @@
                                                 <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['attendance_award'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否
-                                                        <input type="text" placeholder="缺席次数" class="input_text" style="width: 82px" id="attendance_award_num" value="<?php echo $teacher_point['attendance_award'];?>"/>
+                                                        <input type="text" placeholder="缺席次数" class="input_text" style="width: 82px" id="attendance_award_num" value="<?php if($teacher_point['attendance_award'] == 1){ }else {echo $teacher_point['attendance_award_num'];}?>"/>
                                                     </div></div>
                                                 <div class="option-tips"></div>
                                             </li>
@@ -776,7 +777,7 @@
                                             <span class="question-id">26、市级公开课实验课：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
-                                        <input type="hidden" id="school_class_value" value="<?php if($teacher_point['city_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
+                                        <input type="hidden" id="city_class_value" value="<?php if($teacher_point['city_class'] > 0){ echo 1;}else{ echo 0;} ?>"/>
                                         <ul class="question-choice">
                                             <li class="choice">
                                                 <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['city_class'] > 0){ echo 'checked';}?> value="1" class="yes"/>
@@ -1050,7 +1051,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），每月0.6分。校龄分每日加0.2分。
+                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），每月0.6分。
                                                     </div>
                                                 </div>
                                             </li>
@@ -1058,7 +1059,35 @@
                                     </div>
                                     <div class="topic-type-content topic-type-question after-clear" id="super_workload">
                                         <div class="question-title">
-                                            <span class="question-id">38、职称资格：</span>
+                                            <span class="question-id">38、校龄：</span>
+                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
+                                        </div>
+                                        <ul class="question-choice">
+                                            <li class="choice">
+                                                <div class="position-relative">
+                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                                        <input class="input_text" id="school_year" disabled value="<?php
+                                                        if(!empty($teacher_point['school_year'])){
+                                                            echo $teacher_point['school_year'];
+                                                        }else{
+                                                            echo $teacher['er_school_time'];
+                                                        }
+                                                        ?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="choice">
+                                                <div class="position-relative">
+                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），校龄分每月加0.2分。
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">
+                                        <div class="question-title">
+                                            <span class="question-id">39、职称资格：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
                                         <ul class="question-choice">
@@ -1086,7 +1115,7 @@
                                     </div>
                                     <div class="topic-type-content topic-type-question after-clear">
                                         <div class="question-title">
-                                            <span class="question-id" >39、研究生学历（位）：</span>
+                                            <span class="question-id" >40、研究生学历（位）：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
                                         <select class="select5" id="postgraduate">

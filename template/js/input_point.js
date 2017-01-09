@@ -32,6 +32,7 @@ $(function(){
     var substitute = 0;
     var satisfaction_survey = 0;
     var attendance_award = 0;
+    var attendance_award_num = 0;
     var school_teacher = 0;
     var finish_goal = 0;
     var college = 0;
@@ -72,10 +73,13 @@ $(function(){
         section_leader = $(this).find("option:selected").val();
         if(section_leader == 1){
             section_leader_point = 45;
+            //$('#is_section_leader').val(1);
         }else if(section_leader == 2){
             section_leader_point = 30;
+            //$('#is_section_leader').val(2);
         }else {
             section_leader_point = 0;
+            //$('#is_section_leader').val(3);
         }
     });
     director = $('#director_value').val();
@@ -86,11 +90,13 @@ $(function(){
         if($(this).is(':checked') && is_director == 1){
             director_point = 45;
             director = 1;
+            $('#director_value').val(1);
             $('#director').find(".no").attr('checked', false);
             $('#director').find(".yes").attr('checked', true);
         }else{
             director_point = 0;
             director = 0;
+            $('#director_value').val(0);
             $('#director').find(".no").attr('checked', true);
             $('#director').find(".yes").attr('checked', false);
         }
@@ -103,11 +109,13 @@ $(function(){
         if($(this).is(':checked') && is_officer == 1){
             officer_point = 40;
             officer = 1;
+            $('#officer_value').val(1);
             $('#officer').find(".no").attr('checked', false);
             $('#officer').find(".yes").attr('checked', true);
         }else{
             officer_point = 0;
             officer = 0;
+            $('#officer_value').val(0);
             $('#officer').find(".no").attr('checked', true);
             $('#officer').find(".yes").attr('checked', false);
         }
@@ -120,11 +128,13 @@ $(function(){
         if($(this).is(':checked') && is_school_leader == 1){
             school_leader_point = 60;
             school_leader = 1;
+            $('#school_leader_value').val(1);
             $('#school_leader').find(".no").attr('checked', false);
             $('#school_leader').find(".yes").attr('checked', true);
         }else{
             school_leader_point = 0;
             school_leader = 0;
+            $('#school_leader_value').val(0);
             $('#school_leader').find(".no").attr('checked', true);
             $('#school_leader').find(".yes").attr('checked', false);
         }
@@ -137,12 +147,14 @@ $(function(){
         if($(this).is(':checked') && is_part_time_magazine == 1){
             part_time_magazine_point = 12;
             part_time_magazine = 1;
+            $('#part_time_magazine_value').val(1);
             $('#part_time_magazine').find(".no").attr('checked', false);
             $('#part_time_magazine').find(".yes").attr('checked', true);
             $('#part_time_magazine_upload').removeClass('none');
         }else{
             part_time_magazine_point = 0;
             part_time_magazine = 0;
+            $('#part_time_magazine_value').val(0);
             $('#part_time_magazine').find(".no").attr('checked', true);
             $('#part_time_magazine').find(".yes").attr('checked', false);
             $('#part_time_magazine_upload').addClass('none');
@@ -156,11 +168,13 @@ $(function(){
         if($(this).is(':checked') && is_academic == 1){
             academic_point = 12;
             academic = 1;
+            $('#academic_value').val(1);
             $('#academic').find(".no").attr('checked', false);
             $('#academic').find(".yes").attr('checked', true);
         }else{
             academic_point = 0;
             academic = 0;
+            $('#academic_value').val(0);
             $('#academic').find(".no").attr('checked', true);
             $('#academic').find(".yes").attr('checked', false);
         }
@@ -242,11 +256,13 @@ $(function(){
         if($(this).is(':checked') && is_eight_teacher == 1){
             eight_teacher_point = 5;
             eight_teacher = 1;
+            $('#eight_teacher_value').val(1);
             $('#eight_teacher').find(".no").attr('checked', false);
             $('#eight_teacher').find(".yes").attr('checked', true);
         }else{
             eight_teacher_point = 0;
             eight_teacher = 0;
+            $('#eight_teacher_value').val(0);
             $('#eight_teacher').find(".no").attr('checked', true);
             $('#eight_teacher').find(".yes").attr('checked', false);
         }
@@ -259,11 +275,13 @@ $(function(){
         if($(this).is(':checked') && is_league_teacher == 1){
             league_teacher_point = 5;
             league_teacher = 1;
+            $('#league_teacher_value').val(1);
             $('#league_teacher').find(".no").attr('checked', false);
             $('#league_teacher').find(".yes").attr('checked', true);
         }else{
             league_teacher_point = 0;
             league_teacher = 0;
+            $('#league_teacher_value').val(0);
             $('#league_teacher').find(".no").attr('checked', true);
             $('#league_teacher').find(".yes").attr('checked', false);
         }
@@ -276,37 +294,39 @@ $(function(){
         if($(this).is(':checked') && is_tutor == 1){
             tutor_point = 5;
             tutor = 1;
+            $('#tutor_value').val(1);
             $('#tutor').find(".no").attr('checked', false);
             $('#tutor').find(".yes").attr('checked', true);
         }else{
             tutor_point = 0;
             tutor = 0;
+            $('#tutor_value').val(0);
             $('#tutor').find(".no").attr('checked', true);
             $('#tutor').find(".yes").attr('checked', false);
         }
     });
     union = $('#union').val();
-    //是不是工会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加9个积点。
+    //是不是工会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加4个积点。
     var union_point = 0;
     $("#union").live('change', function(e){
         union = $(this).find("option:selected").val();
         if(union == 1){
             union_point = 5;
         }else if(union == 2){
-            union_point = 9;
+            union_point = 4;
         }else {
             union_point = 0;
         }
     });
     woman = $('#woman').val();
-    //是不是妇女委员会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加9个积点。
+    //是不是妇女委员会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加4个积点。
     var woman_point = 0;
     $("#woman").live('change', function(e){
         woman = $(this).find("option:selected").val();
         if(woman == 1){
             woman_point = 5;
         }else if(woman == 2){
-            woman_point = 9;
+            woman_point = 4;
         }else {
             woman_point = 0;
         }
@@ -319,11 +339,13 @@ $(function(){
         if($(this).is(':checked') && is_join_festival == 1){
             join_festival_point = 4;
             join_festival = 1;
+            $('#join_festival_value').val(1);
             $('#join_festival').find(".no").attr('checked', false);
             $('#join_festival').find(".yes").attr('checked', true);
         }else{
             join_festival_point = 0;
             join_festival = 0;
+            $('#join_festival_value').val(0);
             $('#join_festival').find(".no").attr('checked', true);
             $('#join_festival').find(".yes").attr('checked', false);
         }
@@ -336,11 +358,13 @@ $(function(){
         if($(this).is(':checked') && is_counselor == 1){
             counselor_point = 4;
             counselor = 1;
+            $('#counselor_value').val(1);
             $('#counselor').find(".no").attr('checked', false);
             $('#counselor').find(".yes").attr('checked', true);
         }else{
             counselor_point = 0;
             counselor = 0;
+            $('#counselor_value').val(0);
             $('#counselor').find(".no").attr('checked', true);
             $('#counselor').find(".yes").attr('checked', false);
         }
@@ -353,6 +377,7 @@ $(function(){
         var is_substitute = $(this).val();
         if($(this).is(':checked') && is_substitute == 1){
             substitute = 1;
+            $('#substitute_value').val(1);
             $('#substitute_num').attr('disabled', false);
             $('#substitute_data').attr('disabled', false);
             $('#substitute').find(".no").attr('checked', false);
@@ -360,6 +385,7 @@ $(function(){
             $('#substitute_upload').removeClass('none');
         }else{
             substitute = 0;
+            $('#substitute_value').val(0);
             $('#substitute').find(".no").attr('checked', true);
             $('#substitute_num').val('');
             $('#substitute_num').attr('disabled', true);
@@ -375,10 +401,12 @@ $(function(){
         var is_satisfaction_survey = $(this).val();
         if($(this).is(':checked') && is_satisfaction_survey == 1){
             satisfaction_survey = 1;
+            $('#satisfaction_survey_value').val(1);
             satisfaction_survey_point = 5;
             $('#satisfaction_survey').find(".no").attr('checked', false);
             $('#satisfaction_survey').find(".yes").attr('checked', true);
         }else{
+            $('#satisfaction_survey_value').val(0);
             satisfaction_survey = 0;
             satisfaction_survey_point = 0;
             $('#satisfaction_survey').find(".no").attr('checked', true);
@@ -391,8 +419,9 @@ $(function(){
     $("#attendance_award input[type='checkbox']").live('click', function(e){
         var is_attendance_award= $(this).val();
         if($(this).is(':checked') && is_attendance_award == 1){
-            attendance_award = 1;
+            $('#attendance_award_value').val(1);
             $('#attendance_award_num').attr('disabled', true);
+            $('#attendance_award_num').val(0);
             $('#attendance_award_data').attr('disabled', false);
             $('#attendance_award_num').val('');
             $('#attendance_award').find(".no").attr('checked', false);
@@ -400,6 +429,7 @@ $(function(){
             $('#attendance_award_upload').removeClass('none');
         }else{
             attendance_award = 0;
+            $('#attendance_award_value').val(0);
             $('#attendance_award_num').attr('disabled', false);
             $('#attendance_award_data').attr('disabled', true);
             $('#attendance_award').find(".no").attr('checked', true);
@@ -415,11 +445,13 @@ $(function(){
         if($(this).is(':checked') && is_school_teacher == 1){
             school_teacher_point = 30;
             school_teacher = 1;
+            $('#school_teacher_value').val(1);
             $('#school_teacher').find(".no").attr('checked', false);
             $('#school_teacher').find(".yes").attr('checked', true);
         }else{
             school_teacher_point = 0;
             school_teacher = 0;
+            $('#school_teacher_value').val(0);
             $('#school_teacher').find(".no").attr('checked', true);
             $('#school_teacher').find(".yes").attr('checked', false);
         }
@@ -432,11 +464,13 @@ $(function(){
         if($(this).is(':checked') && is_finish_goal == 1){
             finish_goal_point = 5;
             finish_goal = 1;
+            $('#finish_goal_value').val(1);
             $('#finish_goal').find(".no").attr('checked', false);
             $('#finish_goal').find(".yes").attr('checked', true);
         }else{
             finish_goal_point = 0;
             finish_goal = 0;
+            $('#finish_goal_value').val(0);
             $('#finish_goal').find(".no").attr('checked', true);
             $('#finish_goal').find(".yes").attr('checked', false);
         }
@@ -448,11 +482,13 @@ $(function(){
         var is_college = $(this).val();
         if($(this).is(':checked') && is_college == 1){
             college = 1;
+            $('#college_value').val(1);
             $('#college_num').attr('disabled', false);
             $('#college').find(".no").attr('checked', false);
             $('#college').find(".yes").attr('checked', true);
         }else{
             college = 0;
+            $('#college_value').val(0);
             $('#college').find(".no").attr('checked', true);
             $('#college_num').val('');
             $('#college_num').attr('disabled', true);
@@ -466,11 +502,13 @@ $(function(){
         var is_middle = $(this).val();
         if($(this).is(':checked') && is_middle == 1){
             middle = 1;
+            $('#middle_value').val(1);
             $('#middle_num').attr('disabled', false);
             $('#middle').find(".no").attr('checked', false);
             $('#middle').find(".yes").attr('checked', true);
         }else{
             middle = 0;
+            $('#middle_value').val(0);
             $('#middle').find(".no").attr('checked', true);
             $('#middle_num').val('');
             $('#middle_num').attr('disabled', true);
@@ -484,11 +522,13 @@ $(function(){
         var is_super_workload = $(this).val();
         if($(this).is(':checked') && is_super_workload == 1){
             super_workload = 1;
+            $('#super_workload_value').val(1);
             $('#super_workload_num').attr('disabled', false);
             $('#super_workload').find(".no").attr('checked', false);
             $('#super_workload').find(".yes").attr('checked', true);
         }else{
             super_workload = 0;
+            $('#super_workload_value').val(0);
             $('#super_workload').find(".no").attr('checked', true);
             $('#super_workload_num').val('');
             $('#super_workload_num').attr('disabled', true);
@@ -502,11 +542,13 @@ $(function(){
         var is_school_class= $(this).val();
         if($(this).is(':checked') && is_school_class == 1){
             school_class = 1;
+            $('#school_class_value').val(1);
             $('#school_class_num').attr('disabled', false);
             $('#school_class').find(".no").attr('checked', false);
             $('#school_class').find(".yes").attr('checked', true);
         }else{
             super_workload = 0;
+            $('#school_class_value').val(0);
             $('#school_class').find(".no").attr('checked', true);
             $('#school_class_num').val('');
             $('#school_class_num').attr('disabled', true);
@@ -520,11 +562,13 @@ $(function(){
         var is_city_class = $(this).val();
         if($(this).is(':checked') && is_city_class == 1){
             city_class = 1;
+            $('#city_class_value').val(1);
             $('#city_class_num').attr('disabled', false);
             $('#city_class').find(".no").attr('checked', false);
             $('#city_class').find(".yes").attr('checked', true);
         }else{
             city_class = 0;
+            $('#city_class_value').val(0);
             $('#city_class').find(".no").attr('checked', true);
             $('#city_class_num').val('');
             $('#city_class_num').attr('disabled', true);
@@ -538,11 +582,13 @@ $(function(){
         var is_courses = $(this).val();
         if($(this).is(':checked') && is_courses == 1){
             courses = 1;
+            $('#courses_value').val(1);
             $('#courses_num').attr('disabled', false);
             $('#courses').find(".no").attr('checked', false);
             $('#courses').find(".yes").attr('checked', true);
         }else{
             courses = 0;
+            $('#courses_value').val(0);
             $('#courses').find(".no").attr('checked', true);
             $('#courses_num').val('');
             $('#courses_num').attr('disabled', true);
@@ -572,6 +618,7 @@ $(function(){
         if($(this).is(':checked') && is_exam_rank == 1){
             exam_rank = 1;
             exam_rank_point = 6;
+            $('#exam_rank_value').val(1);
             $('#exam_rank_data').attr('disabled', false);
             $('#exam_rank').find(".no").attr('checked', false);
             $('#exam_rank').find(".yes").attr('checked', true);
@@ -580,6 +627,7 @@ $(function(){
         }else{
             exam_rank = 0;
             exam_rank_point = 0;
+            $('#exam_rank_value').val(0);
             $('#exam_rank_data').attr('disabled', true);
             $('#exam_rank_upload_url').addClass('none');
             $('#exam_rank').find(".no").attr('checked', true);
@@ -679,6 +727,283 @@ $(function(){
             alert('每周上课节数不能为空！');
             return;
         }
+        //取巧，如果是修改的，则分数都必须是要通过获取值来计算
+        if(point_id > 0){
+            //科组长45、备课组长30
+            section_leader = $('#is_section_leader').val();
+            if(section_leader == 1){
+                section_leader_point = 45;
+            }else if(section_leader == 2){
+                section_leader_point = 30;
+            }else {
+                section_leader_point = 0;
+            }
+            director = $('#director_value').val();
+            //主任、副主任、部门干事 、年级长、副级长、班主任。积点45。1为是
+            if(director == 1){
+                director_point = 45;
+            }else{
+                director_point = 0;
+            }
+            //部门干事，积点为40。1是
+            officer = $('#officer_value').val();
+            if(officer == 1){
+                officer_point = 40;
+            }else{
+                officer_point = 0;
+            }
+            school_leader = $('#school_leader_value').val();
+            //校级领导，积点为60。1是
+            if(school_leader == 1){
+                school_leader_point = 60;
+            }else{
+                school_leader_point = 0;
+            }
+            part_time_magazine = $('#part_time_magazine_value').val();
+            //兼职校刊、校报编辑工作、青蓝工程指导教师,积点为12。1是
+            if(part_time_magazine == 1){
+                part_time_magazine_point = 12;
+            }else{
+                part_time_magazine_point = 0;
+            }
+            academic = $('#academic_value').val();
+            //学术委员、学堂干事,积点15。1为是。
+            if(academic == 1){
+                academic_point = 12;
+            }else{
+                academic_point = 0;
+            }
+            education_case = $('#education_case').val();
+            //为在研的校级课题：主持人7，成员排序前三位4，其他成员2；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。
+            if(education_case == 1){
+                education_case_point = 7;
+            }else if(education_case == 2){
+
+                education_case_point = 4;
+            }else if(education_case == 3){
+
+                education_case_point = 2;
+            }else if(education_case == 4){
+
+                education_case_point = 11;
+            }else if(education_case == 5){
+
+                education_case_point = 6;
+
+            }else if(education_case == 6){
+                education_case_point = 3;
+            }else{
+                education_case_point = 0;
+            }
+            education_case2 = $('#education_case2').val();
+            //为在研的校级课题：主持人7，成员排序前三位4，其他成员2；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。
+            if(education_case2 == 1){
+                education_case_point2 = 7;
+            }else if(education_case2 == 2){
+
+                education_case_point2 = 4;
+            }else if(education_case2 == 3){
+
+                education_case_point2 = 2;
+            }else if(education_case2 == 4){
+
+                education_case_point2 = 11;
+            }else if(education_case2 == 5){
+
+                education_case_point2 = 6;
+
+            }else if(education_case2 == 6){
+                education_case_point2 = 3;
+            }else{
+                education_case_point2 = 0;
+            }
+            paper = $('#paper').val();
+            //1为校级，2为市级，3为省级，4为国家级。每年提交一项最高级别的发表论文：校级5点、市级10点、省级15点、国家级20点。
+            if(paper == 1){
+                paper_point = 5;
+            }else if(paper == 2){
+                paper_point = 10;
+            }else if(paper == 3){
+                paper_point = 15;
+            }else if(paper == 4){
+                paper_point = 20;
+            }else{
+                paper_point = 0;
+            }
+            eight_teacher = $('#eight_teacher_value').val();
+            //八大学堂选修课主讲教师,1为是。5个积点
+            var eight_teacher_point = 0;
+            if(eight_teacher_point == 1){
+                eight_teacher_point = 5;
+            }else{
+                eight_teacher_point = 0;
+            }
+            league_teacher = $('#league_teacher_value').val();
+            //社团指导老师,1为是。5个积点
+            var league_teacher_point = 0;
+            if(league_teacher == 1){
+                league_teacher_point = 5;
+            }else{
+                league_teacher_point = 0;
+            }
+            tutor = $('#tutor_value').val();
+            //导师制导师，1为是。5个积点
+            if(tutor == 1){
+                tutor_point = 5;
+            }else{
+                tutor_point = 0;
+            }
+            union = $('#union').val();
+            //是不是工会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加4个积点。
+            var union_point = 0;
+            if(union == 1){
+                union_point = 5;
+            }else if(union == 2){
+                union_point = 4;
+            }else {
+                union_point = 0;
+            }
+            woman = $('#woman').val();
+            //是不是妇女委员会成员，1为工会委员，2为工会组长。工会委员增加5个积点，工会组长增加4个积点。
+            if(woman == 1){
+                woman_point = 5;
+            }else if(woman == 2){
+                woman_point = 4;
+            }else {
+                woman_point = 0;
+            }
+            join_festival = $('#join_festival_value').val();
+            //参与学校重大节日的专业教师加4分,1为参加。
+            if(join_festival == 1){
+                join_festival_point = 4;
+            }else{
+                join_festival_point = 0;
+            }
+            counselor = $('#counselor_value').val();
+            //心理咨询师。1是，积点为5
+            if(counselor == 1){
+                counselor_point = 4;
+            }else{
+                counselor_point = 0;
+            }
+            substitute = $('#substitute_value').val();
+            satisfaction_survey = $('#satisfaction_survey_value').val();
+            //每学年进行2次满意度调查，每次满意度达80%以上，可获得5个积点奖励。1达到条件
+            if(satisfaction_survey == 1){
+                satisfaction_survey_point = 5;
+            }else{
+                satisfaction_survey_point = 0;
+            }
+            attendance_award = $('#attendance_award_value').val();
+            //缺席次数，每缺席一次扣除1点积点，如果不填写则为全勤。要提供考勤记录。总的积点20点
+            school_teacher = $('#school_teacher_value').val();
+            //是不是别聘为高三、初三老师、多语种班项目，1为聘用。积点30个
+            if(school_teacher == 1){
+                school_teacher_point = 30;
+            }else{
+                school_teacher_point = 0;
+            }
+            finish_goal = $('#finish_goal_value').val();
+            //是否完成高考（中考）预定指标，奖励积点5个
+            if( finish_goal == 1){
+                finish_goal_point = 5;
+            }else{
+                finish_goal_point = 0;
+            }
+            college = $('#college_value').val();
+            //本科生超出指标数量，一个增加6个积点
+            middle = $('#middle_value').val();
+            //重点高中生超出指标数量，一个增加10个积点
+            super_workload = $('#super_workload_value').val();
+            //超出工作量的上课节数，每节课增加0.5个积点
+            school_class = $('#school_class_value').val();
+            //校级公开课实验课，每节课增加5个积点
+            city_class = $('#city_class_value').val();
+            courses = $('#courses_value').val();
+            //八大学堂精品课程，获得精品课程的次数，每学年最多2次，每次可以增加3个积点
+
+            exam_pro = $('#exam_pro').val();
+            //一等试卷可获得3个积点，二等试卷2个积点，三等试卷1个积点
+            if(exam_pro == 1){
+                exam_pro_point = 3;
+            }else if(exam_pro == 2){
+                exam_pro_point = 2;
+            }else if(exam_pro == 3){
+                exam_pro_point = 1;
+            }else{
+                exam_pro_point = 0
+            }
+            exam_rank = $('#exam_rank_value').val();
+            //以教务处学段考考试简报为依据，学段考试成绩综合排名（参考B值，均分）在同备课组内位列前50%的，奖励科任老师6个积点。1为是。
+            if(exam_rank == 1){
+                exam_rank_point = 6;
+            }else{
+                exam_rank_point = 0;
+            }
+            outstand_sub = $('#outstand_sub').val();
+            //以市教科院文件为准，市级以上科组成员人均获得2个积点。科组长另奖励5个积点
+            if(outstand_sub == 1){
+                outstand_sub_point = 2;
+            }else if(outstand_sub == 2){
+                outstand_sub_point = 7;
+            }else{
+                outstand_sub_point = 0
+            }
+            select_outstand_school = $('#select_outstand_school').val();
+            //含优秀班主任或工作人员或优秀课题组主持人或课题组科研骨干 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+            if(select_outstand_school == 1){
+                select_outstand_school_point = 5;
+            }else if(select_outstand_school == 2){
+                select_outstand_school_point = 10;
+            }else if(select_outstand_school == 3){
+                select_outstand_school_point = 15;
+            }else if(select_outstand_school == 4){
+                select_outstand_school_point = 20;
+            }else{
+                select_outstand_school_point = 0
+            }
+            select_outstand_year = $('#select_outstand_year').val();
+            //考核优秀 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+            if(select_outstand_year == 1){
+                select_outstand_year_point = 5;
+            }else if(select_outstand_year == 2){
+                select_outstand_year_point = 10;
+            }else if(select_outstand_year == 3){
+                select_outstand_year_point = 15;
+            }else if(select_outstand_year == 4){
+                select_outstand_year_point = 20;
+            }else{
+                select_outstand_year_point = 0
+            }
+            select_outstand_person = $('#select_outstand_person').val();
+            //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+            var select_outstand_person_point = 0;
+            if(select_outstand_person == 1){
+                select_outstand_person_point = 5;
+            }else if(select_outstand_person == 2){
+                select_outstand_person_point = 10;
+            }else if(select_outstand_person == 3){
+                select_outstand_person_point = 15;
+            }else if(select_outstand_person == 4){
+                select_outstand_person_point = 20;
+            }else{
+                select_outstand_person_point = 0
+            }
+            expert = $('#expert').val();
+            //教育系统表彰高考工作先进个人（学科先进个人） 校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点
+            var expert_point = 0;
+            if(expert == 1){
+                expert_point = 5;
+            }else if(expert == 2){
+                expert_point = 10;
+            }else if(expert == 3){
+                expert_point = 15;
+            }else if(expert == 4){
+                expert_point = 20;
+            }else{
+                expert_point = 0
+            }
+        }
         var workload = 0;
         if(1 <= subject && subject <= 3){
             if(subject_nums > 10){
@@ -703,6 +1028,8 @@ $(function(){
         }
         var part_time_point = 0; //兼职岗位积点
         var award_point = 0; //奖励性积点
+        console.log(section_leader_point);
+        console.log(director_point);
         //兼职积点分数
         part_time_point = accAdd(part_time_point, section_leader_point);
         part_time_point = accAdd(part_time_point, director_point);
@@ -729,8 +1056,7 @@ $(function(){
             }
             substitute_point = substitute_num * 0.5;
         }
-        if(attendance_award == 1){
-        }else{
+        if(attendance_award != 1){
             var attendance_award_num = $('#attendance_award_num').val();
             if(attendance_award_num < 0 || !attendance_award_num){
                 alert('缺席的次数不能为空！');
@@ -767,6 +1093,7 @@ $(function(){
             }
             super_workload_point = super_workload_num * 0.5;
         }
+        super_workload = super_workload_num;
         school_class_num = 0;
         if(school_class == 1){
             var school_class_num = $('#school_class_num').val();
@@ -775,6 +1102,7 @@ $(function(){
             }
             school_class_point = school_class_num * 5;
         }
+        school_class = school_class_num;
         city_class_num = 0;
         if(city_class == 1){
             var city_class_num = $('#city_class_num').val();
@@ -783,6 +1111,7 @@ $(function(){
             }
             city_class_point = city_class_num * 10;
         }
+        city_class = city_class_num;
         courses_num = 0;
         if(courses == 1){
             var courses_num = $('#courses_num').val();
@@ -795,7 +1124,7 @@ $(function(){
             }
             courses_point = courses_num * 3;
         }
-
+        courses = courses_num;
         var country_match = $('#country_match_num').val();
         if(!country_match || country_match < 0){
             country_match = 0;
@@ -862,6 +1191,7 @@ $(function(){
         //个人资历积点
         var work_year = $('#work_year').val();
         var city_year = $('#city_year').val();
+        var school_year = $('#school_year').val();
         var job_title_time = $('#job_title_time').val();
         var postgraduate = $('#postgraduate').val();
         if(!work_year){
@@ -902,6 +1232,7 @@ $(function(){
                 substitute_num : substitute_num,
                 satisfaction_survey : satisfaction_survey,
                 attendance_award : attendance_award,
+                attendance_award_num : attendance_award_num,
                 attendance_award_data : attendance_award_data,
                 school_teacher : school_teacher,
                 finish_goal : finish_goal,
@@ -925,6 +1256,7 @@ $(function(){
                 expert : expert,
                 work_year : work_year,
                 city_year : city_year,
+                school_year : school_year,
                 job_title : job_title_time,
                 postgraduate : postgraduate,
                 eight_teacher : eight_teacher,

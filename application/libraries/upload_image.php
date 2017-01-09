@@ -13,7 +13,7 @@ class Upload_image{
 
     //要配置的内容
     private $path;
-    private $allowtype = array('jpg', 'gif', 'png', 'jpeg', 'bmp', 'txt', 'doc', 'ppt', 'xls', 'docx', 'xlsx', 'zip');
+    private $allowtype = array('jpg', 'gif', 'png', 'jpeg', 'bmp', 'txt', 'doc', 'ppt', 'xls', 'docx', 'xlsx', 'zip', 'pdf');
     private $maxsize = 1000000;
     private $israndname = true;
 

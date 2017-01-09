@@ -414,7 +414,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>工会委员增加5个积点，工会组长增加9个积点。
+                                                <b style="color: red">积点说明：</b>工会委员增加5个积点，工会组长增加4个积点。
                                             </div>
                                         </div>
                                     </div>
@@ -430,7 +430,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>妇女委员会委员增加5个积点，组长增加9个积点。
+                                                <b style="color: red">积点说明：</b>妇女委员会委员增加5个积点，组长增加4个积点。
                                             </div>
                                         </div>
                                     </div>
@@ -1040,7 +1040,32 @@
                                     </div>
                                     <div class="topic-type-content topic-type-question after-clear" id="super_workload">
                                         <div class="question-title">
-                                            <span class="question-id">38、职称资格：</span>
+                                            <span class="question-id">38、校龄：</span>
+                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
+                                        </div>
+                                        <ul class="question-choice">
+                                            <li class="choice">
+                                                <div class="position-relative">
+                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                                        <input class="input_text" id="school_year" disabled value="<?php
+                                                        if(!empty($teacher_point['school_year'])){
+                                                            echo $teacher_point['school_year'];
+                                                        }?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="choice">
+                                                <div class="position-relative">
+                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），校龄分每月加0.2分。
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">
+                                        <div class="question-title">
+                                            <span class="question-id">39、职称资格：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
                                         <ul class="question-choice">
@@ -1060,9 +1085,10 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                     <div class="topic-type-content topic-type-question after-clear">
                                         <div class="question-title">
-                                            <span class="question-id" >39、研究生学历（位）：</span>
+                                            <span class="question-id" >40、研究生学历（位）：</span>
                                             <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
                                         </div>
                                         <select class="select5" id="postgraduate" disabled>
