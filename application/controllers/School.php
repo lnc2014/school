@@ -205,4 +205,25 @@ class School extends BaseController {
 			return;
 		}
 	}
+
+	public function update_teacher_point(){
+		$this->load->model('M_sch_point');
+		$this->load->model('Teacher_sch');
+		$all_points = $this->M_sch_point->get_list();//找出所有的积点，已经填写了的
+		$all_teachers = $this->Teacher_sch->get_list();//找出所有的积点，已经填写了的
+		foreach ($all_teachers as $all_teacher) {
+			foreach($all_points as $point){
+				if($point['teacher_id'] == $all_teacher['teacher_id']){
+					//更新两个时间，一个为校龄，一个市龄  校龄为入校时间，市龄为二外入编时间
+					$school_year = substr($all_teacher['school_work_time'], 0, 4).'-'.substr($all_teacher['school_work_time'], 4, 2).'-01';//校龄
+					$city_year = substr($all_teacher['er_school_time'], 0, 4).'-'.substr($all_teacher['er_school_time'], 4, 2).'-01';//市龄
+					$this->M_sch_point->update(array(
+						'school_year' => $school_year,
+						'city_year' => $city_year,
+					), array('teacher_id' => $all_teacher['teacher_id']));
+				}
+
+			}
+		}
+	}
 }

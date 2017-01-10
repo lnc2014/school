@@ -890,7 +890,7 @@
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['part_time_magazine'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" disabled <?php if($teacher_point['exam_rank'] == 0){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>

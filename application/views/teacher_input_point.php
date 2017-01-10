@@ -895,7 +895,7 @@
                                                 </div>
                                             </li>
                                             <li class="choice">
-                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['part_time_magazine'] == 0 && !empty($teacher_point)){ echo 'checked';}?> value="0" class="no"/>
+                                                <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['exam_rank'] == 0 && !empty($teacher_point['exam_rank_data'])){ echo 'checked';}?> value="0" class="no"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">否</div></div>
                                                 <div class="option-tips"></div>
@@ -1042,7 +1042,7 @@
                                                         if(!empty($teacher_point['city_year'])){
                                                             echo $teacher_point['city_year'];
                                                         }else{
-                                                            echo $teacher['school_work_time'];
+                                                            echo $teacher['er_school_time'];
                                                         }
                                                         ?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                     </div>
@@ -1066,7 +1066,13 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="school_year" disabled value="<?php  echo $teacher['er_school_time'];?>" type="text" placeholder="竞聘人员正式调入我校工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                        <input class="input_text" id="school_year" disabled value="<?php
+                                                        if(!empty($teacher_point['school_year'])){
+                                                            echo $teacher_point['school_year'];
+                                                        }else{
+                                                            echo $teacher['school_work_time'];
+                                                        }
+                                                        ?>" type="text" placeholder="竞聘人员正式调入我校工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                     </div>
                                                 </div>
                                             </li>

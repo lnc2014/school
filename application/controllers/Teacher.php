@@ -148,15 +148,16 @@ class Teacher extends BaseController{
         $teacher = $this->Teacher_sch->get_one(array('teacher_id' => $_SESSION['teacher_id']));
         //处理下时间
         $teacher['work_time'] = substr($teacher['work_time'], 0, 4).'-'.substr($teacher['work_time'], 4, 2).'-01';
-        $teacher['school_work_time'] = substr($teacher['school_work_time'], 0, 4).'-'.substr($teacher['school_work_time'], 4, 2).'-01';
+        $teacher['school_work_time'] = substr($teacher['school_work_time'], 0, 4).'-'.substr($teacher['school_work_time'], 4, 2).'-01';//校龄
         $teacher['qua_time'] = substr($teacher['qua_time'], 0, 4).'-'.substr($teacher['qua_time'], 4, 2).'-01';
-        $teacher['er_school_time'] = substr($teacher['er_school_time'], 0, 4).'-'.substr($teacher['er_school_time'], 4, 2).'-01';
+        $teacher['er_school_time'] = substr($teacher['er_school_time'], 0, 4).'-'.substr($teacher['er_school_time'], 4, 2).'-01';//市龄
         $this->data['teacher'] = $teacher;
         $this->load->view('teacher_input_point', $this->data);
     }
     //修改教师录入的积点
     public function edit_point(){
         $point_id = $this->input->get('point_id', true);
+
         if(empty($point_id)){
             show_error('/school/home', 500,'积点ID不能为空!');
         }
@@ -165,7 +166,10 @@ class Teacher extends BaseController{
         if(empty($teacher_point)){
             show_error('/school/home', 500,'非法请求');
         }
+        $this->load->model('Teacher_sch');
+        $teacher = $this->Teacher_sch->get_one(array('teacher_id' => $_SESSION['teacher_id']));
         $this->data['teacher_point'] = $teacher_point;
+        $this->data['teacher'] = $teacher;
         $this->data['title'] = '修改积点';
         $this->load->view('teacher_input_point', $this->data);
     }
