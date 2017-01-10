@@ -206,7 +206,8 @@ class Teacher extends BaseController{
         $today_work = date('Y-09-01', time());
         $work_year_month = $this->getMonthNum($today_month, $post['work_year']);
         $city_year_month = $this->getMonthNum($today_work, $post['city_year']);
-        $school_work_days = $this->diffBetweenTwoDays($today_work, $post['school_year']);
+        $school_work_days = $this->getMonthNum($today_work, $post['school_year']);
+//        $school_work_days = $this->diffBetweenTwoDays($today_work, $post['school_year']);
         $job_title_month = $this->getMonthNum($today_month, $post['job_title']);
 
         $work_year_point = round(0.4 * $work_year_month, 2);

@@ -419,6 +419,7 @@ $(function(){
     $("#attendance_award input[type='checkbox']").live('click', function(e){
         var is_attendance_award= $(this).val();
         if($(this).is(':checked') && is_attendance_award == 1){
+            attendance_award = 1;
             $('#attendance_award_value').val(1);
             $('#attendance_award_num').attr('disabled', true);
             $('#attendance_award_num').val(0);
@@ -1028,8 +1029,6 @@ $(function(){
         }
         var part_time_point = 0; //兼职岗位积点
         var award_point = 0; //奖励性积点
-        console.log(section_leader_point);
-        console.log(director_point);
         //兼职积点分数
         part_time_point = accAdd(part_time_point, section_leader_point);
         part_time_point = accAdd(part_time_point, director_point);

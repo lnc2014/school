@@ -14,7 +14,7 @@ class Upload_image{
     //要配置的内容
     private $path;
     private $allowtype = array('jpg', 'gif', 'png', 'jpeg', 'bmp', 'txt', 'doc', 'ppt', 'xls', 'docx', 'xlsx', 'zip', 'pdf');
-    private $maxsize = 1000000;
+    private $maxsize = 100000000000000;
     private $israndname = true;
 
     private $originName;
@@ -63,7 +63,8 @@ class Upload_image{
         $error = $_FILES[$fileField]['error'];
         //设置文件信息
         if ($this->setFiles($name, $tmp_name, $size, $error)) {
-            if ($this->checkFileSize() && $this->checkFileType()) {
+//            if ($this->checkFileSize() && $this->checkFileType()) {
+            if (1) {
                 $this->setNewFileName();
                 $data = $this->copyFile();
                 if ($data['is_success']) {

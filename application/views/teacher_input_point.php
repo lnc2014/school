@@ -1066,20 +1066,14 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <input class="input_text" id="school_year" disabled value="<?php
-                                                        if(!empty($teacher_point['school_year'])){
-                                                            echo $teacher_point['school_year'];
-                                                        }else{
-                                                            echo $teacher['er_school_time'];
-                                                        }
-                                                        ?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                                        <input class="input_text" id="school_year" disabled value="<?php  echo $teacher['er_school_time'];?>" type="text" placeholder="竞聘人员正式调入我校工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），校龄分每月加0.2分。
+                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我校工作当月计起（以到主管部门报到时间为准），校龄分每月加0.2分。
                                                     </div>
                                                 </div>
                                             </li>
