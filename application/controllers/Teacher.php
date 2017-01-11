@@ -256,26 +256,30 @@ class Teacher extends BaseController{
         $this->load->model('Teacher_sch');
         $all_points = $this->M_sch_point->get_list();//找出所有的积点，已经填写了的
         $all_teachers = $this->Teacher_sch->get_list();//找出所有的积点，已经填写了的
-        foreach ($all_teachers as $all_teacher) {
-            foreach($all_points as $point){
-                if($point['teacher_id'] == $all_teacher['teacher_id']){
-                    //更新两个时间，一个为校龄，一个市龄  校龄为入校时间，市龄为二外入编时间
-                    $school_year = substr($all_teacher['school_work_time'], 0, 4).'-'.substr($all_teacher['school_work_time'], 4, 2).'-01';//校龄
-                    $city_year = substr($all_teacher['er_school_time'], 0, 4).'-'.substr($all_teacher['er_school_time'], 4, 2).'-01';//市龄
-                    $this->M_sch_point->update(array(
-                        'school_year' => $school_year,
-                        'city_year' => $city_year,
-                    ), array('teacher_id' => $all_teacher['teacher_id']));
-                }
+        foreach ($all_points as $all_teacher) {
+            $result = $this->sub_point($all_teacher);
+            $this->M_sch_point->update(array(
+                'base_point' => $result['base_point'],
+                'part_time_point' => $result['part_time_point'],
+                'award_point' => $result['award_point'],
+                'person_point' => $result['person_point'],
+                'total_point' => $result['total_point'],
+            ), array('teacher_id' => $all_teacher['teacher_id']));
 
-            }
+//            foreach($all_points as $point){
+//                if($point['teacher_id'] == $all_teacher['teacher_id']){
+//                    //更新两个时间，一个为校龄，一个市龄  校龄为入校时间，市龄为二外入编时间
+//                    $school_year = substr($all_teacher['school_work_time'], 0, 4).'-'.substr($all_teacher['school_work_time'], 4, 2).'-01';//校龄
+//                    $city_year = substr($all_teacher['er_school_time'], 0, 4).'-'.substr($all_teacher['er_school_time'], 4, 2).'-01';//市龄
+//                    $this->M_sch_point->update(array(
+//                        'school_year' => $school_year,
+//                        'city_year' => $city_year,
+//                    ), array('teacher_id' => $all_teacher['teacher_id']));
+//                }
+//            }
         }
     }
-    public function sub_point(){
-        $this->load->model('M_sch_point');
-        $post = $this->M_sch_point->get_one(array(
-            'teacher_id' => 146
-        ));
+    public function sub_point($post){
         //基本岗位积点数
         $base_point = 0;
         if(1 <= $post['subject'] && $post['subject'] <= 3){
@@ -287,10 +291,187 @@ class Teacher extends BaseController{
         if(10 <= $post['subject'] && $post['subject'] <= 14){
             $base_point = bcmul(bcdiv($post['subject_num'], 14, 4), 100, 2);
         }
-
-        var_dump($base_point);exit;
         //兼职岗位积点数
-
+        $part_time_point = 0;
+        if($post['section_leader'] == 1){
+            $part_time_point = bcadd($part_time_point, 45, 2);
+        }elseif($post['section_leader'] == 2){
+            $part_time_point = bcadd($part_time_point, 30, 2);
+        }
+        if($post['director'] == 1){
+            $part_time_point = bcadd($part_time_point, 45, 2);
+        }
+        if($post['officer'] == 1){
+            $part_time_point = bcadd($part_time_point, 40, 2);
+        }
+        if($post['school_leader'] == 1){
+            $part_time_point = bcadd($part_time_point, 60, 2);
+        }
+        if($post['part_time_magazine'] == 1){
+            $part_time_point = bcadd($part_time_point, 12, 2);
+        }
+        if($post['academic'] == 1){
+            $part_time_point = bcadd($part_time_point, 15, 2);
+        }
+        if($post['education_case'] == 1){
+            $part_time_point = bcadd($part_time_point, 7, 2);
+        }elseif($post['education_case'] == 2){
+            $part_time_point = bcadd($part_time_point, 4, 2);
+        }elseif($post['education_case'] == 3){
+            $part_time_point = bcadd($part_time_point, 2, 2);
+        }elseif($post['education_case'] == 4){
+            $part_time_point = bcadd($part_time_point, 11, 2);
+        }elseif($post['education_case'] == 5){
+            $part_time_point = bcadd($part_time_point, 6, 2);
+        }elseif($post['education_case'] == 6){
+            $part_time_point = bcadd($part_time_point, 3, 2);
+        }
+        if($post['education_case2'] == 1){
+            $part_time_point = bcadd($part_time_point, 7, 2);
+        }elseif($post['education_case2'] == 2){
+            $part_time_point = bcadd($part_time_point, 4, 2);
+        }elseif($post['education_case2'] == 3){
+            $part_time_point = bcadd($part_time_point, 2, 2);
+        }elseif($post['education_case2'] == 4){
+            $part_time_point = bcadd($part_time_point, 11, 2);
+        }elseif($post['education_case2'] == 5){
+            $part_time_point = bcadd($part_time_point, 6, 2);
+        }elseif($post['education_case2'] == 6){
+            $part_time_point = bcadd($part_time_point, 3, 2);
+        }
+        if($post['paper'] == 1){
+            $part_time_point = bcadd($part_time_point, 5, 2);
+        }elseif($post['paper'] == 2){
+            $part_time_point = bcadd($part_time_point, 10, 2);
+        }elseif($post['paper'] == 3){
+            $part_time_point = bcadd($part_time_point, 15, 2);
+        }elseif($post['paper'] == 4){
+            $part_time_point = bcadd($part_time_point, 20, 2);
+        }
+        if($post['eight_teacher'] == 1){
+            $part_time_point = bcadd($part_time_point, 5, 2);
+        }
+        if($post['league_teacher'] == 1){
+            $part_time_point = bcadd($part_time_point, 5, 2);
+        }
+        if($post['tutor'] == 1){
+            $part_time_point = bcadd($part_time_point, 5, 2);
+        }
+        if($post['woman'] == 1){
+            $part_time_point = bcadd($part_time_point, 5, 2);
+        }elseif($post['woman'] == 2){
+            $part_time_point = bcadd($part_time_point, 4, 2);
+        }
+        if($post['union'] == 1){
+            $part_time_point = bcadd($part_time_point, 5, 2);
+        }elseif($post['union'] == 2){
+            $part_time_point = bcadd($part_time_point, 4, 2);
+        }
+        if($post['counselor'] == 1){
+            $part_time_point = bcadd($part_time_point, 5, 2);
+        }
+        if($post['join_festival'] == 1){
+            $part_time_point = bcadd($part_time_point, 4, 2);
+        }
+        //奖励性积点
+        $award_point = 0;
+        if($post['substitute'] == 1){
+            $award_point = bcadd($award_point, bcmul($post['substitute'], 0.5, 2), 2);
+        }
+        if($post['satisfaction_survey'] == 1){
+            $award_point = bcadd($award_point, 5, 2);
+        }
+        if($post['attendance_award'] == 1){
+            $award_point = bcadd($award_point, 20, 2);
+        }else{
+            $left_attend_point = bcsub(20, $post['attendance_award_num'], 2);
+            if($left_attend_point < 0){
+                $left_attend_point = 0;
+            }
+            $award_point = bcadd($award_point, $left_attend_point, 2);
+        }
+        if($post['school_teacher'] == 1){
+            $award_point = bcadd($award_point, 30, 2);
+        }
+        if($post['college_num'] > 0){
+            $award_point = bcadd($award_point, $post['college_num']*6, 2);
+        }
+        if($post['middle_num'] > 0){
+            $award_point = bcadd($award_point, $post['middle_num']*10, 2);
+        }
+        if($post['super_workload'] > 0){
+            $award_point = bcadd($award_point, $post['super_workload']*0.5, 2);
+        }
+        if($post['school_class'] > 0){
+            $award_point = bcadd($award_point, $post['school_class']*5, 2);
+        }
+        if($post['city_class'] > 0){
+            $award_point = bcadd($award_point, $post['school_class']*10, 2);
+        }
+        if($post['courses'] > 0){
+            if($post['courses'] > 2){
+                $post['courses'] = 2;
+            }
+            $award_point = bcadd($award_point, $post['courses']*3, 2);
+        }
+        if($post['country_match'] > 0){
+            $award_point = bcadd($award_point, $post['country_match']*5, 2);
+        }
+        if($post['province_match'] > 0){
+            $award_point = bcadd($award_point, $post['province_match']*3, 2);
+        }
+        if($post['city_match'] > 0){
+            $award_point = bcadd($award_point, $post['city_match']*1, 2);
+        }
+        if($post['exam_pro'] == 1){
+            $award_point = bcadd($award_point, 3, 2);
+        }elseif($post['exam_pro'] == 2){
+            $award_point = bcadd($award_point, 2, 2);
+        }elseif($post['exam_pro'] == 3){
+            $award_point = bcadd($award_point, 1, 2);
+        }
+        if($post['exam_rank'] == 1){
+            $award_point = bcadd($award_point, 6, 2);
+        }
+        if($post['outstand_sub'] == 1){
+            $award_point = bcadd($award_point, 2, 2);
+        }elseif($post['outstand_sub'] == 2){
+            $award_point = bcadd($award_point, 7, 2);
+        }
+        if($post['select_outstand_school'] == 1){
+            $award_point = bcadd($award_point, 5, 2);
+        }elseif($post['select_outstand_school'] == 2){
+            $award_point = bcadd($award_point, 10, 2);
+        }elseif($post['select_outstand_school'] == 3){
+            $award_point = bcadd($award_point, 15, 2);
+        }elseif($post['select_outstand_school'] == 4){
+            $award_point = bcadd($award_point, 20, 2);
+        }
+        if($post['select_outstand_year'] == 1){
+            $award_point = bcadd($award_point, 5, 2);
+        }elseif($post['select_outstand_year'] == 2){
+            $award_point = bcadd($award_point, 10, 2);
+        }elseif($post['select_outstand_year'] == 3){
+            $award_point = bcadd($award_point, 15, 2);
+        }elseif($post['select_outstand_year'] == 4){
+            $award_point = bcadd($award_point, 20, 2);
+        }
+        if($post['select_outstand_person'] == 1){
+            $award_point = bcadd($award_point, 5, 2);
+        }elseif($post['select_outstand_person'] == 2){
+            $award_point = bcadd($award_point, 10, 2);
+        }elseif($post['select_outstand_person'] == 3){
+            $award_point = bcadd($award_point, 15, 2);
+        }elseif($post['select_outstand_person'] == 4){
+            $award_point = bcadd($award_point, 20, 2);
+        }
+        if($post['expert'] == 1){
+            $award_point = bcadd($award_point, 10, 2);
+        }elseif($post['expert'] == 2){
+            $award_point = bcadd($award_point, 15, 2);
+        }elseif($post['expert'] == 3){
+            $award_point = bcadd($award_point, 20, 2);
+        }
         //个人资历积点数
         $work_year_month = $this->getMonthNum($post['work_year']);//工龄
         $city_year_month = $this->getMonthNum($post['city_year']);//市龄
@@ -308,6 +489,14 @@ class Teacher extends BaseController{
             $postgraduate_point = 15;
         }
         $person_point = round($work_year_point +  $city_year_point + $school_work_days_point + $job_title_point + $postgraduate_point, 2);
-
+        var_dump($person_point);
+        $total_point = round($base_point + $part_time_point + $award_point + $person_point, 2);
+        return array(
+            'base_point' => $base_point,
+            'part_time_point' => $part_time_point,
+            'award_point' => $award_point,
+            'person_point' => $person_point,
+            'total_point' => $total_point,
+        );
     }
 }

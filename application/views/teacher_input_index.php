@@ -72,9 +72,9 @@
                     }elseif($teacher_total_point['status'] == 6){
                         ?>
                         <a href="#" class="tablelink">已公布</a>
-                        <a href="<?php
-                        $use = explode('//', $teacher_total_point['data_url']);
-                        echo 'http://'.$_SERVER['HTTP_HOST'].'/teacher/'.$teacher_total_point['year'].'/'.$use[1];?>" target="_blank" class="tablelink">下载本年度积分表</a>
+<!--                        <a href="--><?php
+//                        $use = explode('//', $teacher_total_point['data_url']);
+//                        echo 'http://'.$_SERVER['HTTP_HOST'].'/teacher/'.$teacher_total_point['year'].'/'.$use[1];?><!--" target="_blank" class="tablelink">下载本年度积分表</a>-->
 
                     <?php }else{ ?>
 <a href="#" class="tablelink">审核中</a>

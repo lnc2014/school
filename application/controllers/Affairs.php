@@ -248,10 +248,8 @@ class Affairs extends BaseController{
         $document->setValue('school_class',  iconv('utf-8', 'GB2312//IGNORE', $school_class_point));
         $document->setValue('country_match',  iconv('utf-8', 'GB2312//IGNORE',  $point['country_match'] * 5 + $point['province_match']*3 + $point['city_match']));
 
-
-        $today_month = date('Y-09', time());
-        $work_year_month = $this->getMonthNum($today_month, $point['work_year']);
-        $job_title_month = $this->getMonthNum($today_month, $point['job_title']);
+        $work_year_month = $this->getMonthNum($point['work_year']);
+        $job_title_month = $this->getMonthNum($point['job_title']);
 
         $work_year_point = round(0.4 * $work_year_month, 2);
         $job_title_point = round(0.8 * $job_title_month, 2);
