@@ -75,17 +75,23 @@ class BaseController extends CI_Controller {
 	 * @param $date2
 	 * @return number
 	 */
-	public function getMonthNum($date1,$date2){
-		$date1_stamp=strtotime($date1);
-		$date2_stamp=strtotime($date2);
-		if ($date1 < $date2) {
-			$tmp = $date2;
-			$date2 = $date1;
-			$date1 = $tmp;
+	public function getMonthNum($date){
+		$last_year = date('Y', strtotime($date));
+		$now_year = date('Y', time());
+		$last_month = date('m', strtotime($date));
+		$now_month = date('m', time());
+		if($now_year > $last_year){
+			$year = bcsub($now_year, $last_year);
+		}else{
+			$year = bcsub($last_year, $now_year);
 		}
-		list($date_1['y'],$date_1['m']) = explode("-",date('Y-m',$date1_stamp));
-		list($date_2['y'],$date_2['m']) = explode("-",date('Y-m',$date2_stamp));
-		return abs($date_1['y']-$date_2['y'])*12 +$date_2['m']-$date_1['m'];
+		if($now_month > $last_month){
+			$month = bcsub($now_month, $last_month);
+		}else{
+			$month = bcsub($last_month, $now_month);
+		}
+		$left_month = bcsub($year*12, $month);
+		return $left_month;
 	}
 	/**
 	 * 求两个日期之间相差的天数

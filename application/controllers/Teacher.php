@@ -206,13 +206,11 @@ class Teacher extends BaseController{
             echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
             return;
         }
-        $today_month = date('Y-09', time());
-        $today_work = date('Y-09-01', time());
-        $work_year_month = $this->getMonthNum($today_month, $post['work_year']);
-        $city_year_month = $this->getMonthNum($today_work, $post['city_year']);
-        $school_work_days = $this->getMonthNum($today_work, $post['school_year']);
+        $work_year_month = $this->getMonthNum($post['work_year']);
+        $city_year_month = $this->getMonthNum($post['city_year']);
+        $school_work_days = $this->getMonthNum($post['school_year']);
 //        $school_work_days = $this->diffBetweenTwoDays($today_work, $post['school_year']);
-        $job_title_month = $this->getMonthNum($today_month, $post['job_title']);
+        $job_title_month = $this->getMonthNum($post['job_title']);
 
         $work_year_point = round(0.4 * $work_year_month, 2);
         $city_year_point = round(0.6 * $city_year_month, 2);
@@ -253,5 +251,63 @@ class Teacher extends BaseController{
             return;
         }
     }
+    public function update_teacher_point(){
+        $this->load->model('M_sch_point');
+        $this->load->model('Teacher_sch');
+        $all_points = $this->M_sch_point->get_list();//找出所有的积点，已经填写了的
+        $all_teachers = $this->Teacher_sch->get_list();//找出所有的积点，已经填写了的
+        foreach ($all_teachers as $all_teacher) {
+            foreach($all_points as $point){
+                if($point['teacher_id'] == $all_teacher['teacher_id']){
+                    //更新两个时间，一个为校龄，一个市龄  校龄为入校时间，市龄为二外入编时间
+                    $school_year = substr($all_teacher['school_work_time'], 0, 4).'-'.substr($all_teacher['school_work_time'], 4, 2).'-01';//校龄
+                    $city_year = substr($all_teacher['er_school_time'], 0, 4).'-'.substr($all_teacher['er_school_time'], 4, 2).'-01';//市龄
+                    $this->M_sch_point->update(array(
+                        'school_year' => $school_year,
+                        'city_year' => $city_year,
+                    ), array('teacher_id' => $all_teacher['teacher_id']));
+                }
 
+            }
+        }
+    }
+    public function sub_point(){
+        $this->load->model('M_sch_point');
+        $post = $this->M_sch_point->get_one(array(
+            'teacher_id' => 146
+        ));
+        //基本岗位积点数
+        $base_point = 0;
+        if(1 <= $post['subject'] && $post['subject'] <= 3){
+            $base_point = bcmul(bcdiv($post['subject_num'], 10, 4), 100, 2);
+        }
+        if(4 <= $post['subject'] && $post['subject'] <= 9){
+            $base_point = bcmul(bcdiv($post['subject_num'], 12, 4), 100, 2);
+        }
+        if(10 <= $post['subject'] && $post['subject'] <= 14){
+            $base_point = bcmul(bcdiv($post['subject_num'], 14, 4), 100, 2);
+        }
+
+        var_dump($base_point);exit;
+        //兼职岗位积点数
+
+        //个人资历积点数
+        $work_year_month = $this->getMonthNum($post['work_year']);//工龄
+        $city_year_month = $this->getMonthNum($post['city_year']);//市龄
+        $school_work_days = $this->getMonthNum($post['school_year']);//校龄
+        $job_title_month = $this->getMonthNum($post['job_title']);//职称
+        $work_year_point = round(0.4 * $work_year_month, 2);
+        $city_year_point = round(0.6 * $city_year_month, 2);
+        $school_work_days_point = round(0.2 * $school_work_days, 2);
+        $job_title_point = round(0.8 * $job_title_month, 2);
+
+        $postgraduate_point = 0;
+        if($post['postgraduate'] == 1){
+            $postgraduate_point = 9;
+        }elseif($post['postgraduate'] == 2){
+            $postgraduate_point = 15;
+        }
+        $person_point = round($work_year_point +  $city_year_point + $school_work_days_point + $job_title_point + $postgraduate_point, 2);
+
+    }
 }
