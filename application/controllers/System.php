@@ -452,7 +452,7 @@ class System extends BaseController{
         $datalist = $this->list_dir($save_path);
         $zip_path = ROOTPATH.'teacher'.'/zip/'.$year.'.zip';
         $filename = $zip_path; //最终生成的文件名（含路径）
-        if(!file_exists($filename)){
+            unlink($filename);
         //重新生成文件
             $zip = new ZipArchive();//使用本类，linux需开启zlib，windows需取消php_zip.dll前的注释
             if ($zip->open($filename, ZIPARCHIVE::CREATE)!==TRUE) {
@@ -464,7 +464,6 @@ class System extends BaseController{
                 }
             }
             $zip->close();//关闭
-        }
         if(!file_exists($filename)){
             exit("无法找到文件"); //即使创建，仍有可能失败。。。。
         }

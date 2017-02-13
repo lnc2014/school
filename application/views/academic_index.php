@@ -40,9 +40,8 @@
             <th>基本岗位积点</th>
             <th>兼职岗位积点</th>
             <th>奖励性积点</th>
-            <th>个人资历积点</th>
-            <th>教务处绩效得分</th>
-            <th>最后等分</th>
+            <th>个人资历积点</th>  
+            <th>总分</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -73,12 +72,7 @@
                 <td><?php  echo $point['part_time_point']; ?></td>
                 <td><?php  echo $point['award_point']; ?></td>
                 <td><?php  echo $point['person_point']; ?></td>
-                <td><?php  echo $point['per_point']; ?>
-                <?php if($point['per_point'] > 0){ ?>
-                    <a href="/index.php/academic/add_performance_point/<?php echo $point['teacher_id'];?>"  class="tablelink" style="color: blue">修改</a>
-                <?php } ?>
-                </td>
-                <td><?php  echo $point['all_point']; ?></td>
+                <td><?php  echo $point['total_point']; ?></td>
                 <td style="width: 350px">
                     <a href="/index.php/academic/show_teacher_point?point_id=<?php echo $point['id'];?>"  class="tablelink" style="color: black">查看</a>
                     <?php if($point['per_point'] == 0){ ?>

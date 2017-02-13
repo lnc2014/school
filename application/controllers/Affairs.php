@@ -159,12 +159,24 @@ class Affairs extends BaseController{
         //处理积分的问题
         $document->setValue('workload',  iconv('utf-8', 'GB2312//IGNORE', $point['workload']));
         $document->setValue('director',  iconv('utf-8', 'GB2312//IGNORE', (($point['director'] == 1 ) ? 45 : 0)));
+        $document->setValue('officer',  iconv('utf-8', 'GB2312//IGNORE', (($point['officer'] == 1 ) ? 40 : 0)));
         $document->setValue('school_leader',  iconv('utf-8', 'GB2312//IGNORE', (($point['school_leader'] == 1 ) ? 60 : 0)));
         $document->setValue('part_time_magazine',  iconv('utf-8', 'GB2312//IGNORE', (($point['part_time_magazine'] == 1 ) ? 12 : 0)) );
-        $document->setValue('academic',  iconv('utf-8', 'GB2312//IGNORE', (($point['academic'] == 1 ) ? 12 : 0)));
+        $document->setValue('academic',  iconv('utf-8', 'GB2312//IGNORE', (($point['academic'] == 1 ) ? 15 : 0)));
         $document->setValue('counselor',  iconv('utf-8', 'GB2312//IGNORE', (($point['counselor'] == 1 ) ? 5 : 0)));
         $document->setValue('satisfaction_survey',  iconv('utf-8', 'GB2312//IGNORE', (($point['satisfaction_survey'] == 1 ) ? 5 : 0)));
         $document->setValue('school_teacher',  iconv('utf-8', 'GB2312//IGNORE', (($point['school_teacher'] == 1 ) ? 30 : 0)));
+        $exam_pro = 0;
+        if($point['exam_pro'] == 1){
+            $exam_pro = 6;
+        }
+        if($point['exam_rank'] == 1){
+            $exam_pro = bcadd($exam_pro, 3, 2);
+        }elseif($point['exam_rank'] == 2){
+            $exam_pro = bcadd($exam_pro, 2, 2);
+        }elseif ($point['exam_rank'] == 3){
+           $exam_pro = bcadd($exam_pro, 1, 2);
+        } 
         $document->setValue('exam_pro',  iconv('utf-8', 'GB2312//IGNORE', (($point['exam_pro'] == 1 ) ? 6 : 0)));
         $section_leader = 0;
         if($point['section_leader'] == 1){
@@ -195,6 +207,33 @@ class Affairs extends BaseController{
         }else if($education_case == 6){
             $education_case_point = 3;
         }
+
+        $education_case2 = $point['education_case2'];
+        if($education_case2 == 1){
+            $education_case_point2 = 7;
+        }else if($education_case2 == 2){
+            $education_case_point2 = 4;
+        }else if($education_case2 == 3){
+            $education_case_point2 = 2;
+        }else if($education_case2 == 4){
+            $education_case_point2 = 11;
+        }else if($education_case2 == 5){
+            $education_case_point2 = 6;
+        }else if($education_case2 == 6){
+            $education_case_point2 = 3;
+        }
+        $paper = $point['paper'];
+        if($paper == 1){
+            $paper_point = 5;
+        }else if($paper == 2){
+            $paper_point = 10;
+        }else if($paper == 3){
+            $paper_point = 15;
+        }else if($paper == 4){
+            $paper_point = 20;
+        }
+        $education_case_point2 = bcadd($paper_point, $education_case_point2, 2);
+        $education_case_point = bcadd($education_case_point, $education_case_point2, 2);
         $document->setValue('education_case',  iconv('utf-8', 'GB2312//IGNORE', $education_case_point));
 
         $expert = 0;
@@ -219,6 +258,18 @@ class Affairs extends BaseController{
             $select_outstand_school = 20;
         }
         $document->setValue('select_outstand_school',  iconv('utf-8', 'GB2312//IGNORE', $select_outstand_school));
+        $select_outstand_year = 0;
+        $select_outstand_year_ = $point['select_outstand_year'];
+        if($select_outstand_year_ == 1){
+            $select_outstand_year = 5;
+        }else if($select_outstand_year_ == 2){
+            $select_outstand_year = 10;
+        }else if($select_outstand_year_ == 3){
+            $select_outstand_year = 15;
+        } else if($select_outstand_year_ == 4){
+            $select_outstand_year = 20;
+        }
+        $document->setValue('select_outstand_year',  iconv('utf-8', 'GB2312//IGNORE', $select_outstand_year));
         $eight_teacher_point = 0;
         if($point['eight_teacher'] == 1){
             $eight_teacher_point = bcadd($eight_teacher_point, 5, 2);
@@ -232,22 +283,26 @@ class Affairs extends BaseController{
         if($point['union'] == 1){
             $eight_teacher_point = bcadd($eight_teacher_point, 5, 2);
         }elseif($point['union'] == 2){
-            $eight_teacher_point = bcadd($eight_teacher_point, 9, 2);
+            $eight_teacher_point = bcadd($eight_teacher_point, 4, 2);
+        }
+        if($point['woman'] == 1){
+            $eight_teacher_point = bcadd($eight_teacher_point, 5, 2);
+        }elseif($point['woman'] == 2){
+            $eight_teacher_point = bcadd($eight_teacher_point, 4, 2);
         }
         $document->setValue('eight_teacher',  iconv('utf-8', 'GB2312//IGNORE', $eight_teacher_point));
         $document->setValue('substitute',  iconv('utf-8', 'GB2312//IGNORE', round($point['substitute_num'] * 0.5, 2)));
         $document->setValue('super_workload',  iconv('utf-8', 'GB2312//IGNORE', round($point['super_workload'] * 0.5, 2)));
         $document->setValue('courses',  iconv('utf-8', 'GB2312//IGNORE', round($point['courses'] * 3, 2)));
-        if($point['attendance_award'] >= 20){
+        if($point['attendance_award_num'] >= 20){
             $attendance_award_point = 0;
         }else{
-            $attendance_award_point = bcsub(20, $point['attendance_award'], 2);
+            $attendance_award_point = bcsub(20, $point['attendance_award_num'], 2);
         }
         $document->setValue('attendance_award',  iconv('utf-8', 'GB2312//IGNORE', $attendance_award_point));
         $school_class_point = $point['school_class'] * 5 + $point['city_class']*10;
         $document->setValue('school_class',  iconv('utf-8', 'GB2312//IGNORE', $school_class_point));
         $document->setValue('country_match',  iconv('utf-8', 'GB2312//IGNORE',  $point['country_match'] * 5 + $point['province_match']*3 + $point['city_match']));
-
         $work_year_month = $this->getMonthNum($point['work_year']);
         $job_title_month = $this->getMonthNum($point['job_title']);
 
@@ -255,6 +310,13 @@ class Affairs extends BaseController{
         $job_title_point = round(0.8 * $job_title_month, 2);
         $document->setValue('work_year',  iconv('utf-8', 'GB2312//IGNORE', $work_year_point));
         $document->setValue('job_title',  iconv('utf-8', 'GB2312//IGNORE', $job_title_point));
+
+        $city_year_month = $this->getMonthNum($point['city_year']);//市龄
+        $school_work_days = $this->getMonthNum($point['school_year']);//校龄
+        $city_year_point = round(0.6 * $city_year_month, 2);
+        $document->setValue('city_year_point',  iconv('utf-8', 'GB2312//IGNORE', $city_year_point));
+        $school_work_days_point = round(0.2 * $school_work_days, 2);
+        $document->setValue('school_work_days_point',  iconv('utf-8', 'GB2312//IGNORE', $school_work_days_point));
         $postgraduate = 0;
         $postgraduate_ = $point['postgraduate'];
         if($postgraduate_ == 1){
@@ -263,10 +325,16 @@ class Affairs extends BaseController{
             $postgraduate = 15;
         }
         $document->setValue('postgraduate',  iconv('utf-8', 'GB2312//IGNORE', $postgraduate));
+        $document->setValue('base_point',  iconv('utf-8', 'GB2312//IGNORE', $point['base_point']));  
+        $document->setValue('part_time_point',  iconv('utf-8', 'GB2312//IGNORE', $point['part_time_point'])); 
+        $document->setValue('award_point',  iconv('utf-8', 'GB2312//IGNORE', $point['award_point'])); 
+        $document->setValue('person_point',  iconv('utf-8', 'GB2312//IGNORE', $point['person_point'])); 
+        $document->setValue('total_point',  iconv('utf-8', 'GB2312//IGNORE', $point['total_point'])); 
         $name = date('YmdHis').rand(1000, 9999).'.doc';
         $document->save($save_path.'/'.$name);
         return $save_path.'/'.$name;
     }
+
     private function check_path($save_path){
         if (!file_exists($save_path) || !is_writable($save_path)) {
             if (!@mkdir($save_path, 0755)) {

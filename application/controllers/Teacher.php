@@ -224,14 +224,14 @@ class Teacher extends BaseController{
             $postgraduate_point = 15;
         }
         $person_point = round($work_year_point +  $city_year_point + $school_work_days_point + $job_title_point + $postgraduate_point, 2);
-        //后端计算兼职积点分数、奖励性分数
-
-
+        //后端计算兼职积点分数、奖励性分数 
         $total_point = round($post['base_point'] + $post['part_time_point'] + $post['award_point'] + $person_point, 2);
-
+        $result = $this->sub_point($post);  
         $post['teacher_id'] = $_SESSION['teacher_id'];
-        $post['total_point'] = $total_point;
-        $post['person_point'] = $person_point;
+        $post['total_point'] = $result['total_point'];
+        $post['person_point'] = $result['person_point'];
+        $post['part_time_point'] = $result['part_time_point'];
+        $post['award_point'] = $result['award_point'];
         $post['year'] = $system_year['year'];
         $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
         if($post['point_id'] >0 ){
@@ -279,7 +279,7 @@ class Teacher extends BaseController{
 //            }
         }
     }
-    public function sub_point($post){
+    public function sub_point($post){ 
         //基本岗位积点数
         $base_point = 0;
         if(1 <= $post['subject'] && $post['subject'] <= 3){
@@ -376,11 +376,12 @@ class Teacher extends BaseController{
         //奖励性积点
         $award_point = 0;
         if($post['substitute'] == 1){
-            $award_point = bcadd($award_point, bcmul($post['substitute'], 0.5, 2), 2);
-        }
+            $award_point = bcadd($award_point, bcmul($post['substitute_num'], 0.5, 2), 2);
+        } 
         if($post['satisfaction_survey'] == 1){
             $award_point = bcadd($award_point, 5, 2);
         }
+
         if($post['attendance_award'] == 1){
             $award_point = bcadd($award_point, 20, 2);
         }else{
@@ -390,49 +391,54 @@ class Teacher extends BaseController{
             }
             $award_point = bcadd($award_point, $left_attend_point, 2);
         }
+
         if($post['school_teacher'] == 1){
             $award_point = bcadd($award_point, 30, 2);
         }
+
+        if($post['finish_goal'] == 1){
+            $award_point = bcadd($award_point, 5, 2);
+        } 
         if($post['college_num'] > 0){
             $award_point = bcadd($award_point, $post['college_num']*6, 2);
-        }
+        } 
         if($post['middle_num'] > 0){
             $award_point = bcadd($award_point, $post['middle_num']*10, 2);
-        }
+        } 
         if($post['super_workload'] > 0){
             $award_point = bcadd($award_point, $post['super_workload']*0.5, 2);
-        }
+        } 
         if($post['school_class'] > 0){
             $award_point = bcadd($award_point, $post['school_class']*5, 2);
-        }
+        } 
         if($post['city_class'] > 0){
-            $award_point = bcadd($award_point, $post['school_class']*10, 2);
-        }
+            $award_point = bcadd($award_point, $post['city_class']*10, 2);
+        } 
         if($post['courses'] > 0){
             if($post['courses'] > 2){
                 $post['courses'] = 2;
             }
             $award_point = bcadd($award_point, $post['courses']*3, 2);
-        }
+        } 
         if($post['country_match'] > 0){
             $award_point = bcadd($award_point, $post['country_match']*5, 2);
-        }
+        } 
         if($post['province_match'] > 0){
             $award_point = bcadd($award_point, $post['province_match']*3, 2);
-        }
+        } 
         if($post['city_match'] > 0){
             $award_point = bcadd($award_point, $post['city_match']*1, 2);
-        }
+        } 
         if($post['exam_pro'] == 1){
             $award_point = bcadd($award_point, 3, 2);
         }elseif($post['exam_pro'] == 2){
             $award_point = bcadd($award_point, 2, 2);
         }elseif($post['exam_pro'] == 3){
             $award_point = bcadd($award_point, 1, 2);
-        }
+        } 
         if($post['exam_rank'] == 1){
             $award_point = bcadd($award_point, 6, 2);
-        }
+        } 
         if($post['outstand_sub'] == 1){
             $award_point = bcadd($award_point, 2, 2);
         }elseif($post['outstand_sub'] == 2){
@@ -446,7 +452,7 @@ class Teacher extends BaseController{
             $award_point = bcadd($award_point, 15, 2);
         }elseif($post['select_outstand_school'] == 4){
             $award_point = bcadd($award_point, 20, 2);
-        }
+        } 
         if($post['select_outstand_year'] == 1){
             $award_point = bcadd($award_point, 5, 2);
         }elseif($post['select_outstand_year'] == 2){
@@ -455,7 +461,7 @@ class Teacher extends BaseController{
             $award_point = bcadd($award_point, 15, 2);
         }elseif($post['select_outstand_year'] == 4){
             $award_point = bcadd($award_point, 20, 2);
-        }
+        } 
         if($post['select_outstand_person'] == 1){
             $award_point = bcadd($award_point, 5, 2);
         }elseif($post['select_outstand_person'] == 2){
@@ -464,14 +470,14 @@ class Teacher extends BaseController{
             $award_point = bcadd($award_point, 15, 2);
         }elseif($post['select_outstand_person'] == 4){
             $award_point = bcadd($award_point, 20, 2);
-        }
+        } 
         if($post['expert'] == 1){
             $award_point = bcadd($award_point, 10, 2);
         }elseif($post['expert'] == 2){
             $award_point = bcadd($award_point, 15, 2);
         }elseif($post['expert'] == 3){
             $award_point = bcadd($award_point, 20, 2);
-        }
+        } 
         //个人资历积点数
         $work_year_month = $this->getMonthNum($post['work_year']);//工龄
         $city_year_month = $this->getMonthNum($post['city_year']);//市龄
@@ -489,7 +495,7 @@ class Teacher extends BaseController{
             $postgraduate_point = 15;
         }
         $person_point = round($work_year_point +  $city_year_point + $school_work_days_point + $job_title_point + $postgraduate_point, 2);
-        var_dump($person_point);
+        //var_dump($person_point);
         $total_point = round($base_point + $part_time_point + $award_point + $person_point, 2);
         return array(
             'base_point' => $base_point,

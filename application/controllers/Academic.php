@@ -116,6 +116,7 @@ class Academic extends BaseController{
             show_error('academic/index', 500,'非法操作');
         }
         $per_point_list = $this->M_sch_per_teacher->get_list(array('teacher_id' => $teacher_id, 'year' => $this->data['year']));
+        var_dump($per_point_list);exit;
         if(!empty($per_point_list)){
             $this->data['is_update'] = 1;
         }
