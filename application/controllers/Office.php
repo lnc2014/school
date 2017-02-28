@@ -93,10 +93,12 @@ class Office extends BaseController{
             show_error('/school/home', 500,'积点ID不能为空!');
         }
         $this->load->model('M_sch_point');
+        $this->load->model('Teacher_sch');
         $teacher_point = $this->M_sch_point->get_one(array('id' => $point_id));
         if(empty($teacher_point)){
             show_error('/school/home', 500,'非法请求');
         }
+        $this->data['teacher'] = $this->Teacher_sch->get_one(array('teacher_id' => $teacher_point['teacher_id']), 'name');
         $this->data['teacher_point'] = $teacher_point;
         $this->data['title'] = '修改积点';
         $this->load->view('office_show_teacher_point', $this->data);

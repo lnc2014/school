@@ -71,7 +71,7 @@ class Teacher extends BaseController{
             redirect('school/login');
         }
         $this->load->model('M_sch_point');
-        $this->data['teacher_point']= $this->M_sch_point->get_list(array('id' => $_SESSION['teacher_id']));
+        $this->data['teacher_point']= $this->M_sch_point->get_list(array('teacher_id' => $_SESSION['teacher_id']));
         $this->load->view('teacher_index', $this->data);
     }
 
@@ -157,17 +157,17 @@ class Teacher extends BaseController{
     //修改教师录入的积点
     public function edit_point(){
         $point_id = $this->input->get('point_id', true);
-
         if(empty($point_id)){
             show_error('/school/home', 500,'积点ID不能为空!');
         }
         $this->load->model('M_sch_point');
-        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'id' => $point_id));
+//        $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'id' => $point_id));
+        $teacher_point = $this->M_sch_point->get_one(array('id' => $point_id));
         if(empty($teacher_point)){
             show_error('/school/home', 500,'非法请求');
         }
         $this->load->model('Teacher_sch');
-        $teacher = $this->Teacher_sch->get_one(array('teacher_id' => $_SESSION['teacher_id']));
+        $teacher = $this->Teacher_sch->get_one(array('teacher_id' => $teacher_point['teacher_id']));
         $this->data['teacher_point'] = $teacher_point;
         $this->data['teacher'] = $teacher;
         $this->data['title'] = '修改积点';
@@ -227,13 +227,13 @@ class Teacher extends BaseController{
         //后端计算兼职积点分数、奖励性分数 
         $total_point = round($post['base_point'] + $post['part_time_point'] + $post['award_point'] + $person_point, 2);
         $result = $this->sub_point($post);  
-        $post['teacher_id'] = $_SESSION['teacher_id'];
+//        $post['teacher_id'] = $_SESSION['teacher_id'];
         $post['total_point'] = $result['total_point'];
         $post['person_point'] = $result['person_point'];
         $post['part_time_point'] = $result['part_time_point'];
         $post['award_point'] = $result['award_point'];
         $post['year'] = $system_year['year'];
-        $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
+//        $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
         if($post['point_id'] >0 ){
             $id = $post['point_id'];
             unset($post['point_id']);

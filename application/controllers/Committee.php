@@ -97,6 +97,8 @@ class Committee extends BaseController{
         if(empty($teacher_point)){
             show_error('/school/home', 500,'非法请求');
         }
+        $this->load->model('Teacher_sch');
+        $this->data['teacher'] = $this->Teacher_sch->get_one(array('teacher_id' => $teacher_point['teacher_id']), 'name');
         $this->data['teacher_point'] = $teacher_point;
         $this->data['title'] = '修改积点';
         $this->load->view('committee_show_teacher_point', $this->data);

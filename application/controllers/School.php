@@ -148,6 +148,7 @@ class School extends BaseController {
 	 * 退出登录
 	 */
 	public function login_out(){
+		session_unset();
 		if(session_destroy()){
 			redirect('school/login');
 		}
