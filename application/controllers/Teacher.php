@@ -226,14 +226,18 @@ class Teacher extends BaseController{
         $person_point = round($work_year_point +  $city_year_point + $school_work_days_point + $job_title_point + $postgraduate_point, 2);
         //后端计算兼职积点分数、奖励性分数 
         $total_point = round($post['base_point'] + $post['part_time_point'] + $post['award_point'] + $person_point, 2);
-        $result = $this->sub_point($post);  
-//        $post['teacher_id'] = $_SESSION['teacher_id'];
+        $result = $this->sub_point($post);
+        if($post['teacher_id'] == 0){
+            $post['teacher_id'] = $_SESSION['teacher_id'];
+        }
         $post['total_point'] = $result['total_point'];
         $post['person_point'] = $result['person_point'];
         $post['part_time_point'] = $result['part_time_point'];
         $post['award_point'] = $result['award_point'];
         $post['year'] = $system_year['year'];
-//        $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
+        if($post['status'] < 1){
+            $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
+        } 
         if($post['point_id'] >0 ){
             $id = $post['point_id'];
             unset($post['point_id']);
