@@ -96,7 +96,7 @@
                                         <input type="text" placeholder="每周上课节数" id="subject_num" value="<?php echo $teacher_point['subject_num']; ?>" class="input_text" style="position:relative;float:left;width: 82px;margin-top: -50px;margin-left: 300px;z-index: 9999" />
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>语文、数学、英语10节/周；物理、化学、生物、政治、历史、地理12节/周；体育、艺术、通用技术、信息技术、心理健康14节/周。高三高考科目10节/周，高三高考综合科目两个班为满工作量。
+                                                <b style="color: red">积点说明：</b>语文、数学、英语10节/周；物理、化学、生物、政治、历史、地理12节/周；体育、艺术、通用技术、信息技术、心理健康14节/周。高三高考科目10节/周，高三高考综合科目两个班为满工作量。<b style="color:red">高三的老师注意，如果是满工作量，请按最大的值填写，否则将不会按满工作量积分。</b>
                                             </div>
                                         </div>
                                     </div>

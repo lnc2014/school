@@ -78,7 +78,7 @@
                     <?php if($point['per_point'] == 0){ ?>
 <!--                        <a href="/index.php/academic/add_performance_point/--><?php //echo $point['teacher_id'];?><!--"  class="tablelink" style="color: blue">添加教务处绩效得分</a>-->
                     <?php } ?>
-                    <a href="/index.php/teacher/edit_point?point_id=<?php echo $point['id'];?>"  class="tablelink" style="color: blue">修改</a>
+<!--                    <a href="/index.php/teacher/edit_point?point_id=--><?php //echo $point['id'];?><!--"  class="tablelink" style="color: blue">修改</a>-->
                     <a href="#" id="check" class="tablelink" style="color: red" onclick="pass(<?php echo $point['id'];?>)">通过审核</a>
                     <a href="#" onclick="no_pass(<?php echo $point['id'];?>)" class="tablelink" style="color: red">不通过审核</a>
                 </td>

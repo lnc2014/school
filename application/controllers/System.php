@@ -87,6 +87,22 @@ class System extends BaseController{
         $this->data['teacher_id'] = $teacher_id;
         $this->load->view('system_add_permission', $this->data);
     }
+    /**
+     * 改变老师的积分状态
+     */
+    public function change_point_status($point_id){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        if(empty($point_id)){
+            show_error('/system/index',500,'非法访问');
+
+        }
+        $this->data['title'] = '增加权限';
+        $this->data['point_id'] = $point_id;
+        $this->load->view('system_change_point_status', $this->data);
+    }
     public function save_permission_info(){
         //检验是不是登录
         if(!$this->check_login()){
@@ -101,6 +117,31 @@ class System extends BaseController{
         $this->load->model('Teacher_sch');
         $department = trim($post['permission'], ',');
         $update = $this->Teacher_sch->update(array('department' => $department), array('teacher_id' => $teacher_id));
+        if($update){
+            echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
+            return;
+        }else{
+            echo $this->apiReturn('0002', new stdClass(), $this->response_msg["0002"]);
+            return;
+        }
+    }
+    public function save_status(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $post = $this->input->post(null , true);
+        if(empty($post)){
+            echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0003"]);
+            return;
+        }
+        $point_id = $post['point_id'];
+        if(empty($point_id) || $point_id < 1){
+            echo $this->apiReturn('0003', new stdClass(), $this->response_msg["0002"]);
+            return;
+        }
+        $this->load->model('M_sch_point');
+        $update = $this->M_sch_point->update(array('status' => $post['status']), array('id' => $point_id));
         if($update){
             echo $this->apiReturn('0000', new stdClass(), $this->response_msg["0000"]);
             return;
@@ -458,9 +499,10 @@ class System extends BaseController{
             if ($zip->open($filename, ZIPARCHIVE::CREATE)!==TRUE) {
                 exit('无法打开文件，或者文件创建失败');
             }
-            foreach( $datalist as $val){
-                if(file_exists($val)){
-                    $zip->addFile( $val, basename($val));//第二个参数是放在压缩包中的文件名称，如果文件可能会有重复，就需要注意一下
+            foreach($datalist as $val){
+                if(file_exists(iconv('UTF-8','GB2312', $val))){
+//                    $zip->addFile( $val, basename($val));//非中文使用这个
+                    $zip->addFromString($this->get_basename($val), file_get_contents(iconv('utf-8', 'gbk//ignore', $val)));//中文使用这个
                 }
             }
             $zip->close();//关闭
@@ -475,12 +517,16 @@ class System extends BaseController{
         header('Content-Length: '. filesize($filename)); //告诉浏览器，文件大小
         @readfile($filename);
     }
+    private function get_basename($filename){
+        return preg_replace('/^.+[\\\\\\/]/', '', $filename);
+    }
     //获取文件列表
     private function list_dir($dir){
         $result = array();
         if (is_dir($dir)){
             $file_dir = scandir($dir);
             foreach($file_dir as $file){
+                $file =  iconv('gbk', 'utf-8', $file) ;
                 if ($file == '.' || $file == '..'){
                     continue;
                 }
@@ -494,6 +540,54 @@ class System extends BaseController{
         }
         return $result;
     }
-
+    /**
+     * 老师填写积点的管理功能
+     */
+    public function teacher_point(){
+        //检验是不是登录
+        if(!$this->check_login()){
+            redirect('school/login');
+        }
+        $year = $this->input->get('year', true);
+        $status = $this->input->get('status', true);
+        $where = "";
+        if(!empty($year)){
+            $where = $where."and a.`year` =".$year;
+        }
+        if(!empty($status)){
+            $where = $where." and a.`status` =".$status;
+        }
+        $where = trim($where, ' ');
+        $where = trim($where, 'and');
+        $page = $this->input->get('page', true);
+        if(empty($page)){
+            $page = 1;
+        }
+        $page_size = 20;//每页十条记录
+        if(empty($page) || $page == 1){
+            $page = 1;
+            $limit = $page_size;
+            $offset = 0;
+        }else{
+            $limit = $page_size;
+            $offset =  ($page-1)*$page_size;
+        }
+        $this->load->model('Admin');
+        $teacher_list = $this->Admin->find_all_teacher_point($limit, $offset, $where);
+        $total = count($teacher_list);
+        $all_teachers = $this->Admin->find_all_teacher_point();
+        if(empty($year) && empty($status)){
+            $total = count($all_teachers);
+        }
+        $this->data['all_teachers'] = $total;//总记录
+        $this->data['pages']  = ceil($this->data['all_teachers']/$page_size);//前台展示的页数
+        $this->data['teacher_list']  = $teacher_list;
+        $this->data['current_page']  = $page;
+        $this->data['year']  = $year;
+        $this->data['status']  = $status;
+        $this->data['title'] = '系统设置';
+        $this->data['excel_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/upload/excel/批量导入模板.xls';
+        $this->load->view('system_teacher_point', $this->data);
+    }
 
 }
