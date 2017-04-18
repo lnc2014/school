@@ -23,8 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = (ENVIRONMENT == "production") ? "http://school.lnctime.com" :'http://school.me';
-
+$config['base_url'] ='http://192.168.252.13:8888';
 /*
 |--------------------------------------------------------------------------
 | Index File

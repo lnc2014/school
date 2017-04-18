@@ -258,17 +258,18 @@ class Teacher extends BaseController{
     public function update_teacher_point(){
         $this->load->model('M_sch_point');
         $this->load->model('Teacher_sch');
-        $all_points = $this->M_sch_point->get_list();//找出所有的积点，已经填写了的
+        $all_points = $this->M_sch_point->get_list(array('teacher_id' => 121));//找出所有的积点，已经填写了的
         $all_teachers = $this->Teacher_sch->get_list();//找出所有的积点，已经填写了的
         foreach ($all_points as $all_teacher) {
             $result = $this->sub_point($all_teacher);
-            $this->M_sch_point->update(array(
-                'base_point' => $result['base_point'],
-                'part_time_point' => $result['part_time_point'],
-                'award_point' => $result['award_point'],
-                'person_point' => $result['person_point'],
-                'total_point' => $result['total_point'],
-            ), array('teacher_id' => $all_teacher['teacher_id']));
+            var_dump($result);
+//            $this->M_sch_point->update(array(
+//                'base_point' => $result['base_point'],
+//                'part_time_point' => $result['part_time_point'],
+//                'award_point' => $result['award_point'],
+//                'person_point' => $result['person_point'],
+//                'total_point' => $result['total_point'],
+//            ), array('teacher_id' => $all_teacher['teacher_id']));
 
 //            foreach($all_points as $point){
 //                if($point['teacher_id'] == $all_teacher['teacher_id']){
@@ -283,7 +284,7 @@ class Teacher extends BaseController{
 //            }
         }
     }
-    public function sub_point($post){ 
+    public function sub_point($post){
         //基本岗位积点数
         $base_point = 0;
         if(1 <= $post['subject'] && $post['subject'] <= 3){
