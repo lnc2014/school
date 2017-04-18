@@ -78,8 +78,10 @@ class BaseController extends CI_Controller {
 	public function getMonthNum($date){
 		$last_year = date('Y', strtotime($date));
 		$now_year = date('Y', time());
+		$now_year = 2016;
 		$last_month = date('m', strtotime($date));
 		$now_month = date('m', time());
+		$now_month = 12;
 		if($now_year > $last_year){
 			$year = bcsub($now_year, $last_year);
 		}else{

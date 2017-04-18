@@ -255,33 +255,49 @@ class Teacher extends BaseController{
             return;
         }
     }
+    /**
+     * 更新所有老师的个人积点信息
+     */
     public function update_teacher_point(){
         $this->load->model('M_sch_point');
         $this->load->model('Teacher_sch');
-        $all_points = $this->M_sch_point->get_list(array('teacher_id' => 121));//找出所有的积点，已经填写了的
-        $all_teachers = $this->Teacher_sch->get_list();//找出所有的积点，已经填写了的
+        $all_points = $this->M_sch_point->get_list();//找出所有的积点，已经填写了的
+        $all_teachers = $this->Teacher_sch->get_list();//找出所有的老师基本资料
+        //找出所有填过的积点，并且把所有的老师的基本资料都查找出来
         foreach ($all_points as $all_teacher) {
-            $result = $this->sub_point($all_teacher);
-            var_dump($result);
-//            $this->M_sch_point->update(array(
-//                'base_point' => $result['base_point'],
-//                'part_time_point' => $result['part_time_point'],
-//                'award_point' => $result['award_point'],
-//                'person_point' => $result['person_point'],
-//                'total_point' => $result['total_point'],
-//            ), array('teacher_id' => $all_teacher['teacher_id']));
-
-//            foreach($all_points as $point){
-//                if($point['teacher_id'] == $all_teacher['teacher_id']){
-//                    //更新两个时间，一个为校龄，一个市龄  校龄为入校时间，市龄为二外入编时间
-//                    $school_year = substr($all_teacher['school_work_time'], 0, 4).'-'.substr($all_teacher['school_work_time'], 4, 2).'-01';//校龄
-//                    $city_year = substr($all_teacher['er_school_time'], 0, 4).'-'.substr($all_teacher['er_school_time'], 4, 2).'-01';//市龄
-//                    $this->M_sch_point->update(array(
-//                        'school_year' => $school_year,
-//                        'city_year' => $city_year,
-//                    ), array('teacher_id' => $all_teacher['teacher_id']));
-//                }
-//            }
+            foreach($all_teachers as $value){
+                if($value['teacher_id'] == $all_teacher['teacher_id']){
+                    //更新两个时间，一个为校龄，一个市龄  校龄为入校时间，市龄为二外入编时间
+//                    qua_time 自取得拟竞聘的专业技术职称资格时间计起（以证书为准），每月0.8分。日期job_title
+//                    er_school_time 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），每月0.6分。精确到日期city_year
+//                    school_work_time 加入学校日期，校龄分每月加0.5 school_year
+//                    work_time 自竞聘人员参加工作之月计起（以人事档案的第一份履历表为准），每月0.4分。研究生工龄从上研究生之日进行计算。开始工作的日期。 work_year
+                    $school_year = substr($value['school_work_time'], 0, 4).'-'.substr($value['school_work_time'], 4, 2).'-01';//校龄
+                    $city_year = substr($value['er_school_time'], 0, 4).'-'.substr($value['er_school_time'], 4, 2).'-01';//市龄
+                    $job_title = substr($value['qua_time'], 0, 4).'-'.substr($value['qua_time'], 4, 2).'-01';//职称资格
+                    $work_year = substr($value['qua_time'], 0, 4).'-'.substr($value['qua_time'], 4, 2).'-01';//职称资格
+                    if($value['qua_time'] == '无'){
+                        $job_title = 0;
+                    }
+                    $this->M_sch_point->update(array(
+                        'school_year' => $school_year,
+                        'city_year' => $city_year,
+                        'job_title' => $job_title,
+                        'work_year' => $work_year
+                    ), array('teacher_id' => $all_teacher['teacher_id']));
+                }
+            } 
+        }
+        foreach ($all_points as $all_point) {
+            //重新计算积点
+            $result = $this->sub_point($all_point);
+            $this->M_sch_point->update(array(
+                'base_point' => $result['base_point'],
+                'part_time_point' => $result['part_time_point'],
+                'award_point' => $result['award_point'],
+                'person_point' => $result['person_point'],
+                'total_point' => $result['total_point'],
+            ), array('teacher_id' => $all_point['teacher_id']));
         }
     }
     public function sub_point($post){
@@ -488,6 +504,9 @@ class Teacher extends BaseController{
         $city_year_month = $this->getMonthNum($post['city_year']);//市龄
         $school_work_days = $this->getMonthNum($post['school_year']);//校龄
         $job_title_month = $this->getMonthNum($post['job_title']);//职称
+        if($post['job_title'] == '0000-00-00'){
+            $job_title_month = 0;
+        }
         $work_year_point = round(0.4 * $work_year_month, 2);
         $city_year_point = round(0.6 * $city_year_month, 2);
         $school_work_days_point = round(0.2 * $school_work_days, 2);
