@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Description 办公室首页
  * Author: LNC
@@ -89,7 +89,7 @@
         <ul class="paginList">
             <?php
             for($i=1;$i<=$pages;$i++){ ?>
-                <li class="paginItem <?php if($i == $current_page){ echo 'current'; } ?>"><a href="/index.php/office/index?page=<?php echo $i?>"><?php echo $i;?></a></li>
+                <li class="paginItem <?php if($i == $current_page){ echo 'current'; } ?>"><a href="/index.php/affairs/index?page=<?php echo $i?>"><?php echo $i;?></a></li>
             <?php }
             ?>
         </ul>

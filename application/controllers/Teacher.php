@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Description：教师管理控制器
  * Author: LNC
@@ -275,7 +275,7 @@ class Teacher extends BaseController{
                     $school_year = substr($value['school_work_time'], 0, 4).'-'.substr($value['school_work_time'], 4, 2).'-01';//校龄
                     $city_year = substr($value['er_school_time'], 0, 4).'-'.substr($value['er_school_time'], 4, 2).'-01';//市龄
                     $job_title = substr($value['qua_time'], 0, 4).'-'.substr($value['qua_time'], 4, 2).'-01';//职称资格
-                    $work_year = substr($value['qua_time'], 0, 4).'-'.substr($value['qua_time'], 4, 2).'-01';//职称资格
+                    $work_year = substr($value['work_time'], 0, 4).'-'.substr($value['work_time'], 4, 2).'-01';//工龄 
                     if($value['qua_time'] == '无'){
                         $job_title = 0;
                     }

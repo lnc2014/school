@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -75,13 +75,13 @@ class BaseController extends CI_Controller {
 	 * @param $date2
 	 * @return number
 	 */
-	public function getMonthNum($date){
-		$last_year = date('Y', strtotime($date));
+	public function getMonthNum($date){ 
+		$last_year = date('Y', strtotime($date)); 
 		$now_year = date('Y', time());
-		$now_year = 2016;
+		$now_year = 2017;
 		$last_month = date('m', strtotime($date));
 		$now_month = date('m', time());
-		$now_month = 12;
+		$now_month = 05;
 		if($now_year > $last_year){
 			$year = bcsub($now_year, $last_year);
 		}else{
@@ -89,10 +89,11 @@ class BaseController extends CI_Controller {
 		}
 		if($now_month > $last_month){
 			$month = bcsub($now_month, $last_month);
+			$left_month = bcadd($year*12, $month); 
 		}else{
 			$month = bcsub($last_month, $now_month);
-		}
-		$left_month = bcsub($year*12, $month);
+			$left_month = bcsub($year*12, $month); 
+		}   
 		return $left_month;
 	}
 	/**

@@ -62,11 +62,12 @@
             <tr>
                 <td><?php  echo $teacher['id']; ?></td>
                 <td><?php  echo $teacher['year']; ?></td>
-                <td><?php  echo $teacher['name']; ?></td>
+<td><?php  echo $teacher['name']; ?></td>
                 <td><?php  echo $teacher['base_point']; ?></td>
                 <td><?php  echo $teacher['part_time_point']; ?></td>
                 <td><?php  echo $teacher['award_point']; ?></td>
                 <td><?php  echo $teacher['person_point']; ?></td>
+                
                 <td><?php  echo $teacher['total_point']; ?></td>
                 <td><?php
                     if($teacher['status'] == 1) {

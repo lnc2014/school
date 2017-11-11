@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Description：系统设置控制器
  * Author: LNC
@@ -543,7 +543,7 @@ class System extends BaseController{
     /**
      * 老师填写积点的管理功能
      */
-    public function teacher_point(){
+    public function teacher_point(){ 
         //检验是不是登录
         if(!$this->check_login()){
             redirect('school/login');
@@ -586,7 +586,7 @@ class System extends BaseController{
         $this->data['year']  = $year;
         $this->data['status']  = $status;
         $this->data['title'] = '系统设置';
-        $this->data['excel_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/upload/excel/批量导入模板.xls';
+        $this->data['excel_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/upload/excel/批量导入模板.xls'; 
         $this->load->view('system_teacher_point', $this->data);
     }
 

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Description：学生处管理控制器
  * Author: LNC
@@ -367,7 +367,6 @@ class Affairs extends BaseController{
         if($point['job_title'] == '0000-00-00'){
             $job_title_month = 0;
         }
-
         $work_year_point = round(0.4 * $work_year_month, 2);
         $job_title_point = round(0.8 * $job_title_month, 2);
         $document->setValue('work_year',  iconv('utf-8', 'GB2312//IGNORE', $work_year_point));
