@@ -25,7 +25,10 @@ class M_sch_point extends BaseModel{
     public function get_all_point($status, $year, $limit = '', $offset = ''){
         $this->db->select()->from('sch_point AS p , sch_teacher AS t');
         $this->db->where('p.`status`', $status);
-        $this->db->where('p.`year`', $year);
+        $this->db->where(array(
+            'p.last_year' => $year['last_year'],
+            'p.first_year' => $year['first_year'],
+        ));
         $this->db->where('p.`teacher_id` = t.`teacher_id`');
         if(!empty($where)){
             $this->db->where($where);

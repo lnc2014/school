@@ -31,7 +31,7 @@ class Admin extends BaseModel{
         return $query->result_array();
     }
     public function find_all_teacher_point($limit = '', $offset = '', $where = ''){
-        $this->db->select('a.id,a.`base_point`,a.year,a.status, a.part_time_point, a.award_point,a.person_point,a.total_point, t.name')->from();
+        $this->db->select('a.id,a.`base_point`,a.first_year,a.last_year,a.status, a.part_time_point, a.award_point,a.person_point,a.total_point, t.name')->from();
         $this->db->where('a.teacher_id = t.teacher_id');
         $this->db->order_by('a.id', 'DESC');
         if(!empty($where)){

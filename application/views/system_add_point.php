@@ -47,11 +47,15 @@
                  <pre>说明：新增年度积分有填写积点有效期，逾期将不可以填写。</pre>
             </div>
             <ul class="forminfo">
-                <li><label>年度<b>*</b></label><input  id="year" class="dfinput" type="text"  value="<?php echo $point['year'] ?>" onClick="WdatePicker({dateFmt:'yyyy'})" style="width:200px;"/></li>
+                <li><label>学年<b>*</b></label>
+                    <input  id="first_year" class="dfinput" type="text"  value="<?php echo $point['first_year'] ?>" onClick="WdatePicker({dateFmt:'yyyy'})" style="width:100px;"/>-
+                    <input  id="last_year" class="dfinput" type="text"  value="<?php echo $point['last_year'] ?>" onClick="WdatePicker({dateFmt:'yyyy'})" style="width:100px;"/>
+                    学年
+                </li>
                 <li><label>填写开始时间<b>*</b></label><input id="start_time" type="text" class="dfinput" value="<?php echo $point['start_time'] ?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" maxlength="11" style="width:200px;"/></li>
                 <li><label>填写截止时间<b>*</b></label><input id="end_time" type="text" class="dfinput" value="<?php echo $point['end_time'] ?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" maxlength="11" style="width:200px;"/></li>
                 <li><label>积点填写说明<b>*</b></label>
-                    <textarea id="description" name="" cols="" rows="" class="textinput"></textarea>
+                    <textarea id="description" name="" cols="" rows="" class="textinput"><?php echo $point['description'] ?></textarea>
                 </li>
 
                 <li><label>&nbsp;</label><input name="" type="button" class="btn" value="提交" onclick="submit2()"></li>
@@ -62,14 +66,19 @@
     <script type="text/javascript" src="/template/js/DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         function submit2(){
-            var year = $('#year').val();
+            var first_year = $('#first_year').val();
+            var last_year = $('#last_year').val();
             var is_update = $('#is_update').val();//判断是不是更新
             var start_time = $('#start_time').val();
             var end_time = $('#end_time').val();
             var description = $('#description').val();
 
-            if(!year){
+            if(!last_year || !first_year){
                 alert('年度不能为空！');
+                return;
+            }
+            if(first_year > last_year){
+                alert('开始学年不能大于结束学年！');
                 return;
             }
             if(!start_time){
@@ -89,7 +98,8 @@
                 url: "/index.php/system/add_point_by_ajax",
                 data: {
                     is_update : is_update,
-                    year : year,
+                    first_year : first_year,
+                    last_year : last_year,
                     start_time : start_time,
                     end_time : end_time,
                     description : description

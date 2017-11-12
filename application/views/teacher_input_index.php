@@ -37,7 +37,7 @@
         <table class="tablelist">
             <thead>
             <tr>
-                <th>年度<i class="sort"><img src="/template/images/px.gif" /></i></th>
+                <th>学年<i class="sort"><img src="/template/images/px.gif" /></i></th>
                 <th>基本岗位积点</th>
                 <th>兼职岗位积点</th>
                 <th>奖励性积点</th>
@@ -50,7 +50,7 @@
             <tbody>
             <tr>
                 <input type="hidden" id="point_id" value="<?php echo $teacher_total_point['id']?>">
-                <td><?php echo $teacher_total_point['year']?></td>
+                <td><?php echo $teacher_total_point['first_year'].'-'.$teacher_total_point['last_year']?></td>
                 <td><?php echo $teacher_total_point['base_point']?></td>
                 <td><?php echo $teacher_total_point['part_time_point']?></td>
                 <td><?php echo $teacher_total_point['award_point']?></td>

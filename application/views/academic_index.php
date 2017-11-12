@@ -51,7 +51,7 @@
         foreach($first_teacher_check as $point){ ?>
             <tr>
                 <input id="point_id" type="hidden" value="<?php echo $point['id']; ?>">
-                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['first_year'].'-'.$point['last_year']; ?></td>
                 <td><?php  echo $point['name']; ?></td>
 <!--                <td>--><?php
 //                    if($point['subject'] == 1){

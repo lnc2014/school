@@ -27,9 +27,13 @@
     <div class="xline"></div>
     <div id="tab2" class="tabson" style="display: block;">
         <ul class="seachform">
-            <li><label>积点年度</label><input  id="year" class="dfinput" type="text"  onClick="WdatePicker({dateFmt:'yyyy'})" style="width:60px;"/></li>
+            <li><label>积点学年</label><input  id="first_year" class="dfinput" type="text"  onClick="WdatePicker({dateFmt:'yyyy'})" style="width:60px;"/>
+            -<input  id="last_year" class="dfinput" type="text"  onClick="WdatePicker({dateFmt:'yyyy'})" style="width:60px;"/>
+            </li>
+            <li><label>老师名字</label><input  id="teacher_name" class="dfinput" type="text" style="width:100px;"/></li>
             <li><label>审核状态</label>
             <select id="status">
+                <option <?php if($status == 1){ echo 'selected';}?> value="0">全部</option>
                 <option <?php if($status == 1){ echo 'selected';}?> value="1">待审核，尚未提交</option>
                 <option <?php if($status == 2){ echo 'selected';}?> value="2">办公室审核中</option>
                 <option <?php if($status == 3){ echo 'selected';}?> value="3">教务处审核中</option>
@@ -61,7 +65,7 @@
         foreach($teacher_list as $teacher){ ?>
             <tr>
                 <td><?php  echo $teacher['id']; ?></td>
-                <td><?php  echo $teacher['year']; ?></td>
+                <td><?php  echo $teacher['first_year'].'-'.$teacher['last_year']; ?></td>
 <td><?php  echo $teacher['name']; ?></td>
                 <td><?php  echo $teacher['base_point']; ?></td>
                 <td><?php  echo $teacher['part_time_point']; ?></td>
@@ -137,9 +141,11 @@
         }
     }
     function search_data(){
-        var year = $("#year").val();
+        var first_year = $("#first_year").val();
+        var last_year = $("#last_year").val();
         var status = $("#status").val();
-        window.location = '/index.php/system/teacher_point?year='+ year + '&status='+status;
+        var teacher_name = $("#teacher_name").val();
+        window.location = '/index.php/system/teacher_point?first_year='+ first_year + '&status='+status+'&last_year='+last_year+'&teacher_name='+teacher_name;
     }
      $(function() {
         upload();

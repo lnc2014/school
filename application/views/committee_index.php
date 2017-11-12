@@ -40,7 +40,6 @@
             <th>兼职岗位积点</th>
             <th>奖励性积点</th>
             <th>个人资历积点</th>
-            <th>教务处绩效得分</th>
             <th>最后等分</th>
             <th>操作</th>
         </tr>
@@ -49,7 +48,7 @@
         <?php
         foreach($teacher_check as $point){ ?>
             <tr>
-                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['first_year'].'-'.$point['last_year']; ?></td>
                 <td><?php  echo $point['name']; ?></td>
                 <!--                <td>--><?php
                 //                    if($point['subject'] == 1){
@@ -70,8 +69,7 @@
                 <td><?php  echo $point['part_time_point']; ?></td>
                 <td><?php  echo $point['award_point']; ?></td>
                 <td><?php  echo $point['person_point']; ?></td>
-                <td><?php  echo $point['per_point']; ?></td>
-                <td><?php  echo $point['all_point']; ?></td>
+                <td><?php  echo $point['total_point']; ?></td>
                 <td style="width: 350px">
                     <a href="/index.php/committee/show_teacher_point?point_id=<?php echo $point['id'];?>"  class="tablelink" style="color: black">查看</a>
 <!--                    <a href="/index.php/teacher/edit_point?point_id=--><?php //echo $point['id'];?><!--"  class="tablelink" style="color: blue">修改</a>-->

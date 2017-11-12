@@ -44,7 +44,7 @@
         foreach($point_list as $point){ ?>
             <tr>
                 <td><?php  echo $point['id']; ?></td>
-                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['first_year'].'-'.$point['last_year'].'学年'; ?></td>
                 <td><?php  echo $point['description']; ?></td>
                 <td><?php  echo $point['start_time']; ?></td>
                 <td><?php  echo $point['end_time']; ?></td>

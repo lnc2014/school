@@ -112,16 +112,19 @@ class Affairs extends BaseController{
         $this->load->view('affairs_show_teacher_point', $this->data);
     }
     public function save_data_to_word($teacher, $point){
+        $this->load->model('M_sch_point');
+        $this->load->model('Teacher_sch');
+        $point = $this->M_sch_point->get_one(array('id' => 146));
+        $teacher = $this->Teacher_sch->get_one(array('teacher_id' => $point['teacher_id']));
         if(empty($teacher) || empty($point)){
             return false;
         }
         $this->load->library('PHPWord');
         $PHPWord = new PHPWord();
         $year = $this->get_fill_point_year();
-        $save_path = ROOTPATH.'teacher'.'/'.$year.'/'.date('Y-m-d');
+        $save_path = ROOTPATH.'teacher'.'/'.$year['last_year'].'/'.date('Y-m-d');
         $this->check_path($save_path);
         $document = $PHPWord->loadTemplate(ROOTPATH.'teacher/teacher2.docx');
-
         $document->setValue('now_level_info',  iconv('utf-8', 'GB2312//IGNORE', $teacher['now_level_info']));
         $document->setValue('qua_name',  iconv('utf-8', 'GB2312//IGNORE', $teacher['qua_name']));
         $document->setValue('name',  iconv('utf-8', 'GB2312//IGNORE', $teacher['name']));
@@ -398,7 +401,7 @@ class Affairs extends BaseController{
 
     private function check_path($save_path){
         if (!file_exists($save_path) || !is_writable($save_path)) {
-            if (!@mkdir($save_path, 0755)) {
+            if (!mkdir(iconv("UTF-8", "GBK", $save_path),0777,true)) {
                 return false;
             }
             return true;

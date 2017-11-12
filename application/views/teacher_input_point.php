@@ -215,12 +215,12 @@
                                                 <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['part_time_magazine'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <div id="part_time_magazine_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['part_time_magazine_data'])){ echo '重新上传';}else{ echo '上传兼职证明文件';}?>
-                                                        </div>
-                                                        <?php if(!empty($teacher_point['part_time_magazine_data'])){
-                                                            echo '<a target="_blank" id="part_time_magazine_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['part_time_magazine_data'].'">点击预览</a>';
-                                                        }?>
-                                                        <input type="hidden" id="part_time_magazine_upload_data" value="<?php echo $teacher_point['part_time_magazine_data'];?>"/>
+<!--                                                        <div id="part_time_magazine_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;">--><?php //if(!empty($teacher_point['part_time_magazine_data'])){ echo '重新上传';}else{ echo '上传兼职证明文件';}?>
+<!--                                                        </div>-->
+<!--                                                        --><?php //if(!empty($teacher_point['part_time_magazine_data'])){
+//                                                            echo '<a target="_blank" id="part_time_magazine_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['part_time_magazine_data'].'">点击预览</a>';
+//                                                        }?>
+<!--                                                        <input type="hidden" id="part_time_magazine_upload_data" value="--><?php //echo $teacher_point['part_time_magazine_data'];?><!--"/>-->
 
                                                     </div>
                                                 </div>
@@ -280,7 +280,7 @@
                                         <select class="select2" id="education_case" style="width: 250px">
                                             <option value="0"  selected>不是</option>
                                             <option value="1" <?php if($teacher_point['education_case'] == 1){ echo 'selected';}?>>在研的校级课题主持人</option>
-                                            <option value="2" <?php if($teacher_point['education_case'] == 2){ echo 'selected';}?>>在研的校级课题成员排序前三位</option>
+                                            <option value="2" <?php if($teacher_point['education_case'] == 2){ echo 'selected';}?>>在研的校级课题执笔人</option>
                                             <option value="3" <?php if($teacher_point['education_case'] == 3){ echo 'selected';}?>>在研的校级课题其他成员</option>
                                             <option value="4" <?php if($teacher_point['education_case'] == 4){ echo 'selected';}?>>在研的市级及市级以上课题主持人</option>
                                             <option value="5" <?php if($teacher_point['education_case'] == 5){ echo 'selected';}?>>在研的市级及市级以上课题成员排序前三位</option>
@@ -289,7 +289,7 @@
                                         <select class="select2" id="education_case2" style="width: 250px">
                                             <option value="0"  selected>不是</option>
                                             <option value="1" <?php if($teacher_point['education_case2'] == 1){ echo 'selected';}?>>在研的校级课题主持人</option>
-                                            <option value="2" <?php if($teacher_point['education_case2'] == 2){ echo 'selected';}?>>在研的校级课题成员排序前三位</option>
+                                            <option value="2" <?php if($teacher_point['education_case2'] == 2){ echo 'selected';}?>>在研的校级课题执笔人</option>
                                             <option value="3" <?php if($teacher_point['education_case2'] == 3){ echo 'selected';}?>>在研的校级课题其他成员</option>
                                             <option value="4" <?php if($teacher_point['education_case2'] == 4){ echo 'selected';}?>>在研的市级及市级以上课题主持人</option>
                                             <option value="5" <?php if($teacher_point['education_case2'] == 5){ echo 'selected';}?>>在研的市级及市级以上课题成员排序前三位</option>
@@ -297,7 +297,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>在研的校级课题：主持人7，成员排序前三位4，其他成员2；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。校，市、省、全国教育行政部门或直属学会立项的课题，（含子课题）。不同级别的相同课题，按一个计，取最高分。每人每学年最多计两个课题
+                                                <b style="color: red">积点说明：</b>在研的校级课题：主持人7，执笔人4，其他成员2，没有成员排序；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。校，市、省、全国教育行政部门或直属学会立项的课题，（含子课题）。不同级别的相同课题，按一个计，取最高分。每人每学年最多计两个课题
                                             </div>
                                         </div>
                                     </div>
@@ -315,7 +315,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>校级5点、市级10点、省级15点、国家级20点。
+                                                <b style="color: red">积点说明：</b>校级5点、市级10点、省级15点、国家级20点。只认定第一作者，获奖论文也算。
                                             </div>
                                         </div>
                                     </div>
@@ -506,12 +506,12 @@
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
                                                         <input type="text" placeholder="代课节数" class="input_text" style="width: 82px;" id="substitute_num" value="<?php if($teacher_point['substitute_num'] > 0){echo $teacher_point['substitute_num'];} ?>" />
-                                                        <input type="hidden" id="substitute_upload_data" value="<?php echo $teacher_point['substitute_data'];?>"/>
-                                                        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 150px;"><?php if(!empty($teacher_point['substitute_data'])){ echo '重新上传';}else{ echo '上传代课证明文件';}?>
-                                                        </div>
-                                                        <?php if(!empty($teacher_point['substitute_data'])){
-                                                            echo '<a target="_blank" id="substitute_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['substitute_data'].'">点击预览</a>';
-                                                        }?>
+<!--                                                        <input type="hidden" id="substitute_upload_data" value="--><?php //echo $teacher_point['substitute_data'];?><!--"/>-->
+<!--                                                        <div id="substitute_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 150px;">--><?php //if(!empty($teacher_point['substitute_data'])){ echo '重新上传';}else{ echo '上传代课证明文件';}?>
+<!--                                                        </div>-->
+<!--                                                        --><?php //if(!empty($teacher_point['substitute_data'])){
+//                                                            echo '<a target="_blank" id="substitute_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['substitute_data'].'">点击预览</a>';
+//                                                        }?>
 
                                                     </div>
                                                 </div>
@@ -525,7 +525,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 每带一节加0.5积点。以教务处调课单据为依据
+                                                        <b style="color: red">积点说明：</b> 每带一节加0.5积点。以教务处调课单据为依据，一学年最多计20 节。
                                                     </div>
                                                 </div>
                                             </li>
@@ -570,12 +570,12 @@
                                                 <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['attendance_award'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <input type="hidden" id="attendance_award_upload_data" value="<?php echo $teacher_point['attendance_award_data'];?>"/>
-                                                        <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['attendance_award_data'])){ echo '重新上传';}else{ echo '上传出勤文件';}?>
-                                                        </div>
-                                                        <?php if(!empty($teacher_point['attendance_award_data'])){
-                                                            echo '<a target="_blank" id="attendance_award_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['attendance_award_data'].'">点击预览</a>';
-                                                        }?>
+<!--                                                        <input type="hidden" id="attendance_award_upload_data" value="--><?php //echo $teacher_point['attendance_award_data'];?><!--"/>-->
+<!--                                                        <div id="attendance_award_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;">--><?php //if(!empty($teacher_point['attendance_award_data'])){ echo '重新上传';}else{ echo '上传出勤文件';}?>
+<!--                                                        </div>-->
+<!--                                                        --><?php //if(!empty($teacher_point['attendance_award_data'])){
+//                                                            echo '<a target="_blank" id="attendance_award_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['attendance_award_data'].'">点击预览</a>';
+//                                                        }?>
                                                     </div>
                                                 </div>
                                             </li>
@@ -885,12 +885,12 @@
                                                 <input type="checkbox" style="width: 16px;height: 16px" <?php if($teacher_point['exam_rank'] == 1){ echo 'checked';}?> value="1" class="yes"/>
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">是
-                                                        <div id="exam_rank_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;"><?php if(!empty($teacher_point['exam_rank_data'])){ echo '重新上传';}else{ echo '上传证明文件';}?>
-                                                        </div>
-                                                        <?php if(!empty($teacher_point['exam_rank_data'])){
-                                                            echo '<a target="_blank" id="exam_rank_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['exam_rank_data'].'">点击预览</a>';
-                                                        }?>
-                                                        <input type="hidden" id="exam_rank_upload_data" value="<?php echo $teacher_point['exam_rank_data'];?>"/>
+<!--                                                        <div id="exam_rank_upload" style="width: 200px;position: absolute;z-index: 99;margin-top: -40px;margin-left: 50px;">--><?php //if(!empty($teacher_point['exam_rank_data'])){ echo '重新上传';}else{ echo '上传证明文件';}?>
+<!--                                                        </div>-->
+<!--                                                        --><?php //if(!empty($teacher_point['exam_rank_data'])){
+//                                                            echo '<a target="_blank" id="exam_rank_upload_url" style="margin-left: 150px;width: 100px;z-index:99;position:absolute;" href="http://'.$_SERVER['HTTP_HOST']."/".$teacher_point['exam_rank_data'].'">点击预览</a>';
+//                                                        }?>
+<!--                                                        <input type="hidden" id="exam_rank_upload_data" value="--><?php //echo $teacher_point['exam_rank_data'];?><!--"/>-->
                                                     </div>
                                                 </div>
                                             </li>
@@ -919,8 +919,9 @@
                                             <option value="1" <?php if($teacher_point['outstand_sub'] == 1){ echo 'selected';}?>>市级以上科组成员</option>
                                             <option value="2" <?php if($teacher_point['outstand_sub'] == 2){ echo 'selected';}?>>市级以上科组组长</option>
                                         </select>
-                                        <div id="outstand_sub_upload"  style="width: 200px;position: absolute;z-index: 99;margin-left: 200px;margin-top: -45px;"><?php if(!empty($teacher_point['outstand_sub_data'])){echo '重新上传';}else{ echo '上传证明文件';}?></div>&nbsp;
-                                        <input type="hidden" id="outstand_sub_upload_data" value="<?php echo $teacher_point['outstand_sub_data'];?>"/>
+<!--                                        <div id="outstand_sub_upload"  style="width: 200px;position: absolute;z-index: 99;margin-left: 200px;margin-top: -45px;">-->
+<!--                                            --><?php //if(!empty($teacher_point['outstand_sub_data'])){echo '重新上传';}else{ echo '上传证明文件';}?><!--</div>&nbsp;-->
+<!--                                        <input type="hidden" id="outstand_sub_upload_data" value="--><?php //echo $teacher_point['outstand_sub_data'];?><!--"/>-->
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
                                                 <b style="color: red">积点说明：</b>以市教科院文件为准，市级以上科组成员人均获得2个积点。科组长另奖励5个积点。
@@ -959,7 +960,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点。
+                                                <b style="color: red">积点说明：</b>校级加5个积点，市级加10个积点，省级增加15个积点，国家增加20个积点。年度考核优秀视为市级优秀；校级优秀教师为校级优秀。
                                             </div>
                                         </div>
                                     </div>
@@ -998,137 +999,140 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="survey-title">
-                                        <div class="title-content edit-area"   tabindex="1" style="background: rgb(255, 255, 255);">个人资历积点</div>
-                                    </div>
-                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">
-                                        <div class="question-title">
-                                            <span class="question-id">36、工龄：</span>
-                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
-                                        </div>
-                                        <ul class="question-choice">
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+<!--                                    <div class="survey-title">-->
+<!--                                        <div class="title-content edit-area"   tabindex="1" style="background: rgb(255, 255, 255);">个人资历积点</div>-->
+<!--                                    </div>-->
+<!--                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">-->
+<!--                                        <div class="question-title">-->
+<!--                                            <span class="question-id">36、工龄：</span>-->
+<!--                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>-->
+<!--                                        </div>-->
+<!--                                        <ul class="question-choice">-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
                                                         <input class="input_text" id="work_year" disabled value="<?php
                                                         if(!empty($teacher_point['work_year'])){
                                                             echo $teacher_point['work_year'];
                                                         }else{
                                                             echo $teacher['work_time'];
                                                         }
-                                                       ?>" type="text" placeholder="竞聘人员参加工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b>自竞聘人员参加工作之月计起（以人事档案的第一份履历表为准），每月0.4分。研究生工龄从上研究生之日进行计算。
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">
-                                        <div class="question-title">
-                                            <span class="question-id">37、市龄：</span>
-                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
-                                        </div>
-                                        <ul class="question-choice">
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                                       ?>" type="hidden" placeholder="竞聘人员参加工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
+<!--                                                        <b style="color: red">积点说明：</b>自竞聘人员参加工作之月计起（以人事档案的第一份履历表为准），每月0.4分。研究生工龄从上研究生之日进行计算。-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">-->
+<!--                                        <div class="question-title">-->
+<!--                                            <span class="question-id">37、市龄：</span>-->
+<!--                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>-->
+<!--                                        </div>-->
+<!--                                        <ul class="question-choice">-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
                                                         <input class="input_text" id="city_year" disabled value="<?php
                                                         if(!empty($teacher_point['city_year'])){
                                                             echo $teacher_point['city_year'];
                                                         }else{
                                                             echo $teacher['er_school_time'];
                                                         }
-                                                        ?>" type="text" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），每月0.6分。
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">
-                                        <div class="question-title">
-                                            <span class="question-id">38、校龄：</span>
-                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
-                                        </div>
-                                        <ul class="question-choice">
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                                        ?>" type="hidden" placeholder="竞聘人员正式调入我市工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
+<!--                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我市工作当月计起（以到主管部门报到时间为准），每月0.6分。-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">-->
+<!--                                        <div class="question-title">-->
+<!--                                            <span class="question-id">38、校龄：</span>-->
+<!--                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>-->
+<!--                                        </div>-->
+<!--                                        <ul class="question-choice">-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
                                                         <input class="input_text" id="school_year" disabled value="<?php
                                                         if(!empty($teacher_point['school_year'])){
                                                             echo $teacher_point['school_year'];
                                                         }else{
                                                             echo $teacher['school_work_time'];
                                                         }
-                                                        ?>" type="text" placeholder="竞聘人员正式调入我校工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我校工作当月计起（以到主管部门报到时间为准），校龄分每月加0.2分。
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">
-                                        <div class="question-title">
-                                            <span class="question-id">39、职称资格：</span>
-                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
-                                        </div>
-                                        <ul class="question-choice">
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
+                                                        ?>" type="hidden" placeholder="竞聘人员正式调入我校工作之月" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
+<!--                                                        <b style="color: red">积点说明：</b> 自竞聘人员正式调入我校工作当月计起（以到主管部门报到时间为准），校龄分每月加0.2分。-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="topic-type-content topic-type-question after-clear" id="super_workload">-->
+<!--                                        <div class="question-title">-->
+<!--                                            <span class="question-id">39、职称资格：</span>-->
+<!--                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>-->
+<!--                                        </div>-->
+<!--                                        <ul class="question-choice">-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
                                                         <input class="input_text" id="job_title_time" disabled value="<?php
                                                         if(!empty($teacher_point['job_title'])){
                                                             echo $teacher_point['job_title'];
                                                         }else{
                                                             echo $teacher['qua_time'];
                                                         }
-                                                        ?>" type="text" placeholder="专业技术职称资格时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-                                                        </div>
-                                                </div>
-                                            </li>
-                                            <li class="choice">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b>自取得拟竞聘的专业技术职称资格时间计起（以证书为准），每月0.8分。
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title">
-                                            <span class="question-id" >40、研究生学历（位）：</span>
-                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>
-                                        </div>
-                                        <select class="select5" id="postgraduate">
-                                            <option value="0" selected>不是</option>
-                                            <option value="1" <?php if($teacher_point['postgraduate'] == 1){ echo 'selected';}?>>全日制研究生学历和硕士学位</option>
-                                            <option value="2" <?php if($teacher_point['postgraduate'] == 2){ echo 'selected';}?>>全日制研究生学历和博士学位</option>
-                                        </select>
-                                        <div class="position-relative choice question-choice">
-                                            <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>获得全日制研究生学历和硕士学位者加9分；获得全日制研究生学历和博士学位者加15分。有研究生学位者视为研究生对待。
-                                            </div>
-                                        </div>
-                                    </div>
+                                                        ?>" type="hidden" placeholder="专业技术职称资格时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+<!--                                                        </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                            <li class="choice">-->
+<!--                                                <div class="position-relative">-->
+<!--                                                    <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
+<!--                                                        <b style="color: red">积点说明：</b>自取得拟竞聘的专业技术职称资格时间计起（以证书为准），每月0.8分。-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="topic-type-content topic-type-question after-clear">-->
+<!--                                        <div class="question-title">-->
+<!--                                            <span class="question-id" >40、研究生学历（位）：</span>-->
+<!--                                            <span class="question-id" style="float: right;margin-top: -9px;"><b>积点数：见积点说明</b></span>-->
+<!--                                        </div>-->
+                                    <input type="hidden" id="postgraduate" value="<?php echo $teacher_point['postgraduate']; ?>">
+<!--                                        <select class="select5" id="postgraduate">-->
+<!--                                            <option value="0" selected>不是</option>-->
+<!--                                            <option value="1" --><?php //if($teacher_point['postgraduate'] == 1){ echo 'selected';}?>
+<!--                                    >全日制研究生学历和硕士学位</option>-->
+<!--                                            <option value="2" --><?php //if($teacher_point['postgraduate'] == 2){ echo 'selected';}?><!-->
+<!--                                    全日制研究生学历和博士学位</option>-->
+<!--                                        </select>-->
+<!--                                        <div class="position-relative choice question-choice">-->
+<!--                                            <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">-->
+<!--                                                <b style="color: red">积点说明：</b>获得全日制研究生学历和硕士学位者加9分；获得全日制研究生学历和博士学位者加15分。有研究生学位者视为研究生对待。-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                             <div id="survey-tail">
                                 <ul>
                                     <li style="height: 40px;">

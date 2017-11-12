@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -13,8 +13,10 @@ class BaseController extends CI_Controller {
 		session_start();
 		date_default_timezone_set('PRC'); //设置中国时区
 		$this->config->load('common/config_response', TRUE); //统一返回状态码loading
+		$this->config->load('params', TRUE); //统一返回状态码loading
 		$this->load->helper('url');
 		$this->response_msg = $this->config->item('response', 'common/config_response');
+		$this->school_year = $this->config->item('school_year', 'params');
 		$this->data['year'] = $this->get_fill_point_year();
 	}
 
@@ -63,10 +65,10 @@ class BaseController extends CI_Controller {
 	public function get_fill_point_year(){
 		$this->load->model('M_sch_system_point');
 		$system_year = $this->M_sch_system_point->get_one(array('status' => 1));
-		if(empty($system_year)){
-			$system_year['year'] = date('Y', time()); //默认为今年
-		}
-		return $system_year['year'];
+//		if(empty($system_year)){
+//			$system_year['year'] = date('Y', time()); //默认为今年
+//		}
+		return $system_year;
 	}
 
 	/**
@@ -78,10 +80,10 @@ class BaseController extends CI_Controller {
 	public function getMonthNum($date){ 
 		$last_year = date('Y', strtotime($date)); 
 		$now_year = date('Y', time());
-		$now_year = 2017;
+//		$now_year = 2017;
 		$last_month = date('m', strtotime($date));
 		$now_month = date('m', time());
-		$now_month = 05;
+		$now_month = '08';
 		if($now_year > $last_year){
 			$year = bcsub($now_year, $last_year);
 		}else{

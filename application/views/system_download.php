@@ -37,9 +37,9 @@
         foreach($point_list as $point){ ?>
             <tr>
                 <td><?php  echo $point['id']; ?></td>
-                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['last_year']; ?></td>
                 <td>
-                    <a href="/index.php/system/download/<?php  echo $point['year']; ?>" class="tablelink" style="color: cornflowerblue">下载所有教师积点</a>
+                    <a href="/index.php/system/download/<?php  echo $point['last_year']; ?>" class="tablelink" style="color: cornflowerblue">下载所有教师积点</a>
                 </td>
             </tr>
         <?php }

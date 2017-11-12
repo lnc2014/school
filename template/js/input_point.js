@@ -1140,31 +1140,31 @@ $(function(){
         var province_point = province_match * 3;
         var city_point = city_match * 1;
 
-        var part_time_magazine_data = $('#part_time_magazine_upload_data').val();
-        if(!part_time_magazine_data && part_time_magazine == 1){
-            alert('请上传兼职证明文件');
-            return;
-        }
-        var substitute_data = $('#substitute_upload_data').val();
-        if(!substitute_data && substitute == 1){
-            alert('请上传代课文件');
-            return;
-        }
-        var attendance_award_data = $('#attendance_award_upload_data').val();
-        if(!attendance_award_data && attendance_award == 1){
-            alert('请上传出勤记录');
-            return;
-        }
-        var exam_rank_data = $('#exam_rank_upload_data').val();
-        if(!exam_rank_data && exam_rank == 1){
-            alert('请上传考试成绩单');
-            return;
-        }
-        var outstand_sub_data = $('#outstand_sub_upload_data').val();
-        if(!outstand_sub_data && outstand_sub != 0){
-            alert('请上传市教科院文件');
-            return;
-        }
+        //var part_time_magazine_data = $('#part_time_magazine_upload_data').val();
+        //if(!part_time_magazine_data && part_time_magazine == 1){
+        //    alert('请上传兼职证明文件');
+        //    return;
+        //}
+        //var substitute_data = $('#substitute_upload_data').val();
+        //if(!substitute_data && substitute == 1){
+        //    alert('请上传代课文件');
+        //    return;
+        //}
+        //var attendance_award_data = $('#attendance_award_upload_data').val();
+        //if(!attendance_award_data && attendance_award == 1){
+        //    alert('请上传出勤记录');
+        //    return;
+        //}
+        //var exam_rank_data = $('#exam_rank_upload_data').val();
+        //if(!exam_rank_data && exam_rank == 1){
+        //    alert('请上传考试成绩单');
+        //    return;
+        //}
+        //var outstand_sub_data = $('#outstand_sub_upload_data').val();
+        //if(!outstand_sub_data && outstand_sub != 0){
+        //    alert('请上传市教科院文件');
+        //    return;
+        //}
         award_point = accAdd(award_point, substitute_point);
         award_point = accAdd(award_point, satisfaction_survey_point);
         award_point = accAdd(award_point, attendance_award_point);
@@ -1220,19 +1220,19 @@ $(function(){
                 officer : officer,
                 school_leader : school_leader,
                 part_time_magazine : part_time_magazine,
-                part_time_magazine_data : part_time_magazine_data,
+                //part_time_magazine_data : part_time_magazine_data,
                 academic : academic,
                 education_case : education_case,
                 education_case2 : education_case2,
                 paper : paper,
                 counselor : counselor,
                 substitute : substitute,
-                substitute_data : substitute_data,
+                //substitute_data : substitute_data,
                 substitute_num : substitute_num,
                 satisfaction_survey : satisfaction_survey,
                 attendance_award : attendance_award,
                 attendance_award_num : attendance_award_num,
-                attendance_award_data : attendance_award_data,
+                //attendance_award_data : attendance_award_data,
                 school_teacher : school_teacher,
                 finish_goal : finish_goal,
                 college_num : college_num,
@@ -1246,9 +1246,9 @@ $(function(){
                 city_match : city_match,
                 exam_pro : exam_pro,
                 exam_rank : exam_rank,
-                exam_rank_data : exam_rank_data,
+                //exam_rank_data : exam_rank_data,
                 outstand_sub : outstand_sub,
-                outstand_sub_data : outstand_sub_data,
+                //outstand_sub_data : outstand_sub_data,
                 select_outstand_school : select_outstand_school,
                 select_outstand_year : select_outstand_year,
                 select_outstand_person : select_outstand_person,

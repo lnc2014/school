@@ -49,7 +49,7 @@
         <?php
         foreach($teacher_check as $point){ ?>
             <tr>
-                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['first_year'].'-'.$point['last_year']; ?></td>
                 <td><?php  echo $point['name']; ?></td>
 <!--                <td>--><?php
 //                    if($point['subject'] == 1){

@@ -55,7 +55,7 @@ class Academic extends BaseController{
             return;
         }
         $this->load->model('M_sch_point');
-        $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status, year');
+        $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status');
         if(empty($ponit_info)){
             echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
             return;

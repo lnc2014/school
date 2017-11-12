@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Description：教师管理控制器
  * Author: LNC
@@ -92,7 +92,11 @@ class Teacher extends BaseController{
             $this->data['have_point'] = 0;
         }
         if(!empty($system_year)){
-            $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => $system_year['year']));
+            $teacher_point = $this->M_sch_point->get_one(array(
+                'teacher_id' => $_SESSION['teacher_id'],
+                'first_year' => $system_year['first_year'],
+                'last_year' => $system_year['last_year'],
+            ));
         }
         $this->data['is_fill_point'] = 0;//是不是已经填写本年度的积点,默认为没有填写
         if(!empty($teacher_point)){
@@ -113,7 +117,7 @@ class Teacher extends BaseController{
             return;
         }
         $this->load->model('M_sch_point');
-        $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status, year');
+        $ponit_info = $this->M_sch_point->get_one(array('id' => $ponit_id),'teacher_id, status');
         if(empty($ponit_info)){
             echo $this->apiReturn('0200', new stdClass(), $this->response_msg["0200"]);
             return;
@@ -191,11 +195,16 @@ class Teacher extends BaseController{
         $this->load->model('M_sch_system_point');
         $system_year = $this->M_sch_system_point->get_one(array('status' => 1));
         if(empty($system_year)){
-            $system_year['year'] = date('Y', time()); //默认为今年
+            $system_year['first_year'] = date('Y', time()); //默认为今年
+            $system_year['last_year'] = bcadd( $system_year['first_year'], 1); //默认为今年
         }
         $this->load->model('M_sch_point');
         if($post['point_id'] == 0){
-            $teacher_point = $this->M_sch_point->get_one(array('teacher_id' => $_SESSION['teacher_id'], 'year' => $system_year['year'])); //获取积点的年份
+            $teacher_point = $this->M_sch_point->get_one(array(
+                'teacher_id' => $_SESSION['teacher_id'],
+                'first_year' => $system_year['first_year'],
+                'last_year' => $system_year['last_year']
+            )); //获取积点的年份
             if(!empty($teacher_point) || !empty($teacher_total_point)){
                 echo $this->apiReturn('0004', new stdClass(), $this->response_msg["0004"]);
                 return;
@@ -234,7 +243,8 @@ class Teacher extends BaseController{
         $post['person_point'] = $result['person_point'];
         $post['part_time_point'] = $result['part_time_point'];
         $post['award_point'] = $result['award_point'];
-        $post['year'] = $system_year['year'];
+        $post['first_year'] = $system_year['first_year'];
+        $post['last_year'] = $system_year['last_year'];
         if($post['status'] < 1){
             $post['status'] = 1;//1为待审核，2为教务处审核中，3办公室审核中，4评审委员会审核中，5校长是否公布，6已完成
         } 

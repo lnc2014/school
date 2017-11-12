@@ -39,9 +39,7 @@
             <th>兼职岗位积点</th>
             <th>奖励性积点</th>
             <th>个人资历积点</th>
-            <th>教务处绩效得分</th>
             <th>最后等分</th>
-            <th>排名</th>
             <th>状态</th>
         </tr>
         </thead>
@@ -49,14 +47,12 @@
         <?php
             foreach($teacher_point as $point){ ?>
             <tr>
-                <td><?php  echo $point['year']; ?></td>
+                <td><?php  echo $point['first_year'].'-'.$point['last_year']; ?></td>
                 <td><?php  echo $point['base_point']; ?></td>
                 <td><?php  echo $point['part_time_point']; ?></td>
                 <td><?php  echo $point['award_point']; ?></td>
                 <td><?php  echo $point['person_point']; ?></td>
-                <td><?php  echo $point['per_point']; ?></td>
-                <td><?php  echo $point['all_point']; ?></td>
-                <td>暂无</td>
+                <td><?php  echo $point['total_point']; ?></td>
                 <td><?php
                     if($point['status'] == 6){
                         echo '已公布';

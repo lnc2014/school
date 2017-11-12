@@ -23,15 +23,15 @@
 </div>
 
 <div class="mainindex">
-<!--    <div class="welinfo"> -->
+<!--    <div class="welinfo">-->
 <!--        <input name="" class="btn" value="新增账号" onclick="javascript:window.location='/index.php/system/add_teacher'" type="button">-->
 <!--        <div id="picker" class="webuploader-container" style="float: right; margin-right: 1050px;margin-top: -13px;">-->
 <!--            <div class="webuploader-pick" style="padding: 0px 0px;">批量导入</div>-->
 <!--        </div>-->
 <!--        <input name="" class="btn" value="导入模板" style="float: right;margin-right: -250px;" onclick="javascript:window.location='--><?php //echo $excel_url; ?>
-<!--    //'" type="button">-->
-<!--//        <div style="float: right;margin-right: -630px;color: red">注：批量导入的时候严格按照所给的模板导入，不然会导致不成功！</div>-->
-<!--//    </div>-->
+<!--    " type="button">-->
+<!--       <div style="float: right;margin-right: -630px;color: red">注：批量导入的时候严格按照所给的模板导入，不然会导致不成功！</div>-->
+<!--   </div>-->
     <div class="xline"></div>
     <div id="tab2" class="tabson" style="display: block;">
         <ul class="seachform">

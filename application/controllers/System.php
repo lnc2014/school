@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Description：系统设置控制器
  * Author: LNC
@@ -275,7 +275,8 @@ class System extends BaseController{
             $point_id = $post['is_update'];
             unset($post['is_update']);
             $this->load->model('M_sch_system_point');
-            $is_new_point = $this->M_sch_system_point->get_one(array('year' => $post['year']));
+            $where = "first_year = ".$post['first_year']." and last_year =".$post['last_year']." and id <>".$point_id;
+            $is_new_point = $this->M_sch_system_point->get_one($where);
             if(!empty($is_new_point)){
                 echo $this->apiReturn('0301', new stdClass(), $this->response_msg["0301"]);
                 return;
@@ -288,12 +289,15 @@ class System extends BaseController{
                 echo $this->apiReturn('0002', new stdClass(), $this->response_msg["0002"]);
                 return;
             }
-        }elseif(empty($post['is_update'])){//增加
+        }elseif(empty($post['is_update'])){//增加 
             unset($post['is_update']);
-            $post['status'] = 1;
+            $post['status'] = 0;
             $post['create_time'] = date('Y-m-d H:i:s', time());
             $this->load->model('M_sch_system_point');
-            $is_new_point = $this->M_sch_system_point->get_one(array('year' => $post['year']));
+            $is_new_point = $this->M_sch_system_point->get_one(array(
+                'first_year' => $post['first_year'],
+                'last_year' => $post['last_year'],
+            ));
             if(!empty($is_new_point)){
                 echo $this->apiReturn('0301', new stdClass(), $this->response_msg["0301"]);
                 return;
@@ -493,19 +497,19 @@ class System extends BaseController{
         $datalist = $this->list_dir($save_path);
         $zip_path = ROOTPATH.'teacher'.'/zip/'.$year.'.zip';
         $filename = $zip_path; //最终生成的文件名（含路径）
-            unlink($filename);
+        unlink($filename);
         //重新生成文件
-            $zip = new ZipArchive();//使用本类，linux需开启zlib，windows需取消php_zip.dll前的注释
-            if ($zip->open($filename, ZIPARCHIVE::CREATE)!==TRUE) {
-                exit('无法打开文件，或者文件创建失败');
-            }
-            foreach($datalist as $val){
-                if(file_exists(iconv('UTF-8','GB2312', $val))){
+        $zip = new ZipArchive();//使用本类，linux需开启zlib，windows需取消php_zip.dll前的注释
+        if ($zip->open($filename, ZIPARCHIVE::CREATE)!==TRUE) {
+            exit('无法打开文件，或者文件创建失败');
+        }
+        foreach($datalist as $val){
+            if(file_exists(iconv('UTF-8','GB2312', $val))){
 //                    $zip->addFile( $val, basename($val));//非中文使用这个
-                    $zip->addFromString($this->get_basename($val), file_get_contents(iconv('utf-8', 'gbk//ignore', $val)));//中文使用这个
-                }
+                $zip->addFromString(iconv('UTF-8','GB2312', $this->get_basename($val)), file_get_contents(iconv('utf-8', 'gbk//ignore', $val)));//中文使用这个
             }
-            $zip->close();//关闭
+        }
+        $zip->close();//关闭
         if(!file_exists($filename)){
             exit("无法找到文件"); //即使创建，仍有可能失败。。。。
         }
@@ -548,11 +552,16 @@ class System extends BaseController{
         if(!$this->check_login()){
             redirect('school/login');
         }
-        $year = $this->input->get('year', true);
+        $first_year = $this->input->get('first_year', true);
+        $last_year = $this->input->get('last_year', true);
+        $teacher_name = $this->input->get('teacher_name', true);
         $status = $this->input->get('status', true);
         $where = "";
-        if(!empty($year)){
-            $where = $where."and a.`year` =".$year;
+        if(!empty($first_year) && !empty($last_year)){
+            $where = $where."and a.`first_year` =".$first_year.' and a.`last_year`='.$last_year;
+        }
+        if(!empty($teacher_name)){
+            $where = $where."and t.`name` like '%".$teacher_name."%'";
         }
         if(!empty($status)){
             $where = $where." and a.`status` =".$status;
