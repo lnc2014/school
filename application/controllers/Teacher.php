@@ -356,6 +356,8 @@ class Teacher extends BaseController{
             $part_time_point = bcadd($part_time_point, 6, 2);
         }elseif($post['education_case'] == 6){
             $part_time_point = bcadd($part_time_point, 3, 2);
+        }elseif($post['education_case'] == 7){
+            $part_time_point = bcadd($part_time_point, 8, 2);
         }
         if($post['education_case2'] == 1){
             $part_time_point = bcadd($part_time_point, 7, 2);
@@ -369,6 +371,8 @@ class Teacher extends BaseController{
             $part_time_point = bcadd($part_time_point, 6, 2);
         }elseif($post['education_case2'] == 6){
             $part_time_point = bcadd($part_time_point, 3, 2);
+        }elseif($post['education_case'] == 7){
+            $part_time_point = bcadd($part_time_point, 8, 2);
         }
         if($post['paper'] == 1){
             $part_time_point = bcadd($part_time_point, 5, 2);
@@ -440,7 +444,7 @@ class Teacher extends BaseController{
             $award_point = bcadd($award_point, $post['super_workload']*0.5, 2);
         } 
         if($post['school_class'] > 0){
-            $award_point = bcadd($award_point, $post['school_class']*5, 2);
+            $award_point = bcadd($award_point, $post['school_class']*10, 2);//20171129修改
         } 
         if($post['city_class'] > 0){
             $award_point = bcadd($award_point, $post['city_class']*10, 2);
@@ -450,16 +454,22 @@ class Teacher extends BaseController{
                 $post['courses'] = 2;
             }
             $award_point = bcadd($award_point, $post['courses']*3, 2);
-        } 
+        }
+        //省级最大上限为27分
+        $country_point = 0;
         if($post['country_match'] > 0){
-            $award_point = bcadd($award_point, $post['country_match']*5, 2);
+            $country_point = bcadd($country_point, $post['country_match']*5, 2);
         } 
         if($post['province_match'] > 0){
-            $award_point = bcadd($award_point, $post['province_match']*3, 2);
+            $country_point = bcadd($country_point, $post['province_match']*3, 2);
         } 
         if($post['city_match'] > 0){
-            $award_point = bcadd($award_point, $post['city_match']*1, 2);
-        } 
+            $country_point = bcadd($country_point, $post['city_match']*1, 2);
+        }
+        if($country_point >= 27){
+            $country_point = 27;
+        }
+        $award_point = bcadd($award_point, $country_point, 2);
         if($post['exam_pro'] == 1){
             $award_point = bcadd($award_point, 3, 2);
         }elseif($post['exam_pro'] == 2){

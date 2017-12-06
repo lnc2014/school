@@ -136,8 +136,7 @@
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>在研的校级课题：主持人7，成员排序前三位4，其他成员2；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。校，市、省、全国教育行政部门或直属学会立项的课题，（含子课题）。不同级别的相同课题，按一个计，取最高分。每人每学年最多计两个课题
-                                            </div>
+                                                <b style="color: red">积点说明：</b>校级课题主持人7 ，成员2 ，没有成员排序。市级及市级以上课题：主持人11，执笔人8（仅限于校级领导主持的课题），成员排序前三位6，其他成员3。校，市、省、全国教育行政部门或直属学会立项的课题，（含子课题）。不同级别的相同课题，按一个计，取最高分。每人每学年最多计两个课题。</div>
                                         </div>
                                     </div>
                                     <div class="topic-type-content topic-type-question after-clear">

@@ -189,8 +189,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 全校集会、部门会议、科组、备课组、班主任例会等缺席一次扣除1个积点，扣完为止。部门负责人负责考勤，提供考勤记录。
-                                                    </div>
+                                                        <b style="color: red">积点说明：</b> 校集会、部门会议、科组、备课组、班主任例会等缺席一次扣除1个积点，扣完为止。部门负责人负责考勤，提供考勤记录。因私请假超过30天（自然日），此项得分为0。产假不扣分。 </div>
                                                 </div>
                                             </li>
                                         </ul>

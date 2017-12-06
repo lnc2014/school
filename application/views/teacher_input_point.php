@@ -280,25 +280,26 @@
                                         <select class="select2" id="education_case" style="width: 250px">
                                             <option value="0"  selected>不是</option>
                                             <option value="1" <?php if($teacher_point['education_case'] == 1){ echo 'selected';}?>>在研的校级课题主持人</option>
-                                            <option value="2" <?php if($teacher_point['education_case'] == 2){ echo 'selected';}?>>在研的校级课题执笔人</option>
+<!--                                            <option value="2" --><?php //if($teacher_point['education_case'] == 2){ echo 'selected';}?><!-->在研的校级课题执笔人</option>-->
                                             <option value="3" <?php if($teacher_point['education_case'] == 3){ echo 'selected';}?>>在研的校级课题其他成员</option>
                                             <option value="4" <?php if($teacher_point['education_case'] == 4){ echo 'selected';}?>>在研的市级及市级以上课题主持人</option>
+                                            <option value="7" <?php if($teacher_point['education_case'] == 7){ echo 'selected';}?>>在研的市级及市级以上课题执笔人</option>
                                             <option value="5" <?php if($teacher_point['education_case'] == 5){ echo 'selected';}?>>在研的市级及市级以上课题成员排序前三位</option>
                                             <option value="6" <?php if($teacher_point['education_case'] == 6){ echo 'selected';}?>>在研的市级及市级以上课题其他成员</option>
                                         </select>
                                         <select class="select2" id="education_case2" style="width: 250px">
                                             <option value="0"  selected>不是</option>
                                             <option value="1" <?php if($teacher_point['education_case2'] == 1){ echo 'selected';}?>>在研的校级课题主持人</option>
-                                            <option value="2" <?php if($teacher_point['education_case2'] == 2){ echo 'selected';}?>>在研的校级课题执笔人</option>
+<!--                                            <option value="2" --><?php //if($teacher_point['education_case2'] == 2){ echo 'selected';}?><!-->在研的校级课题执笔人</option>-->
                                             <option value="3" <?php if($teacher_point['education_case2'] == 3){ echo 'selected';}?>>在研的校级课题其他成员</option>
                                             <option value="4" <?php if($teacher_point['education_case2'] == 4){ echo 'selected';}?>>在研的市级及市级以上课题主持人</option>
+                                            <option value="7" <?php if($teacher_point['education_case'] == 7){ echo 'selected';}?>>在研的市级及市级以上课题执笔人</option>
                                             <option value="5" <?php if($teacher_point['education_case2'] == 5){ echo 'selected';}?>>在研的市级及市级以上课题成员排序前三位</option>
                                             <option value="6" <?php if($teacher_point['education_case2'] == 6){ echo 'selected';}?>>在研的市级及市级以上课题其他成员</option>
                                         </select>
                                         <div class="position-relative choice question-choice">
                                             <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                <b style="color: red">积点说明：</b>在研的校级课题：主持人7，执笔人4，其他成员2，没有成员排序；在研的市级及市级以上课题：主持人11，成员排序前三位6，其他成员3。校，市、省、全国教育行政部门或直属学会立项的课题，（含子课题）。不同级别的相同课题，按一个计，取最高分。每人每学年最多计两个课题
-                                            </div>
+                                                <b style="color: red">积点说明：</b> 校级课题主持人7 ，成员2 ，没有成员排序。市级及市级以上课题：主持人11，执笔人8（仅限于校级领导主持的课题），成员排序前三位6，其他成员3。校，市、省、全国教育行政部门或直属学会立项的课题，（含子课题）。不同级别的相同课题，按一个计，取最高分。每人每学年最多计两个课题。</div>
                                         </div>
                                     </div>
                                     <div class="topic-type-content topic-type-question after-clear">
@@ -590,7 +591,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 全校集会、部门会议、科组、备课组、班主任例会等缺席一次扣除1个积点，扣完为止。部门负责人负责考勤，提供考勤记录。
+                                                        <b style="color: red">积点说明：</b>校集会、部门会议、科组、备课组、班主任例会等缺席一次扣除1个积点，扣完为止。部门负责人负责考勤，提供考勤记录。因私请假超过30天（自然日），此项得分为0。产假不扣分。
                                                     </div>
                                                 </div>
                                             </li>
@@ -676,7 +677,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b>本科生超出指标数量，一个增加6个积点。
+                                                        <b style="color: red">积点说明：</b>本科生超出指标数量，一个增加6个积点。教多个班级的，本科生超指标数量相加取和。
                                                     </div>
                                                 </div>
                                             </li>
@@ -706,7 +707,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b>重点生指标每多超一个，加10个点。
+                                                        <b style="color: red">积点说明：</b>重本生指标每多超一个，加10个点。教多个班级的，重本生超指标数量相加取和。
                                                     </div>
                                                 </div>
                                             </li>
@@ -796,7 +797,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b>市级公开课实验课，每节课增加5个积点。
+                                                        <b style="color: red">积点说明：</b>市级公开课实验课，每节课增加10个积点。
                                                     </div>
                                                 </div>
                                             </li>
@@ -850,7 +851,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b>学生进入国家集训队或以上，可获得5×（学生数）个积点。省级以上3×（学生数），市级以上1×（学生数）。
+                                                        <b style="color: red">积点说明：</b>总分数上限为27分。学生进入国家集训队或以上，可获得5×（学生数）个积点。省级以上3×（学生数），市级以上1×（学生数）。
                                                     </div>
                                                 </div>
                                             </li>
@@ -903,7 +904,7 @@
                                             <li class="choice">
                                                 <div class="position-relative">
                                                     <div class="edit-area edit-child-element"   style="background: rgb(255, 255, 255);">
-                                                        <b style="color: red">积点说明：</b> 以教务处学段考考试简报为依据，学段考试成绩综合排名（参考B值，均分）在同备课组内位列前50%的，奖励科任老师6个积点。
+                                                        <b style="color: red">积点说明：</b> 学段考试成绩排名前50%的次数，占本学年度学段考总次数的50%（四舍五入）才可以得分。可由自己选择具体哪一次考试。
                                                     </div>
                                                 </div>
                                             </li>
